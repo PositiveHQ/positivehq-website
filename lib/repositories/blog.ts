@@ -1,6 +1,6 @@
 import { featuredPost, posts } from '@/data/posts';
 import { BlogPost } from '@/types/blog';
-import { sanityClient, isSanityConfigured } from '@/lib/sanity/client';
+import { getSanityClient, isSanityConfigured } from '@/lib/sanity/client';
 import { blogPostBySlugQuery, blogPostsQuery } from '@/lib/sanity/queries';
 
 type SanityPost = {
@@ -32,7 +32,8 @@ function toBlogPost(post: SanityPost): BlogPost {
 }
 
 async function getSanityPosts(): Promise<BlogPost[] | null> {
-  if (!isSanityConfigured) return null;
+  const sanityClient = getSanityClient();
+  if (!sanityClient) return null;
 
   try {
     const data = await sanityClient.fetch<SanityPost[]>(blogPostsQuery);
@@ -55,7 +56,10 @@ export async function getFeaturedPost(): Promise<BlogPost> {
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  if (isSanityConfigured) {
+  if (isSanityConfigured()) {
+    const sanityClient = getSanityClient();
+    if (!sanityClient) return posts.find((post) => post.slug === slug) ?? null;
+
     try {
       const data = await sanityClient.fetch<SanityPost | null>(blogPostBySlugQuery, { slug });
       if (data) return toBlogPost(data);
