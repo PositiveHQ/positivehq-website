@@ -1,7 +1,8 @@
+import 'server-only';
 import crypto from 'crypto';
 import { cookies } from 'next/headers';
+import { ADMIN_SESSION_COOKIE } from '@/lib/admin-session-cookie';
 
-export const ADMIN_SESSION_COOKIE = 'pwc_admin_session';
 const SESSION_TTL_SECONDS = 60 * 60 * 12; // 12 hours
 
 function getSessionSecret() {

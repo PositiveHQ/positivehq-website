@@ -26,14 +26,22 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
       return { status: 'error', message: 'Please complete name, email, brand, and model.' };
     }
 
-    const year = yearValue ? Number(yearValue) : undefined;
-    if (yearValue && (Number.isNaN(year) || year < 1900 || year > 2100)) {
-      return { status: 'error', message: 'Year must be between 1900 and 2100.' };
+    let year: number | undefined;
+    if (yearValue) {
+      const parsedYear = Number(yearValue);
+      if (!Number.isFinite(parsedYear) || parsedYear < 1900 || parsedYear > 2100) {
+        return { status: 'error', message: 'Year must be between 1900 and 2100.' };
+      }
+      year = parsedYear;
     }
 
-    const askingPrice = askingPriceValue ? Number(askingPriceValue) : undefined;
-    if (askingPriceValue && (Number.isNaN(askingPrice) || askingPrice < 0)) {
-      return { status: 'error', message: 'Asking price must be a positive number.' };
+    let askingPrice: number | undefined;
+    if (askingPriceValue) {
+      const parsedAskingPrice = Number(askingPriceValue);
+      if (!Number.isFinite(parsedAskingPrice) || parsedAskingPrice < 0) {
+        return { status: 'error', message: 'Asking price must be a positive number.' };
+      }
+      askingPrice = parsedAskingPrice;
     }
 
     await createSellSubmission({
