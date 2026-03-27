@@ -1,17 +1,6 @@
-export type Post = {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  body: string[];
-  category: 'Buying' | 'Selling' | 'Market';
-  author: string;
-  publishedAt: string;
-  image: string;
-  featured?: boolean;
-};
+import { BlogPost } from '@/types/blog';
 
-export const posts: Post[] = [
+export const posts: BlogPost[] = [
   {
     id: 'p1',
     slug: 'how-to-buy-a-modern-rolex-without-overpaying',

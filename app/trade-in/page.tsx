@@ -1,11 +1,20 @@
+import { Metadata } from 'next';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
+import { SellForm } from '@/components/sell-form';
+import { submitTradeSubmissionAction } from '@/app/sell/actions';
+
+export const metadata: Metadata = {
+  title: 'Trade-In',
+  description: 'Use your current watch value toward your next purchase with a clear trade process.',
+  alternates: { canonical: '/trade-in' }
+};
 
 export default function TradeInPage() {
   return (
     <Container className="space-y-12 py-16">
-      <header className="space-y-4 rounded-2xl bg-slate-900 p-10 text-white">
-        <p className="text-xs uppercase tracking-[0.16em] text-slate-300">Trade-In</p>
+      <header className="surface-card space-y-4 bg-gradient-to-r from-[#121418] via-[#0f1218] to-[#19140c] p-10 text-white">
+        <p className="eyebrow">Trade-In</p>
         <h1 className="max-w-3xl text-4xl font-semibold">Use your current watch toward your next one.</h1>
         <p className="max-w-2xl text-sm text-slate-300">Trade-in combines our buy offer with your target purchase. One transaction. Clean paperwork. Clear numbers.</p>
         <Button href="/sell" className="w-fit">Start Trade-In</Button>
@@ -17,20 +26,26 @@ export default function TradeInPage() {
           ['Choose replacement', 'Browse current inventory or tell us your target model.'],
           ['Settle the difference', 'Apply trade value to purchase balance and complete the deal.']
         ].map(([title, copy]) => (
-          <article key={title} className="rounded-xl border border-slate-200 p-6">
-            <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
-            <p className="mt-2 text-sm text-slate-600">{copy}</p>
+          <article key={title} className="surface-card p-6">
+            <h2 className="text-lg font-semibold text-white">{title}</h2>
+            <p className="mt-2 text-sm text-slate-300">{copy}</p>
           </article>
         ))}
       </section>
 
-      <section className="rounded-xl border border-slate-200 bg-slate-50 p-8">
-        <h3 className="text-xl font-semibold text-slate-900">Why clients choose trade-in</h3>
-        <ul className="mt-4 space-y-2 text-sm text-slate-600">
+      <section className="surface-card p-8">
+        <h3 className="text-xl font-semibold text-white">Why clients choose trade-in</h3>
+        <ul className="mt-4 space-y-2 text-sm text-slate-300">
           <li>• One point of contact from valuation to delivery.</li>
           <li>• Competitive value backed by current market demand.</li>
           <li>• Less downtime versus selling first and buying later.</li>
         </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold text-white">Submit your trade details</h2>
+        <p className="text-sm text-slate-300">Share your current watch details and we will come back with trade options.</p>
+        <SellForm action={submitTradeSubmissionAction} submissionLabel="Submit Trade Request" />
       </section>
     </Container>
   );

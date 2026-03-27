@@ -10,11 +10,13 @@ type ButtonProps = {
 };
 
 const baseClass =
-  'inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-medium tracking-wide transition-colors';
+  'inline-flex items-center justify-center rounded-xl px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300';
 
 const variantClass = {
-  primary: 'bg-slate-900 text-white hover:bg-slate-700',
-  secondary: 'border border-slate-300 bg-white text-slate-900 hover:bg-slate-100'
+  primary:
+    'border border-amber-100/20 bg-gradient-to-r from-amber-100/90 via-amber-200 to-amber-100/90 text-slate-950 shadow-[0_10px_26px_rgba(194,166,110,0.35)] hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(194,166,110,0.45)]',
+  secondary:
+    'border border-white/25 bg-white/5 text-slate-100 backdrop-blur hover:-translate-y-0.5 hover:border-amber-100/45 hover:bg-white/10'
 };
 
 export function Button({ children, href, variant = 'primary', className = '', type = 'button' }: ButtonProps) {

@@ -1,5 +1,12 @@
+import { Metadata } from 'next';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
+
+export const metadata: Metadata = {
+  title: 'Newsletter',
+  description: 'Get new arrivals and watch market updates from Positive Watch Co.',
+  alternates: { canonical: '/newsletter' }
+};
 
 export default function NewsletterPage() {
   return (

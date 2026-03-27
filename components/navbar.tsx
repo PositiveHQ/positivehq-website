@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 import { Container } from './container';
 
 const links = [
@@ -6,30 +9,64 @@ const links = [
   { href: '/sell', label: 'Sell' },
   { href: '/trade-in', label: 'Trade-In' },
   { href: '/blog', label: 'Journal' },
+  { href: '/about', label: 'About' },
   { href: '/newsletter', label: 'Newsletter' }
 ];
 
 export function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
-      <Container className="flex h-20 items-center justify-between">
-        <Link href="/" className="text-lg font-semibold tracking-wide text-slate-900">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#07090d]/80 backdrop-blur-xl">
+      <Container className="flex h-20 items-center justify-between gap-4">
+        <Link href="/" className="text-sm font-semibold tracking-[0.2em] text-white sm:text-base">
           POSITIVE WATCH CO.
         </Link>
-        <nav className="hidden gap-8 md:flex">
+
+        <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
+            <Link key={link.href} href={link.href} className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-300 transition hover:text-amber-100">
               {link.label}
             </Link>
           ))}
         </nav>
-        <Link
-          href="/sell"
-          className="rounded-md border border-slate-300 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-700 transition hover:border-slate-500 hover:text-slate-900"
-        >
-          Get Offer
-        </Link>
+
+        <div className="flex items-center gap-3">
+          <Link
+            href="/sell"
+            className="hidden rounded-xl border border-amber-100/35 bg-amber-100/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-100 transition hover:bg-amber-100/20 sm:inline-flex"
+          >
+            Get Offer
+          </Link>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            onClick={() => setOpen((value) => !value)}
+            className="rounded-xl border border-white/20 p-2 text-slate-200 transition hover:border-amber-100/45 hover:text-amber-100 md:hidden"
+          >
+            <span className="block h-0.5 w-5 bg-current" />
+            <span className="mt-1 block h-0.5 w-5 bg-current" />
+            <span className="mt-1 block h-0.5 w-5 bg-current" />
+          </button>
+        </div>
       </Container>
+
+      {open && (
+        <div className="border-t border-white/10 bg-[#07090d]/95 md:hidden">
+          <Container className="space-y-3 py-4">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block rounded-lg border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-300 transition hover:border-amber-100/35 hover:text-amber-100"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </Container>
+        </div>
+      )}
     </header>
   );
 }

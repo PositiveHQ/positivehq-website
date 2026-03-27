@@ -14,10 +14,10 @@ export function NewsletterForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-        <input required type="email" placeholder="Email address" className="rounded-md border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-500 focus:border-slate-500 focus:outline-none" />
+        <input required type="email" placeholder="Email address" className="field-input" />
         <Button type="submit">Subscribe</Button>
       </div>
-      <p className="text-xs text-slate-500">
+      <p className="text-xs text-slate-400">
         {state === 'success' ? 'Thanks for subscribing. You are on the list.' : 'No spam. Just new arrivals, market context, and practical buying/selling guidance.'}
       </p>
     </form>
