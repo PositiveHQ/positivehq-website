@@ -239,3 +239,4 @@ In Supabase dashboard:
 - Advanced technical SEO audits (Core Web Vitals tuning, deep schema expansion).
 - Multi-locale SEO if international rollout is needed.
 - Automated monitoring/alerting for SEO regressions.
+- Test commit to trigger Vercel deployment
