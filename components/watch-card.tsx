@@ -8,7 +8,11 @@ export function WatchCard({ watch }: { watch: Watch }) {
   if (!primaryImage) return null;
 
   return (
-    <article className="group surface-card overflow-hidden hover:-translate-y-1">
+    <Link href={`/watches/${watch.slug}`} className="group block">
+  <article className="surface-card overflow-hidden hover:-translate-y-1">
+    ...
+  </article>
+</Link>
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={primaryImage.url}
