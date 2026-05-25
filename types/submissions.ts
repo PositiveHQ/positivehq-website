@@ -62,3 +62,17 @@ export interface SellSubmissionInput {
   askingPrice?: number;
   notes?: string;
 }
+
+export interface NewsletterSubscriberInput {
+  email: string;
+  sourcePage: string;
+}
+
+export interface ContactSubmissionInput {
+  customerName: string;
+  email: string;
+  phone?: string;
+  subject?: string;
+  message: string;
+  sourcePage: string;
+}

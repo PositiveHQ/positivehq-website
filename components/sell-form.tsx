@@ -33,6 +33,7 @@ export function SellForm({ action, submissionLabel }: SellFormProps) {
   return (
     <div className="grid gap-8 lg:grid-cols-3">
       <form action={formAction} className="surface-card space-y-4 p-6 lg:col-span-2">
+        <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
         <h2 className="text-xl font-semibold text-white">Submit watch details</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <input required name="customerName" placeholder="Your name" className="field-input" />

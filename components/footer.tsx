@@ -26,16 +26,21 @@ export function Footer() {
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Explore</p>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             <Link className="block transition hover:text-amber-100" href="/watches">Shop Watches</Link>
-            <Link className="block transition hover:text-amber-100" href="/sell">Sell Your Watch</Link>
+            <Link className="block transition hover:text-amber-100" href="/sell-your-watch">Sell Your Watch</Link>
+            <Link className="block transition hover:text-amber-100" href="/value-estimate">Value Estimate</Link>
             <Link className="block transition hover:text-amber-100" href="/trade-in">Trade-In</Link>
-            <Link className="block transition hover:text-amber-100" href="/about">About</Link>
+            <Link className="block transition hover:text-amber-100" href="/contact">Contact</Link>
           </div>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Content</p>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
+            <Link className="block transition hover:text-amber-100" href="/guides">Guides</Link>
             <Link className="block transition hover:text-amber-100" href="/blog">Journal</Link>
             <Link className="block transition hover:text-amber-100" href="/newsletter">Newsletter</Link>
+            <Link className="block transition hover:text-amber-100" href="/privacy">Privacy</Link>
+            <Link className="block transition hover:text-amber-100" href="/terms">Terms</Link>
+            <Link className="block transition hover:text-amber-100" href="/disclaimer">Disclaimer</Link>
           </div>
         </div>
       </Container>

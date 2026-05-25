@@ -1,5 +1,5 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { SellSubmissionInput, WatchInquiryInput } from '@/types/submissions';
+import { ContactSubmissionInput, NewsletterSubscriberInput, SellSubmissionInput, WatchInquiryInput } from '@/types/submissions';
 
 const isSupabaseConfigured =
   Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
@@ -51,6 +51,40 @@ export async function createSellSubmission(input: SellSubmissionInput): Promise<
     papers: input.papers,
     asking_price: input.askingPrice || null,
     notes: input.notes || null,
+    status: 'new'
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function createNewsletterSubscriber(input: NewsletterSubscriberInput): Promise<void> {
+  assertSupabaseConfigured();
+
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase.from('newsletter_subscribers').insert({
+    email: input.email,
+    source_page: input.sourcePage,
+    status: 'new'
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function createContactSubmission(input: ContactSubmissionInput): Promise<void> {
+  assertSupabaseConfigured();
+
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase.from('contact_submissions').insert({
+    customer_name: input.customerName,
+    email: input.email,
+    phone: input.phone || null,
+    subject: input.subject || null,
+    message: input.message,
+    source_page: input.sourcePage,
     status: 'new'
   });
 

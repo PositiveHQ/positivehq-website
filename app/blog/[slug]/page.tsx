@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           <h2 className="text-lg font-semibold text-white">Stay informed</h2>
           <p className="mt-2 text-sm text-slate-300">Get new arrivals and concise market updates.</p>
           <div className="mt-4">
-            <NewsletterForm />
+            <NewsletterForm sourcePage={`/blog/${post.slug}`} />
           </div>
         </section>
         <section className="surface-card p-6">

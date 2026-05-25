@@ -2,56 +2,51 @@
 
 import { redirect } from 'next/navigation';
 import { checkRateLimit, cleanText, getPublicLeadError, hasHoneypotValue, validateEmail } from '@/lib/lead-validation';
-import { createWatchInquiry } from '@/lib/repositories/submissions';
+import { createContactSubmission } from '@/lib/repositories/submissions';
 
-type InquiryState = {
-  status: 'idle' | 'success' | 'error';
+export type ContactState = {
+  status: 'idle' | 'error';
   message?: string;
 };
 
-export async function submitWatchInquiryAction(
-  watch: { id: string; slug: string; reference: string },
-  _prevState: InquiryState,
+export async function submitContactAction(
+  _prevState: ContactState,
   formData: FormData
-): Promise<InquiryState> {
+): Promise<ContactState> {
   const customerName = cleanText(formData.get('customerName'), 120);
   const email = cleanText(formData.get('email'), 254).toLowerCase();
   const phone = cleanText(formData.get('phone'), 40);
+  const subject = cleanText(formData.get('subject'), 160);
   const message = cleanText(formData.get('message'), 1500);
 
   if (hasHoneypotValue(formData)) {
     return { status: 'error', message: 'Unable to submit right now.' };
   }
 
-  if (!customerName || !email) {
-    return { status: 'error', message: 'Please provide your name and email.' };
+  if (!customerName || !email || !message) {
+    return { status: 'error', message: 'Please complete name, email, and message.' };
   }
 
   if (!validateEmail(email)) {
     return { status: 'error', message: 'Please enter a valid email address.' };
   }
 
-  if (!checkRateLimit('watch-inquiry', email)) {
+  if (!checkRateLimit('contact', email)) {
     return { status: 'error', message: 'Please wait a moment before submitting again.' };
   }
 
   try {
-    await createWatchInquiry({
-      watchId: watch.id,
-      watchSlug: watch.slug,
-      watchReference: watch.reference,
+    await createContactSubmission({
       customerName,
       email,
       phone,
+      subject,
       message,
-      sourcePage: `/watches/${watch.slug}`
+      sourcePage: '/contact'
     });
   } catch (error) {
-    return {
-      status: 'error',
-      message: getPublicLeadError(error)
-    };
+    return { status: 'error', message: getPublicLeadError(error) };
   }
 
-  redirect('/thank-you?type=inquiry');
+  redirect('/thank-you?type=contact');
 }

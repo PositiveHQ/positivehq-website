@@ -6,11 +6,11 @@ import { Container } from './container';
 
 const links = [
   { href: '/watches', label: 'Shop Watches' },
-  { href: '/sell', label: 'Sell' },
+  { href: '/sell-your-watch', label: 'Sell' },
   { href: '/trade-in', label: 'Trade-In' },
+  { href: '/guides', label: 'Guides' },
   { href: '/blog', label: 'Journal' },
-  { href: '/about', label: 'About' },
-  { href: '/newsletter', label: 'Newsletter' }
+  { href: '/contact', label: 'Contact' }
 ];
 
 export function Navbar() {
@@ -33,7 +33,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/sell"
+            href="/value-estimate"
             className="hidden rounded-xl border border-amber-100/35 bg-amber-100/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-100 transition hover:bg-amber-100/20 sm:inline-flex"
           >
             Get Offer

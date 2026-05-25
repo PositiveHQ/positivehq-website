@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import type { ReactElement } from 'react';
 
 type StudioModule = {
-  NextStudio: (props: { config: unknown }) => JSX.Element;
+  NextStudio: (props: { config: unknown }) => ReactElement;
 };
 
 export default function StudioPage() {

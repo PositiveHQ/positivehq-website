@@ -3,3 +3,9 @@ node_modules
 out
 .DS_Store
 npm-debug.log*
+.env
+.env.local
+.env.development
+.env.production
+.env*.local
+tsconfig.tsbuildinfo

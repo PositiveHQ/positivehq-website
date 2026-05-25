@@ -1,24 +1,22 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { useFormState } from 'react-dom';
+import { submitNewsletterAction, NewsletterState } from '@/app/newsletter/actions';
 import { Button } from './button';
 
-export function NewsletterForm() {
-  const [state, setState] = useState<'idle' | 'success'>('idle');
+const initialState: NewsletterState = { status: 'idle' };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setState('success');
-  };
-
+export function NewsletterForm({ sourcePage = '/newsletter' }: { sourcePage?: string }) {
+  const [state, formAction] = useFormState(submitNewsletterAction.bind(null, sourcePage), initialState);
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form action={formAction} className="space-y-4">
+      <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-        <input required type="email" placeholder="Email address" className="field-input" />
+        <input required type="email" name="email" placeholder="Email address" className="field-input" />
         <Button type="submit">Subscribe</Button>
       </div>
-      <p className="text-xs text-slate-400">
-        {state === 'success' ? 'Thanks for subscribing. You are on the list.' : 'No spam. Just new arrivals, market context, and practical buying/selling guidance.'}
+      <p className={`text-xs ${state.status === 'error' ? 'text-red-300' : state.status === 'success' ? 'text-emerald-300' : 'text-slate-400'}`}>
+        {state.message ?? 'No spam. Just new arrivals, market context, and practical buying/selling guidance.'}
       </p>
     </form>
   );

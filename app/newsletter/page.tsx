@@ -15,7 +15,7 @@ export default function NewsletterPage() {
         <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Newsletter</p>
         <h1 className="text-4xl font-semibold text-slate-900">Join the Positive Watch Co. list.</h1>
         <p className="text-sm text-slate-600">Receive first access to new arrivals, watch market context, and practical buying/selling insights from our team.</p>
-        <NewsletterForm />
+        <NewsletterForm sourcePage="/newsletter" />
       </section>
     </Container>
   );

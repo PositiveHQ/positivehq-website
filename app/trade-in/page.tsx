@@ -17,7 +17,7 @@ export default function TradeInPage() {
         <p className="eyebrow">Trade-In</p>
         <h1 className="max-w-3xl text-4xl font-semibold">Use your current watch toward your next one.</h1>
         <p className="max-w-2xl text-sm text-slate-300">Trade-in combines our buy offer with your target purchase. One transaction. Clean paperwork. Clear numbers.</p>
-        <Button href="/sell" className="w-fit">Start Trade-In</Button>
+        <Button href="#trade-form" className="w-fit">Start Trade-In</Button>
       </header>
 
       <section className="grid gap-6 md:grid-cols-3">
@@ -42,7 +42,7 @@ export default function TradeInPage() {
         </ul>
       </section>
 
-      <section className="space-y-4">
+      <section id="trade-form" className="space-y-4">
         <h2 className="text-2xl font-semibold text-white">Submit your trade details</h2>
         <p className="text-sm text-slate-300">Share your current watch details and we will come back with trade options.</p>
         <SellForm action={submitTradeSubmissionAction} submissionLabel="Submit Trade Request" />

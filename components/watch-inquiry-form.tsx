@@ -19,6 +19,7 @@ export function WatchInquiryForm({
 
   return (
     <form action={formAction} className="surface-card space-y-3 p-5">
+      <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <h3 className="text-lg font-semibold text-white">Inquire about this watch</h3>
       <div className="grid gap-3 sm:grid-cols-2">
         <input name="customerName" required placeholder="Your name" className="field-input" />

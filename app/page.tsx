@@ -41,7 +41,7 @@ export default async function Home() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Button href="/watches">Shop Watches</Button>
-              <Button href="/sell" variant="secondary">Sell Your Watch</Button>
+              <Button href="/sell-your-watch" variant="secondary">Sell Your Watch</Button>
             </div>
             <div className="grid gap-2 text-sm text-slate-300 sm:grid-cols-2">
               {trustPoints.map((item) => (
@@ -105,7 +105,7 @@ export default async function Home() {
               <h2 className="mt-2 text-3xl font-semibold text-white">Market notes. New arrivals. No noise.</h2>
               <p className="mt-3 max-w-lg text-sm text-slate-300">Join buyers and sellers who want practical watch insights and first access to incoming inventory.</p>
             </div>
-            <NewsletterForm />
+              <NewsletterForm sourcePage="/" />
           </div>
         </section>
       </Container>
