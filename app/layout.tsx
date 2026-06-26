@@ -7,12 +7,12 @@ import { getSiteUrl, siteConfig } from '@/lib/site';
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: 'Positive Watch Co.',
-    template: '%s | Positive Watch Co.'
+    default: 'Positive Watch HQ',
+    template: '%s | Positive Watch HQ'
   },
   description: siteConfig.description,
   openGraph: {
-    title: 'Positive Watch Co.',
+    title: 'Positive Watch HQ',
     description: siteConfig.description,
     url: getSiteUrl(),
     siteName: siteConfig.name,

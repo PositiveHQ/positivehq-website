@@ -70,8 +70,8 @@ export const watches: Watch[] = [
       {
         id: '2-1',
         watchId: '2',
-        url: 'https://images.unsplash.com/photo-1548171915-e79a1e624a9f?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Omega Speedmaster Moonwatch',
+        url: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Luxury chronograph watch detail',
         sortOrder: 0,
         isPrimary: true
       },
@@ -109,8 +109,8 @@ export const watches: Watch[] = [
       {
         id: '3-1',
         watchId: '3',
-        url: 'https://images.unsplash.com/photo-1619134778706-7015533a6150?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Tudor Black Bay 58',
+        url: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Luxury dress watch on a dark background',
         sortOrder: 0,
         isPrimary: true
       }
