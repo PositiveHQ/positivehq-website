@@ -52,7 +52,7 @@ export default function AboutPage() {
               Built for clarity, trust, and better luxury watch transactions.
             </h1>
             <p className="max-w-4xl text-base leading-8 text-slate-300 sm:text-lg">
-              Positive Watch HQ was built for people who want a cleaner, more transparent way to buy, sell, and trade luxury watches. We believe a watch transaction should be clear, documented, and handled with respect from the first conversation to final delivery.
+              Positive Watch HQ was built to sell luxury watches with a cleaner trade-in path. Every conversation should be clear, documented, and handled with respect from first message to final delivery.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button href="/contact" className="sm:min-w-52">Contact the Team</Button>
@@ -66,7 +66,7 @@ export default function AboutPage() {
             <p className="eyebrow">Who we are</p>
             <h2 className="section-title">A concierge watch business for serious decisions.</h2>
             <p className="text-sm leading-7 text-slate-300">
-              Positive Watch HQ helps clients buy, sell, trade, and consign luxury watches with a calm, appointment-led approach. The experience is designed for collectors, sellers, and first-time luxury buyers who want the process explained clearly before a watch moves, a payment clears, or a final decision is made.
+              Positive Watch HQ helps clients choose the next watch and trade in the current one with a calm, appointment-led approach. The process stays clear before a watch moves, payment clears, or final decision is made.
             </p>
           </div>
           <div className="surface-card p-6 lg:p-8">
@@ -111,7 +111,7 @@ export default function AboutPage() {
             <p className="eyebrow">Appointment-only / concierge positioning</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">A focused experience, not a crowded sales floor.</h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
-              Positive Watch HQ is positioned as an appointment-led, concierge-style watch business. If a client wants to buy, sell, trade, or consign, the best next step is to share the watch details or target model and schedule a focused conversation.
+              Positive Watch HQ is appointment-led and concierge-style. If a client wants a watch or wants to trade into one, the best next step is to share the target model, trade details, and schedule a focused conversation.
             </p>
             <Button href="/contact" className="mt-6">Request an Appointment</Button>
           </article>

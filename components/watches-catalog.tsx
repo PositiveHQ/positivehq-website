@@ -49,7 +49,7 @@ export function WatchesCatalog({ watches, isSampleInventory = false }: Props) {
         <section className="rounded-2xl border border-amber-100/25 bg-amber-100/10 p-5 text-sm leading-6 text-amber-50">
           <p className="font-semibold uppercase tracking-[0.16em]">Sample/demo inventory</p>
           <p className="mt-2 text-amber-50/85">
-            These listings are demo inventory used to show the marketplace experience while live inventory is being connected. Availability, pricing, photos, and condition should not be treated as real stock until confirmed by Positive Watch HQ.
+These listings are demo inventory used to show the marketplace and trade-in target experience. Availability, pricing, photos, and condition should not be treated as real stock until confirmed by Positive Watch HQ.
           </p>
         </section>
       )}
