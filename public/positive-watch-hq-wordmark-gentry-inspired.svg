@@ -18,13 +18,9 @@
     <text x="490" y="123" text-anchor="middle"
       font-family="Avenir Next, Montserrat, Futura, Helvetica Neue, Arial, sans-serif"
       font-size="104" font-weight="700" letter-spacing="11" fill="url(#letter)">POSITIVE</text>
-    <text x="490" y="181" text-anchor="middle"
+    <text x="490" y="184" text-anchor="middle"
       font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif"
-      font-size="27" font-weight="600" letter-spacing="22" fill="#F8FAFC" fill-opacity="0.92">WATCH HQ</text>
+      font-size="34" font-weight="650" letter-spacing="18" fill="#F8FAFC" fill-opacity="0.94">WATCH HQ</text>
   </g>
 
-  <path d="M38 47L78 30L64 72" stroke="#D9B76B" stroke-width="12" stroke-linecap="square" stroke-linejoin="miter" opacity="0.96"/>
-  <path d="M895 47L940 29L924 75" stroke="#D9B76B" stroke-width="12" stroke-linecap="square" stroke-linejoin="miter" opacity="0.96"/>
-  <path d="M242 198H394" stroke="#D9B76B" stroke-opacity="0.78" stroke-width="2"/>
-  <path d="M586 198H738" stroke="#D9B76B" stroke-opacity="0.78" stroke-width="2"/>
 </svg>
