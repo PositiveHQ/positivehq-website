@@ -3,6 +3,21 @@ import { Container } from '@/components/container';
 import { WatchesCatalog } from '@/components/watches-catalog';
 import { getWatchesInventory } from '@/lib/repositories/watches';
 
+const browseBrands = [
+  'Rolex',
+  'Cartier',
+  'Audemars Piguet',
+  'Patek Philippe',
+  'Omega',
+  'Tudor',
+  'Breitling',
+  'Vacheron Constantin',
+  'IWC',
+  'Panerai',
+  'Jaeger-LeCoultre',
+  'Richard Mille'
+];
+
 export const metadata: Metadata = {
   title: 'Watch Sourcing & Future Inventory | Positive Watch HQ',
   description: 'Use Positive Watch HQ to source, sell, trade, or consign luxury watches. Demo examples show the future inventory layout until real listings are added.',
@@ -26,6 +41,26 @@ export default async function WatchesPage() {
           </p>
         </div>
       </header>
+
+      <section className="space-y-6">
+        <div>
+          <p className="eyebrow">Brand navigation</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Browse by Brand</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">Demo inventory remains clearly labeled. Use brand browsing to start a sourcing request for a real reference.</p>
+        </div>
+        <div className="grid grid-cols-2 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] sm:grid-cols-3 lg:grid-cols-4">
+          {browseBrands.map((brand) => (
+            <a
+              key={brand}
+              href={`/contact?intent=buy&brand=${encodeURIComponent(brand)}#contact-form`}
+              className="group border-b border-r border-white/10 p-5 transition hover:bg-white/[0.07] sm:p-7"
+            >
+              <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-white transition group-hover:text-amber-100">{brand}</span>
+              <span className="mt-3 block text-xs leading-5 text-slate-400">Request reference →</span>
+            </a>
+          ))}
+        </div>
+      </section>
 
       <WatchesCatalog watches={watches} isSampleInventory={isSampleInventory} />
 

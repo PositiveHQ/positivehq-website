@@ -131,6 +131,10 @@ body::before {
   .hero-progress {
     animation: progressFill 3.6s linear both;
   }
+
+  .hero-slider-progress {
+    animation: progressFill 6.2s linear both;
+  }
 }
 
 @keyframes fadeUp {

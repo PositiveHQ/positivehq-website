@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { BrandSlideshow } from '@/components/brand-slideshow';
+import { HomeHeroSlider } from '@/components/home-hero-slider';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
@@ -21,6 +21,21 @@ const services = [
   ['Sell', 'Get a clear cash offer after review.', '/sell'],
   ['Trade in', 'Put your current watch toward the next one.', '/trade-in'],
   ['Consign', 'List with a clear price plan when time allows.', '/consignment']
+];
+
+const browseBrands = [
+  'Rolex',
+  'Cartier',
+  'Audemars Piguet',
+  'Patek Philippe',
+  'Omega',
+  'Tudor',
+  'Breitling',
+  'Vacheron Constantin',
+  'IWC',
+  'Panerai',
+  'Jaeger-LeCoultre',
+  'Richard Mille'
 ];
 
 const proofBullets = [
@@ -55,47 +70,7 @@ export default async function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
 
-      <section className="relative isolate overflow-hidden border-b border-white/10">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(201,166,91,0.20),transparent_34%),radial-gradient(circle_at_82%_6%,rgba(118,142,190,0.15),transparent_28%),linear-gradient(130deg,rgba(255,255,255,0.08),transparent_24%)]" />
-        <Container className="relative grid min-h-[calc(100vh-5rem)] items-center gap-14 py-16 lg:grid-cols-[0.96fr_1.04fr] lg:py-20">
-          <div className="max-w-4xl space-y-8 animate-fade-up">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-100/85 shadow-[0_20px_50px_rgba(0,0,0,0.25)] backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,0.85)]" />
-              Sell · trade · consign · source
-            </div>
-
-            <div className="space-y-5">
-              <p className="eyebrow">Positive Watch HQ</p>
-              <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-7xl lg:text-8xl">
-                Sell, trade, consign, or source your next luxury watch.
-              </h1>
-              <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                A premium watch concierge for sourcing requests, trade-in reviews, consignment conversations, and future inventory inquiries.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact?intent=buy#contact-form" className="sm:min-w-44">Request a Watch</Button>
-              <Button href="/trade-in" variant="secondary" className="sm:min-w-44">Start Trade-In</Button>
-            </div>
-
-            <div className="grid gap-3 pt-2 sm:grid-cols-3">
-              {[
-                ['24h', 'target response'],
-                ['Verified', 'before final transaction'],
-                ['Concierge', 'clear next steps']
-              ].map(([value, label]) => (
-                <div key={label} className="rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur">
-                  <p className="text-2xl font-semibold text-white">{value}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">{label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <BrandSlideshow />
-        </Container>
-      </section>
+      <HomeHeroSlider />
 
       <Container className="space-y-24 py-18 lg:py-24">
         <section className="grid gap-4 md:grid-cols-5">
@@ -105,6 +80,31 @@ export default async function Home() {
               <p className="text-sm font-semibold leading-6 text-slate-100">{item}</p>
             </div>
           ))}
+        </section>
+
+        <section className="space-y-8">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="eyebrow">Brand navigation</p>
+              <h2 className="section-title mt-3">Browse by Brand</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
+                Explore examples, request specific references, or start a sourcing conversation.
+              </p>
+            </div>
+            <Button href="/watches" variant="secondary">View Demo Inventory</Button>
+          </div>
+          <div className="grid grid-cols-2 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] sm:grid-cols-3 lg:grid-cols-4">
+            {browseBrands.map((brand) => (
+              <a
+                key={brand}
+                href={`/contact?intent=buy&brand=${encodeURIComponent(brand)}#contact-form`}
+                className="group border-b border-r border-white/10 p-5 transition hover:bg-white/[0.07] sm:p-7"
+              >
+                <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-white transition group-hover:text-amber-100">{brand}</span>
+                <span className="mt-3 block text-xs leading-5 text-slate-400">Request reference →</span>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
@@ -159,14 +159,14 @@ export default async function Home() {
 
         <section className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <p className="eyebrow">Sourcing examples</p>
-            <h2 className="section-title mt-3">{isSampleInventory ? 'Example Inventory Layout — Demo Only' : 'Available pieces and trade targets.'}</h2>
+            <p className="eyebrow">Featured collection</p>
+            <h2 className="section-title mt-3">Featured Watch Layout</h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">
-              {isSampleInventory ? 'This section shows layout only until real inventory is published. Use it as a preview of how future listings will work.' : 'Live listings include real photos, real condition notes, included accessories, availability, and a direct inquiry path.'}
+              Example presentation for future curated inventory. Demo watches are not real availability or confirmed sale listings.
             </p>
           </div>
           <div className="flex justify-start lg:justify-end">
-            <Button href="/watches" variant="secondary">Explore Watches</Button>
+            <Button href="/watches" variant="secondary">Explore Demo Watches</Button>
           </div>
         </section>
 

@@ -69,13 +69,13 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
             href={`/watches/${watch.slug}`}
             className="inline-flex items-center justify-center rounded-xl border border-amber-100/25 bg-amber-100/90 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-amber-50"
           >
-            View Watch
+            {isSampleInventory ? 'View Example' : 'View Watch'}
           </Link>
           <Link
-            href={`/watches/${watch.slug}#watch-inquiry`}
+            href={isSampleInventory ? `/contact?intent=buy&brand=${encodeURIComponent(watch.brand)}&model=${encodeURIComponent(watch.model)}&reference=${encodeURIComponent(watch.reference)}#contact-form` : `/watches/${watch.slug}#watch-inquiry`}
             className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:-translate-y-0.5 hover:border-amber-100/45 hover:bg-white/10"
           >
-            Ask About This Watch
+            {isSampleInventory ? 'Request Similar Watch' : 'Ask About This Watch'}
           </Link>
         </div>
       </div>

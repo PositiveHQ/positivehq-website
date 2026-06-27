@@ -55,6 +55,10 @@ export function ContactForm({ action }: ContactFormProps) {
   const [state, formAction] = useFormState(action, initialState);
   const searchParams = useSearchParams();
   const requestedIntent = searchParams.get('intent');
+  const requestedBrand = searchParams.get('brand');
+  const requestedModel = searchParams.get('model');
+  const requestedReference = searchParams.get('reference');
+  const requestedWatchContext = [requestedBrand, requestedModel, requestedReference].filter(Boolean).join(' ');
   const isAppointmentRequest = requestedIntent === 'appointment';
   const defaultIntent = isAppointmentRequest ? 'appointment' : requestedIntent;
 
@@ -86,7 +90,7 @@ export function ContactForm({ action }: ContactFormProps) {
           <input id="contact-email" required type="email" name="email" autoComplete="email" placeholder="you@example.com" className="field-input w-full" />
         </Field>
         <Field label="Brand / model / reference if applicable" htmlFor="contact-watch">
-          <input id="contact-watch" name="watchContext" placeholder="Rolex Submariner 124060" className="field-input w-full" />
+          <input id="contact-watch" name="watchContext" defaultValue={requestedWatchContext} placeholder="Rolex Submariner 124060" className="field-input w-full" />
         </Field>
         <Field label="Budget or expected value" htmlFor="contact-budget">
           <input id="contact-budget" name="budgetOrExpectedValue" placeholder="$10k budget or expected value" className="field-input w-full" />
