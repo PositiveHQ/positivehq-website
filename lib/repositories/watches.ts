@@ -91,10 +91,18 @@ function assertSupabaseConfigured() {
   }
 }
 
-export async function getAllWatches(): Promise<Watch[]> {
+export async function getWatchesInventory(): Promise<{ watches: Watch[]; isSampleInventory: boolean }> {
   const liveData = await fetchSupabaseWatches();
-  if (liveData && liveData.length > 0) return liveData;
-  return mockWatches;
+  if (liveData && liveData.length > 0) {
+    return { watches: liveData, isSampleInventory: false };
+  }
+
+  return { watches: mockWatches, isSampleInventory: true };
+}
+
+export async function getAllWatches(): Promise<Watch[]> {
+  const inventory = await getWatchesInventory();
+  return inventory.watches;
 }
 
 export async function getFeaturedWatches(): Promise<Watch[]> {

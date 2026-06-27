@@ -1,35 +1,159 @@
 import { Metadata } from 'next';
+import { Button } from '@/components/button';
 import { Container } from '@/components/container';
-import { siteConfig } from '@/lib/site';
+import { getSiteUrl, siteConfig } from '@/lib/site';
+
+const philosophy = [
+  ['Trust before transaction', 'The details matter before anyone commits: reference, condition, accessories, payment path, and verification expectations.'],
+  ['Clarity over pressure', 'Luxury watch decisions should not rely on vague promises or fake urgency. The right deal can stand up to documentation.'],
+  ['Condition-first review', 'We focus on honest condition notes, photos, completeness, service context where known, and any material limitations.'],
+  ['Long-term relationships', 'The goal is not a single rushed sale. It is to become a reliable contact for collectors, sellers, and first-time buyers.']
+];
+
+const founderNotes = [
+  'Independent, appointment-led luxury watch guidance.',
+  'Built around transparent conversations, documented terms, and clean presentation.',
+  'Focused on helping clients buy, sell, trade, or consign with confidence.'
+];
 
 export const metadata: Metadata = {
-  title: 'About',
-  description: 'Learn how Positive Watch Co. sources, authenticates, and supports every watch transaction.',
+  title: 'About Positive Watch HQ',
+  description:
+    'Learn who Positive Watch HQ is, why it exists, and how its appointment-only concierge approach supports trust, clarity, condition review, and long-term watch relationships.',
   alternates: { canonical: '/about' }
 };
 
 export default function AboutPage() {
+  const siteUrl = getSiteUrl();
+  const aboutLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Positive Watch HQ',
+    url: `${siteUrl}/about`,
+    about: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      email: siteConfig.email,
+      telephone: siteConfig.phone,
+      sameAs: [siteConfig.social.instagram]
+    }
+  };
+
   return (
-    <Container className="space-y-12 py-16">
-      <header className="space-y-3">
-        <p className="text-xs uppercase tracking-[0.16em] text-slate-500">About</p>
-        <h1 className="text-4xl font-semibold text-slate-900">Built on clarity, not hype.</h1>
-        <p className="max-w-2xl text-sm text-slate-600">
-          Positive Watch Co. is an independent luxury watch dealer focused on clean inventory, transparent condition reporting, and professional service.
-        </p>
-      </header>
-      <section className="grid gap-6 md:grid-cols-3">
-        {[
-          ['Authentication first', 'Every watch is inspected and represented with detailed photos and objective notes.'],
-          ['Transparent sourcing', 'We prioritize verifiable ownership history and complete sets where available.'],
-          ['Direct communication', `Questions are handled by specialists. Reach us at ${siteConfig.email} or ${siteConfig.phone}.`]
-        ].map(([title, text]) => (
-          <article key={title} className="rounded-xl border border-slate-200 bg-white p-6">
-            <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
-            <p className="mt-2 text-sm text-slate-600">{text}</p>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutLd) }} />
+
+      <Container className="space-y-16 py-16 lg:py-20">
+        <header className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.025] to-amber-100/[0.08] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.48)] md:p-12">
+          <div className="absolute right-0 top-0 h-72 w-72 translate-x-20 -translate-y-24 rounded-full bg-amber-100/12 blur-3xl" />
+          <div className="relative max-w-5xl space-y-6">
+            <p className="eyebrow">About Positive Watch HQ</p>
+            <h1 className="max-w-5xl text-4xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">
+              Built for clarity, trust, and better luxury watch transactions.
+            </h1>
+            <p className="max-w-4xl text-base leading-8 text-slate-300 sm:text-lg">
+              Positive Watch HQ was built for people who want a cleaner, more transparent way to buy, sell, and trade luxury watches. We believe a watch transaction should be clear, documented, and handled with respect from the first conversation to final delivery.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button href="/contact" className="sm:min-w-52">Contact the Team</Button>
+              <Button href="/watches" variant="secondary" className="sm:min-w-44">View Inventory</Button>
+            </div>
+          </div>
+        </header>
+
+        <section className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div className="space-y-4">
+            <p className="eyebrow">Who we are</p>
+            <h2 className="section-title">A concierge watch business for serious decisions.</h2>
+            <p className="text-sm leading-7 text-slate-300">
+              Positive Watch HQ helps clients buy, sell, trade, and consign luxury watches with a calm, appointment-led approach. The experience is designed for collectors, sellers, and first-time luxury buyers who want the process explained clearly before a watch moves, a payment clears, or a final decision is made.
+            </p>
+          </div>
+          <div className="surface-card p-6 lg:p-8">
+            <p className="eyebrow">Why we exist</p>
+            <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">The watch market can feel noisy. We make the next step cleaner.</h3>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              A luxury watch transaction often involves meaningful money, condition nuance, authentication risk, shipping risk, and timing pressure. Positive Watch HQ exists to slow the process down enough to review the details, communicate the trade-offs, and keep expectations realistic.
+            </p>
+          </div>
+        </section>
+
+        <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {philosophy.map(([title, copy]) => (
+            <article key={title} className="surface-card p-6">
+              <div className="mb-5 h-px w-12 bg-gradient-to-r from-amber-100 to-transparent" />
+              <h2 className="text-lg font-semibold text-white">{title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{copy}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.48)] md:p-10 lg:p-12">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(201,166,91,0.16),transparent_32%),radial-gradient(circle_at_90%_80%,rgba(118,142,190,0.13),transparent_34%)]" />
+          <div className="relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div>
+              <p className="eyebrow">Our philosophy</p>
+              <h2 className="mt-3 max-w-xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">Respect the watch. Respect the client. Document the deal.</h2>
+            </div>
+            <div className="space-y-4 text-sm leading-7 text-slate-300">
+              <p>
+                We focus on trust, clarity, condition, and long-term relationships. That means clear communication around what is known, what still needs to be verified, and what happens next.
+              </p>
+              <p>
+                Every transaction is subject to verification, condition review, availability confirmation, and cleared payment. We do not want a client to feel rushed into a decision they do not understand.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid gap-8 lg:grid-cols-2 lg:items-start">
+          <article className="surface-card p-6 lg:p-8">
+            <p className="eyebrow">Appointment-only / concierge positioning</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">A focused experience, not a crowded sales floor.</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              Positive Watch HQ is positioned as an appointment-led, concierge-style watch business. If a client wants to buy, sell, trade, or consign, the best next step is to share the watch details or target model and schedule a focused conversation.
+            </p>
+            <Button href="/contact" className="mt-6">Request an Appointment</Button>
           </article>
-        ))}
-      </section>
-    </Container>
+
+          <article className="surface-card p-6 lg:p-8">
+            <p className="eyebrow">Founder section</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Positive Watch HQ leadership</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              Positive Watch HQ is operated with a practical, relationship-first mindset: clear answers, clean records, premium presentation, and no pressure to force a transaction that is not right.
+            </p>
+            <ul className="mt-5 space-y-3 text-sm text-slate-300">
+              {founderNotes.map((note) => (
+                <li key={note} className="rounded-2xl border border-white/10 bg-black/25 p-4">{note}</li>
+              ))}
+            </ul>
+          </article>
+        </section>
+
+        <section className="surface-card grid gap-8 p-6 lg:grid-cols-[0.85fr_1.15fr] lg:p-8">
+          <div>
+            <p className="eyebrow">Contact information</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Start with the details. We will guide the next step.</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              For buying, selling, trading, consignment, or appointment requests, contact Positive Watch HQ directly.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <a href={`tel:${siteConfig.phone}`} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Phone</p>
+              <p className="mt-2 text-sm font-semibold text-white">{siteConfig.phone}</p>
+            </a>
+            <a href={`mailto:${siteConfig.email}`} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Email</p>
+              <p className="mt-2 break-all text-sm font-semibold text-white">{siteConfig.email}</p>
+            </a>
+            <a href={siteConfig.social.instagram} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Instagram</p>
+              <p className="mt-2 text-sm font-semibold text-white">@positivewatchhq</p>
+            </a>
+          </div>
+        </section>
+      </Container>
+    </>
   );
 }

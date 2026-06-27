@@ -1,39 +1,81 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Watch } from '@/types/watch';
-import { formatPrice, formatWatchStatus } from '@/lib/utils';
+import { formatBoxAndPapers, formatPrice, formatWatchStatus } from '@/lib/utils';
 
-export function WatchCard({ watch }: { watch: Watch }) {
+export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; isSampleInventory?: boolean }) {
   const primaryImage = watch.images.find((image) => image.isPrimary) ?? watch.images[0];
   if (!primaryImage) return null;
 
   return (
-    <article className="group surface-card overflow-hidden hover:-translate-y-1">
-      <div className="relative aspect-[4/3] overflow-hidden">
+    <article className="group surface-card overflow-hidden hover:-translate-y-1 hover:border-amber-100/30">
+      <div className="relative aspect-[4/3] overflow-hidden bg-black">
         <Image
           src={primaryImage.url}
           alt={primaryImage.alt}
           fill
-          className="object-cover transition duration-700 group-hover:scale-110 group-hover:brightness-105"
+          sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
+          loading="eager"
+          className="object-cover transition duration-700 group-hover:scale-105 group-hover:brightness-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent opacity-80 transition duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-90" />
+        <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+          <span className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-100">
+            {formatWatchStatus(watch.status)}
+          </span>
+          {isSampleInventory && (
+            <span className="rounded-full border border-amber-100/30 bg-amber-100/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-100">
+              Sample
+            </span>
+          )}
+        </div>
       </div>
-      <div className="space-y-3 p-5">
+
+      <div className="space-y-5 p-5">
         <div>
           <p className="text-[11px] uppercase tracking-[0.2em] text-amber-100/75">{watch.brand}</p>
-          <h3 className="mt-1 text-lg font-semibold text-white">{watch.model}</h3>
-          <p className="text-sm text-slate-300">Ref. {watch.reference}</p>
+          <h3 className="mt-1 text-xl font-semibold tracking-tight text-white">{watch.model}</h3>
+          <p className="mt-1 text-sm text-slate-300">Ref. {watch.reference}</p>
         </div>
-        <div className="flex items-center justify-between text-sm">
-          <span className="font-semibold text-white">{formatPrice(watch.price)}</span>
-          <span className="text-slate-400">{formatWatchStatus(watch.status)}</span>
+
+        <div className="flex items-center justify-between gap-4 border-y border-white/10 py-4">
+          <span className="text-2xl font-semibold text-amber-100">{formatPrice(watch.price)}</span>
+          <span className="text-xs uppercase tracking-[0.16em] text-slate-400">{watch.year}</span>
         </div>
-        <Link
-          href={`/watches/${watch.slug}`}
-          className="inline-flex text-xs font-semibold uppercase tracking-[0.16em] text-amber-100 transition hover:text-amber-50"
-        >
-          View Details →
-        </Link>
+
+        <dl className="grid grid-cols-2 gap-3 text-sm">
+          <div>
+            <dt className="text-xs uppercase tracking-[0.14em] text-slate-500">Condition</dt>
+            <dd className="mt-1 font-medium text-slate-100">{watch.condition}</dd>
+          </div>
+          <div>
+            <dt className="text-xs uppercase tracking-[0.14em] text-slate-500">Box/Papers</dt>
+            <dd className="mt-1 font-medium text-slate-100">{formatBoxAndPapers(watch.box, watch.papers)}</dd>
+          </div>
+          <div>
+            <dt className="text-xs uppercase tracking-[0.14em] text-slate-500">Case</dt>
+            <dd className="mt-1 font-medium text-slate-100">{watch.caseSize}</dd>
+          </div>
+          <div>
+            <dt className="text-xs uppercase tracking-[0.14em] text-slate-500">Availability</dt>
+            <dd className="mt-1 font-medium text-slate-100">{formatWatchStatus(watch.status)}</dd>
+          </div>
+        </dl>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Link
+            href={`/watches/${watch.slug}`}
+            className="inline-flex items-center justify-center rounded-xl border border-amber-100/25 bg-amber-100/90 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-amber-50"
+          >
+            View Watch
+          </Link>
+          <Link
+            href={`/watches/${watch.slug}#watch-inquiry`}
+            className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:-translate-y-0.5 hover:border-amber-100/45 hover:bg-white/10"
+          >
+            Ask About This Watch
+          </Link>
+        </div>
       </div>
     </article>
   );

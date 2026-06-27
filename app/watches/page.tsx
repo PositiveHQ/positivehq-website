@@ -1,25 +1,33 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/container';
 import { WatchesCatalog } from '@/components/watches-catalog';
-import { getAllWatches } from '@/lib/repositories/watches';
+import { getWatchesInventory } from '@/lib/repositories/watches';
 
 export const metadata: Metadata = {
-  title: 'Shop Watches',
-  description: 'Browse authenticated luxury watch inventory with transparent condition details.',
+  title: 'Luxury Watch Inventory',
+  description: 'Browse Positive Watch HQ luxury watch inventory with brand, reference, price, condition, box/papers, availability, and inquiry options.',
   alternates: { canonical: '/watches' }
 };
 
 export default async function WatchesPage() {
-  const watches = await getAllWatches();
+  const { watches, isSampleInventory } = await getWatchesInventory();
 
   return (
-    <Container className="space-y-10 py-16">
-      <header className="space-y-3">
-        <p className="eyebrow">Inventory</p>
-        <h1 className="section-title">Shop watches</h1>
-        <p className="max-w-2xl text-sm text-slate-300">Curated dealer inventory with clear condition grading, authenticated details, and insured delivery.</p>
+    <Container className="space-y-12 py-16 lg:py-20">
+      <header className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.025] to-amber-100/[0.08] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.48)] md:p-12">
+        <div className="absolute right-0 top-0 h-72 w-72 translate-x-20 -translate-y-24 rounded-full bg-amber-100/12 blur-3xl" />
+        <div className="relative max-w-4xl space-y-5">
+          <p className="eyebrow">Inventory</p>
+          <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">
+            A cleaner luxury watch marketplace.
+          </h1>
+          <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+            Browse by brand, price, condition, box/papers, availability, and case size. Every real listing should make the reference, condition story, payment path, and next step easy to understand before a transaction moves forward.
+          </p>
+        </div>
       </header>
-      <WatchesCatalog watches={watches} />
+
+      <WatchesCatalog watches={watches} isSampleInventory={isSampleInventory} />
     </Container>
   );
 }
