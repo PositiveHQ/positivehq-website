@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { getSiteUrl, siteConfig } from '@/lib/site';
@@ -60,6 +61,40 @@ export default function AboutPage() {
           </div>
         </header>
 
+        <section className="surface-card overflow-hidden p-0">
+          <div className="grid gap-0 lg:grid-cols-[0.86fr_1.14fr]">
+            <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(253,230,138,0.12),transparent_36%),#050608] p-8 lg:border-b-0 lg:border-r lg:border-white/10">
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.05)_42%,transparent_44%),radial-gradient(circle_at_18%_20%,rgba(255,255,255,0.08),transparent_25%)]" />
+              <Image
+                src="/media/nicola-trani-founder.webp"
+                alt="Nicola Trani, founder of Positive Watch HQ"
+                width={1200}
+                height={1200}
+                quality={100}
+                priority
+                sizes="(min-width: 1024px) 360px, 78vw"
+                className="relative h-auto w-full max-w-sm rounded-[2rem] border border-amber-100/20 object-cover shadow-[0_28px_70px_rgba(0,0,0,0.55)]"
+              />
+            </div>
+            <div className="p-6 lg:p-8">
+              <p className="eyebrow">Founder</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Nicola Trani / Mr.Positive</h2>
+              <p className="mt-4 text-sm leading-7 text-slate-300">
+                Positive Watch HQ was built by Nicola Trani, also known as Mr.Positive, with a simple belief: high-value watch transactions should be clear, documented, and handled with respect. The goal is not hype or pressure. The goal is a cleaner way to buy, sell, trade, and consign luxury watches with honest communication from first message to final delivery.
+              </p>
+              <ul className="mt-5 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+                {founderNotes.map((note) => (
+                  <li key={note} className="rounded-2xl border border-white/10 bg-black/25 p-4">{note}</li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Button href={siteConfig.social.founderInstagram} variant="secondary">Instagram</Button>
+                <Button href="/contact">Request Consultation</Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <div className="space-y-4">
             <p className="eyebrow">Who we are</p>
@@ -105,7 +140,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="grid gap-8 lg:grid-cols-2 lg:items-start">
+        <section className="grid gap-8 lg:items-start">
           <article className="surface-card p-6 lg:p-8">
             <p className="eyebrow">Appointment-only / concierge positioning</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">A focused experience, not a crowded sales floor.</h2>
@@ -113,38 +148,6 @@ export default function AboutPage() {
               Positive Watch HQ is appointment-led and concierge-style. If a client wants a watch or wants to trade into one, the best next step is to share the target model, trade details, and schedule a focused conversation.
             </p>
             <Button href="/contact?intent=appointment#contact-form" className="mt-6">Request Appointment</Button>
-          </article>
-
-          <article className="surface-card overflow-hidden p-0">
-            <div className="grid gap-0 lg:grid-cols-[0.86fr_1.14fr]">
-              <div className="relative min-h-80 overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(253,230,138,0.18),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-8 lg:border-b-0 lg:border-r lg:border-white/10">
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.06)_42%,transparent_44%),radial-gradient(circle_at_18%_20%,rgba(255,255,255,0.10),transparent_25%)]" />
-                <div className="relative flex h-full min-h-64 items-end rounded-[2rem] border border-amber-100/20 bg-[linear-gradient(145deg,rgba(8,10,14,0.48),rgba(0,0,0,0.78)),radial-gradient(circle_at_50%_18%,rgba(253,230,138,0.16),transparent_34%)] p-6 shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
-                  <div className="max-w-xs">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-amber-100/75">Positive Watch HQ</p>
-                    <p className="mt-4 text-3xl font-semibold tracking-tight text-white">Nicola Trani</p>
-                    <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-slate-300">Mr.Positive</p>
-                    <div className="mt-6 h-px w-24 bg-gradient-to-r from-amber-100 to-transparent" />
-                  </div>
-                </div>
-              </div>
-              <div className="p-6 lg:p-8">
-                <p className="eyebrow">Founder</p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Nicola Trani / Mr.Positive</h2>
-                <p className="mt-4 text-sm leading-7 text-slate-300">
-                  Positive Watch HQ was built by Nicola Trani, also known as Mr.Positive, with a simple belief: high-value watch transactions should be clear, documented, and handled with respect. The goal is not hype or pressure. The goal is a cleaner way to buy, sell, trade, and consign luxury watches with honest communication from first message to final delivery.
-                </p>
-                <ul className="mt-5 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
-                  {founderNotes.map((note) => (
-                    <li key={note} className="rounded-2xl border border-white/10 bg-black/25 p-4">{note}</li>
-                  ))}
-                </ul>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <Button href={siteConfig.social.founderInstagram} variant="secondary">Instagram</Button>
-                  <Button href="/contact">Request Consultation</Button>
-                </div>
-              </div>
-            </div>
           </article>
         </section>
 
