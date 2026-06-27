@@ -31,10 +31,10 @@ const mediaRequirements = [
 const detailNotesBySlug: Record<string, DetailNotes> = {
   'rolex-submariner-124060': {
     condition: [
-      ['Case condition', 'Example notes: sharp Oystersteel case profile with light handling marks visible under close light.'],
-      ['Bezel condition', 'Black ceramic bezel insert shown clean in example imagery; final bezel condition must be confirmed from real macro photos.'],
-      ['Crystal condition', 'Crystal appears clean in example layout; real listing requires crystal close-up before publication.'],
-      ['Bracelet condition', 'Oyster bracelet example shows light desk wear presentation only.'],
+      ['Case condition', 'Demo field only. Real case notes will be written from actual inspection photos before publication.'],
+      ['Bezel condition', 'Demo field only. Real bezel condition requires close-up photos and review before publication.'],
+      ['Crystal condition', 'Demo field only. Real crystal condition requires close-up photos before publication.'],
+      ['Bracelet condition', 'Demo field only. Real bracelet wear, stretch, and finish notes will be documented from actual photos.'],
       ['Clasp condition', 'Clasp detail required for real listing; example layout does not confirm clasp wear.'],
       ['Polishing notes', 'Example listing copy assumes strong lines; actual polishing history must be documented before sale.'],
       ['Bracelet link count', 'Full bracelet fit and link count must be photographed and listed before real publication.'],
@@ -51,7 +51,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
   },
   'omega-speedmaster-moonwatch-31030425001001': {
     condition: [
-      ['Case condition', 'Example notes: steel case shows honest wear profile appropriate for Very Good condition.'],
+      ['Case condition', 'Demo field only. Real case wear notes will be written from actual inspection photos before publication.'],
       ['Bezel condition', 'Tachymeter bezel macro required before real sale copy is published.'],
       ['Crystal condition', 'Hesalite crystal condition must be photographed for scratches, haze, or polishing marks.'],
       ['Bracelet condition', 'Bracelet stretch and clasp wear must be documented from real photos.'],
@@ -71,7 +71,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
   },
   'tudor-black-bay-58-79030n': {
     condition: [
-      ['Case condition', 'Example notes: compact 39mm case presentation with light handling only.'],
+      ['Case condition', 'Demo field only. Real case condition will be documented from actual photos before publication.'],
       ['Bezel condition', 'Bezel pip, insert, and edge condition require macro photos before real listing.'],
       ['Crystal condition', 'Crystal close-up required before real listing.'],
       ['Bracelet condition', 'Bracelet and end-link condition must be documented.'],
@@ -92,7 +92,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
 
   'cartier-santos-medium-wssa0029': {
     condition: [
-      ['Case condition', 'Example notes: Santos case presentation is clean with unworn-style layout imagery.'],
+      ['Case condition', 'Demo field only. Real case condition will be documented from actual Cartier photos before publication.'],
       ['Bezel condition', 'Polished bezel screw and edge close-ups required before a real listing.'],
       ['Crystal condition', 'Crystal macro required before real publication.'],
       ['Bracelet condition', 'SmartLink bracelet and strap condition must be photographed before real listing.'],
@@ -112,7 +112,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
   },
   'grand-seiko-snowflake-sbga211': {
     condition: [
-      ['Case condition', 'Example notes: titanium case should show light wear consistent with Good condition.'],
+      ['Case condition', 'Demo field only. Real titanium case wear will be documented from actual photos before publication.'],
       ['Bezel condition', 'Bezel edge and brushed/polished transitions require close photos.'],
       ['Crystal condition', 'Crystal and anti-reflective coating condition must be photographed.'],
       ['Bracelet condition', 'Titanium bracelet marks and sizing require documentation.'],
@@ -132,7 +132,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
   },
   'rolex-datejust-126334-blue-dial': {
     condition: [
-      ['Case condition', 'Example notes: unworn-style Datejust case presentation; real stickers/handling marks must be documented.'],
+      ['Case condition', 'Demo field only. Real Datejust case, sticker, and handling notes must be documented before publication.'],
       ['Bezel condition', 'Fluted bezel facets require close-up photos before real listing.'],
       ['Crystal condition', 'Crystal and cyclops clarity must be photographed.'],
       ['Bracelet condition', 'Jubilee bracelet condition and stretch must be documented.'],

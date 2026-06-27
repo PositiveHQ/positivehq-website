@@ -44,7 +44,7 @@ export const watches: Watch[] = [
         sortOrder: 2
       }
     ],
-    description: 'A clean, sharp Submariner with strong case lines and full set accessories. Fully inspected and pressure tested before listing.',
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.',
     featured: true
   },
   {
@@ -83,7 +83,7 @@ export const watches: Watch[] = [
         sortOrder: 1
       }
     ],
-    description: 'The latest Hesalite Moonwatch with honest wear and a strong movement performance report.',
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.',
     featured: true
   },
   {
@@ -115,7 +115,7 @@ export const watches: Watch[] = [
         isPrimary: true
       }
     ],
-    description: 'Classic proportions, strong lume, and full set paperwork. A balanced daily-wear dive watch.',
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.',
     featured: true
   },
   {
@@ -147,7 +147,7 @@ export const watches: Watch[] = [
         isPrimary: true
       }
     ],
-    description: 'Unworn current-production Santos Medium with stickers removed only for authentication imaging.'
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.'
   },
   {
     id: '5',
@@ -178,7 +178,7 @@ export const watches: Watch[] = [
         isPrimary: true
       }
     ],
-    description: 'Distinctive textured dial with light case wear. Movement regulated and tested in-house.'
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.'
   },
   {
     id: '6',
@@ -209,7 +209,7 @@ export const watches: Watch[] = [
         isPrimary: true
       }
     ],
-    description: 'Fluted bezel and blue sunburst dial configuration with complete factory package.'
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.'
   }
 ];
 

@@ -123,7 +123,7 @@ export default function AboutPage() {
                   <div className="max-w-xs">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-amber-100/75">Positive Watch HQ</p>
                     <p className="mt-4 text-3xl font-semibold tracking-tight text-white">Nicola Trani</p>
-                    <p className="mt-2 text-sm font-semibold uppercase tracking-[0.22em] text-slate-300">Mr.Positive</p>
+                    <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-slate-300">Mr.Positive</p>
                     <div className="mt-6 h-px w-24 bg-gradient-to-r from-amber-100 to-transparent" />
                   </div>
                 </div>

@@ -21,11 +21,12 @@ const conditionOptions = ['Unworn', 'Excellent', 'Very Good', 'Good'];
 const boxPaperOptions = ['Full set', 'Box only', 'Papers only', 'Watch only', 'Not sure'];
 const timelineOptions = ['ASAP', 'This week', 'This month', 'Flexible', 'Just exploring'];
 
-function Field({ label, children }: { label: string; children: ReactNode }) {
+function Field({ label, children, helper }: { label: string; children: ReactNode; helper?: string }) {
   return (
     <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
       {label}
       {children}
+      {helper ? <span className="block text-[11px] font-normal normal-case leading-5 tracking-normal text-slate-500">{helper}</span> : null}
     </label>
   );
 }
@@ -63,7 +64,7 @@ export function SellForm({ action, submissionLabel, variant = 'sell' }: SellForm
             </select>
           </Field>
           <Field label="Service history?"><input name="serviceHistory" placeholder="Service history?" className="field-input w-full" /></Field>
-          <Field label="Photo upload"><input name="photos" type="file" multiple accept="image/*,video/*" className="field-input w-full file:mr-3 file:rounded-full file:border-0 file:bg-amber-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-black" /></Field>
+          <Field label="Photo upload" helper="Secure browser uploads are not enabled yet. Submit the form first, then email photos to hello@positivewatchhq.com if requested or relevant."><input name="photos" type="file" multiple accept="image/*,video/*" disabled aria-disabled="true" className="field-input w-full opacity-70 file:mr-3 file:rounded-full file:border-0 file:bg-slate-700 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-slate-200" /></Field>
 
           {isTrade ? (
             <>
@@ -93,7 +94,10 @@ export function SellForm({ action, submissionLabel, variant = 'sell' }: SellForm
         <textarea name="notes" rows={5} placeholder="Notes" className="field-input w-full" />
         <FormSubmitButton label={submissionLabel} pendingLabel="Submitting..." />
         {state.message && (
-          <p className={`text-sm ${state.status === 'success' ? 'text-emerald-300' : state.status === 'error' ? 'text-red-300' : 'text-slate-300'}`}>
+          <p
+            role={state.status === 'error' ? 'alert' : 'status'}
+            className={`rounded-2xl border p-4 text-sm ${state.status === 'success' ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-200' : state.status === 'error' ? 'border-red-300/25 bg-red-300/10 text-red-200' : 'border-white/10 bg-white/5 text-slate-300'}`}
+          >
             {state.message}
           </p>
         )}

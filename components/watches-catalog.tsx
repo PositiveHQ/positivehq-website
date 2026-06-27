@@ -82,15 +82,22 @@ export function WatchesCatalog({ watches, isSampleInventory = false }: Props) {
               {['All', 'Full Set', 'Box Only', 'Papers Only', 'Watch Only'].map((option) => <option key={option}>{option}</option>)}
             </select>
           </label>
-          <label className="space-y-2 text-xs uppercase tracking-[0.14em] text-slate-400">
-            Availability
-            <select value={availability} onChange={(e) => setAvailability(e.target.value as 'All' | Watch['status'])} className="field-input w-full normal-case tracking-normal">
-              <option value="All">All</option>
-              <option value="in_stock">In Stock</option>
-              <option value="reserved">Reserved</option>
-              <option value="sold">Sold</option>
-            </select>
-          </label>
+          {isSampleInventory ? (
+            <label className="space-y-2 text-xs uppercase tracking-[0.14em] text-slate-400">
+              Demo status
+              <input value="Demo only" readOnly className="field-input w-full normal-case tracking-normal opacity-80" />
+            </label>
+          ) : (
+            <label className="space-y-2 text-xs uppercase tracking-[0.14em] text-slate-400">
+              Availability
+              <select value={availability} onChange={(e) => setAvailability(e.target.value as 'All' | Watch['status'])} className="field-input w-full normal-case tracking-normal">
+                <option value="All">All</option>
+                <option value="in_stock">In Stock</option>
+                <option value="reserved">Reserved</option>
+                <option value="sold">Sold</option>
+              </select>
+            </label>
+          )}
           <label className="space-y-2 text-xs uppercase tracking-[0.14em] text-slate-400">
             Case size
             <select value={caseSize} onChange={(e) => setCaseSize(e.target.value)} className="field-input w-full normal-case tracking-normal">

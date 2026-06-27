@@ -11,7 +11,7 @@ export function Footer() {
         <div className="md:col-span-2">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-100/80">Positive Watch HQ</p>
           <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
-            A premium watch platform for curated sales, trade-ins, and consignment with clearer details, calmer communication, and stronger presentation.
+            A premium watch concierge for sourcing, trade-ins, consignment, and future curated inventory with clearer details, calmer communication, and stronger presentation.
           </p>
           <p className="mt-4 text-sm leading-6 text-slate-300">
             Contact:{' '}
