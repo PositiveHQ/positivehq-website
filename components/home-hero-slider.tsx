@@ -131,9 +131,9 @@ export function HomeHeroSlider() {
               <span className="h-1.5 w-1.5 rounded-full bg-amber-100 shadow-[0_0_18px_rgba(253,230,138,0.8)]" />
               {scene.eyebrow}
             </div>
-            <h1 className="max-w-5xl text-5xl font-semibold leading-[0.94] tracking-[-0.06em] text-white drop-shadow-[0_18px_48px_rgba(0,0,0,0.72)] sm:text-7xl lg:text-8xl">
+            <h2 className="max-w-5xl text-[2.18rem] font-semibold leading-[0.98] tracking-[-0.045em] text-white drop-shadow-[0_18px_48px_rgba(0,0,0,0.72)] sm:text-7xl sm:leading-[0.94] lg:text-8xl">
               {scene.headline}
-            </h1>
+            </h2>
             <p className="max-w-2xl text-base leading-8 text-slate-200 drop-shadow-[0_12px_34px_rgba(0,0,0,0.85)] sm:text-lg">
               {scene.subheadline}
             </p>

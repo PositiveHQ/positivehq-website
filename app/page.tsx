@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { HomeHeroSlider } from '@/components/home-hero-slider';
+import { WatchVideoHero } from '@/components/watch-video-hero';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
@@ -70,6 +71,7 @@ export default async function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
 
+      <WatchVideoHero />
       <HomeHeroSlider />
 
       <Container className="space-y-24 py-18 lg:py-24">
