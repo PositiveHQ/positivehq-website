@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Container } from './container';
 
@@ -16,6 +17,18 @@ const links = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const cta = pathname.startsWith('/watches')
+    ? { href: '/contact?intent=buy#contact-form', label: 'Request a Watch' }
+    : pathname.startsWith('/sell')
+      ? { href: '/sell#sell-form', label: 'Sell Watch' }
+      : pathname.startsWith('/trade-in')
+        ? { href: '/trade-in#trade-form', label: 'Start Trade-In' }
+        : pathname.startsWith('/consignment')
+          ? { href: '/consignment#consignment-review', label: 'Request Consignment Review' }
+          : pathname.startsWith('/contact')
+            ? { href: '/contact?intent=appointment#contact-form', label: 'Request Appointment' }
+            : { href: '/contact?intent=appointment#contact-form', label: 'Start Watch Review' };
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#050608]/76 backdrop-blur-2xl">
@@ -39,10 +52,10 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/sell"
+            href={cta.href}
             className="hidden rounded-full border border-amber-100/35 bg-amber-100/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-100 transition hover:bg-amber-100/20 sm:inline-flex"
           >
-            Sell Watch
+            {cta.label}
           </Link>
           <button
             type="button"
@@ -71,6 +84,13 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href={cta.href}
+              onClick={() => setOpen(false)}
+              className="block rounded-lg border border-amber-100/30 bg-amber-100/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-100 transition hover:bg-amber-100/20"
+            >
+              {cta.label}
+            </Link>
           </Container>
         </div>
       )}

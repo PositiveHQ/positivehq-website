@@ -11,8 +11,8 @@ const philosophy = [
 ];
 
 const founderNotes = [
+  'Founder: Nicola Trani / Mr.Positive',
   'New Jersey-based, appointment-led, with shipping options available where appropriate',
-  'Appointment-led consultation',
   'Instagram: @mr.positive'
 ];
 
@@ -117,12 +117,14 @@ export default function AboutPage() {
 
           <article className="surface-card overflow-hidden p-0">
             <div className="grid gap-0 lg:grid-cols-[0.86fr_1.14fr]">
-              <div className="min-h-72 border-b border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(253,230,138,0.18),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-8 lg:border-b-0 lg:border-r lg:border-white/10">
-                <p className="eyebrow">Founder photo area</p>
-                <div className="mt-8 grid aspect-square max-w-xs place-items-center rounded-[2rem] border border-amber-100/20 bg-[radial-gradient(circle_at_50%_32%,rgba(253,230,138,0.18),transparent_36%),linear-gradient(145deg,rgba(255,255,255,0.08),rgba(0,0,0,0.35))] text-center shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
-                  <div>
-                    <p className="text-5xl font-semibold tracking-[-0.08em] text-amber-100">NT</p>
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">Mr.Positive</p>
+              <div className="relative min-h-80 overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(253,230,138,0.18),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-8 lg:border-b-0 lg:border-r lg:border-white/10">
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.06)_42%,transparent_44%),radial-gradient(circle_at_18%_20%,rgba(255,255,255,0.10),transparent_25%)]" />
+                <div className="relative flex h-full min-h-64 items-end rounded-[2rem] border border-amber-100/20 bg-[linear-gradient(145deg,rgba(8,10,14,0.48),rgba(0,0,0,0.78)),radial-gradient(circle_at_50%_18%,rgba(253,230,138,0.16),transparent_34%)] p-6 shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
+                  <div className="max-w-xs">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-amber-100/75">Positive Watch HQ</p>
+                    <p className="mt-4 text-3xl font-semibold tracking-tight text-white">Nicola Trani</p>
+                    <p className="mt-2 text-sm font-semibold uppercase tracking-[0.22em] text-slate-300">Mr.Positive</p>
+                    <div className="mt-6 h-px w-24 bg-gradient-to-r from-amber-100 to-transparent" />
                   </div>
                 </div>
               </div>

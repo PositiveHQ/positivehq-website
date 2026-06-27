@@ -135,7 +135,7 @@ export default function ContactPage() {
           <div id="contact-form" className="scroll-mt-28">
             <BeforeSubmit />
             <div className="mt-5">
-              <Suspense fallback={<div className="surface-card p-6 text-sm text-slate-300">Loading contact form…</div>}>
+              <Suspense fallback={<div className="surface-card min-h-96 p-6" aria-hidden="true" />}>
                 <ContactForm action={submitContactAction} />
               </Suspense>
             </div>

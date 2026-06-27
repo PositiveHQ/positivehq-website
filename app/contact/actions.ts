@@ -12,7 +12,8 @@ const inquiryLabels = {
   sell: 'Sell a watch',
   trade: 'Trade a watch',
   consign: 'Consign a watch',
-  general: 'Ask a general question'
+  general: 'Ask a general question',
+  appointment: 'Appointment'
 } as const;
 
 type InquiryIntent = keyof typeof inquiryLabels;
@@ -33,7 +34,7 @@ export async function submitContactAction(
     const watchContext = String(formData.get('watchContext') ?? '').trim();
     const budgetOrExpectedValue = String(formData.get('budgetOrExpectedValue') ?? '').trim();
     const desiredTimeline = String(formData.get('desiredTimeline') ?? '').trim();
-    const appointmentRequest = formData.get('appointmentRequest') === 'on';
+    const appointmentRequest = formData.get('appointmentRequest') === 'on' || inquiryIntentValue === 'appointment';
     const preferredTime = String(formData.get('preferredTime') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
 

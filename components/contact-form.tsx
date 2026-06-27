@@ -21,7 +21,8 @@ const options = [
   ['sell', 'Sell a watch'],
   ['trade', 'Trade a watch'],
   ['consign', 'Consign a watch'],
-  ['general', 'Ask a general question']
+  ['general', 'Ask a general question'],
+  ['appointment', 'Appointment']
 ] as const;
 
 const timelineOptions = ['ASAP', 'This week', 'This month', 'Flexible', 'Just exploring'];
@@ -55,7 +56,7 @@ export function ContactForm({ action }: ContactFormProps) {
   const searchParams = useSearchParams();
   const requestedIntent = searchParams.get('intent');
   const isAppointmentRequest = requestedIntent === 'appointment';
-  const defaultIntent = isAppointmentRequest ? 'general' : requestedIntent;
+  const defaultIntent = isAppointmentRequest ? 'appointment' : requestedIntent;
 
   return (
     <form action={formAction} className="surface-card space-y-6 p-6 lg:p-8" noValidate={false}>
