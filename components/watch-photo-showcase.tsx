@@ -6,17 +6,17 @@ import { useEffect, useRef, useState } from 'react';
 const slides = [
   {
     label: 'Rolex',
-    image: '/media/brand-showcase/rolex-hd.webp',
+    image: '/media/brand-showcase/rolex-hero.webp',
     alt: 'Rolex watch photo showcase slide'
   },
   {
     label: 'Cartier',
-    image: '/media/brand-showcase/cartier-hd.webp',
+    image: '/media/brand-showcase/cartier-hero.webp',
     alt: 'Cartier watch photo showcase slide'
   },
   {
     label: 'Tudor',
-    image: '/media/brand-showcase/tudor-hd.webp',
+    image: '/media/brand-showcase/tudor-hero.webp',
     alt: 'Tudor watch photo showcase slide'
   }
 ];
