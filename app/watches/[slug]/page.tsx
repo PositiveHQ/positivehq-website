@@ -19,12 +19,13 @@ type DetailNotes = {
 const mediaRequirements = [
   'Main dial photo',
   'Case side photo',
+  'Caseback photo if appropriate',
   'Bracelet photo',
   'Clasp photo',
   'Bezel close-up',
   'Crystal close-up',
   'Box/papers/accessories photo',
-  'Optional short video walkthrough'
+  'Optional video walkthrough'
 ];
 
 const detailNotesBySlug: Record<string, DetailNotes> = {
@@ -36,7 +37,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
       ['Bracelet condition', 'Oyster bracelet example shows light desk wear presentation only.'],
       ['Clasp condition', 'Clasp detail required for real listing; example layout does not confirm clasp wear.'],
       ['Polishing notes', 'Example listing copy assumes strong lines; actual polishing history must be documented before sale.'],
-      ['Bracelet fit / links included', 'Full bracelet fit and link count must be photographed and listed before real publication.'],
+      ['Bracelet link count', 'Full bracelet fit and link count must be photographed and listed before real publication.'],
       ['Known flaws or limitations', 'Demo-only watch page. Not real inventory or confirmed condition.']
     ],
     included: [
@@ -56,7 +57,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
       ['Bracelet condition', 'Bracelet stretch and clasp wear must be documented from real photos.'],
       ['Clasp condition', 'Clasp photo required before real listing.'],
       ['Polishing notes', 'Polishing history not represented by demo data.'],
-      ['Bracelet fit / links included', 'Extra links and wrist fit must be confirmed before real listing.'],
+      ['Bracelet link count', 'Extra links and wrist fit must be confirmed before real listing.'],
       ['Known flaws or limitations', 'Demo-only watch page. Not real inventory or confirmed condition.']
     ],
     included: [
@@ -76,7 +77,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
       ['Bracelet condition', 'Bracelet and end-link condition must be documented.'],
       ['Clasp condition', 'Clasp desk marks must be photographed before publication.'],
       ['Polishing notes', 'Polishing history not represented by demo data.'],
-      ['Bracelet fit / links included', 'Link count must be confirmed before real listing.'],
+      ['Bracelet link count', 'Link count must be confirmed before real listing.'],
       ['Known flaws or limitations', 'Demo-only watch page. Not real inventory or confirmed condition.']
     ],
     included: [
@@ -97,7 +98,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
       ['Bracelet condition', 'SmartLink bracelet and strap condition must be photographed before real listing.'],
       ['Clasp condition', 'Deployant/clasp operation and hairlines must be documented.'],
       ['Polishing notes', 'Unworn status must be supported by real photos and accessory review before publication.'],
-      ['Bracelet fit / links included', 'Full link count and strap/bracelet package must be shown.'],
+      ['Bracelet link count', 'Full link count and strap/bracelet package must be shown.'],
       ['Known flaws or limitations', 'Demo-only watch page. Not real inventory or confirmed condition.']
     ],
     included: [
@@ -117,7 +118,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
       ['Bracelet condition', 'Titanium bracelet marks and sizing require documentation.'],
       ['Clasp condition', 'Clasp desk wear should be shown clearly before real publication.'],
       ['Polishing notes', 'Any refinishing on titanium case/bracelet must be disclosed if known.'],
-      ['Bracelet fit / links included', 'Link count and wrist fit must be confirmed before sale.'],
+      ['Bracelet link count', 'Link count and wrist fit must be confirmed before sale.'],
       ['Known flaws or limitations', 'Demo-only watch page. Not real inventory or confirmed condition.']
     ],
     included: [
@@ -137,7 +138,7 @@ const detailNotesBySlug: Record<string, DetailNotes> = {
       ['Bracelet condition', 'Jubilee bracelet condition and stretch must be documented.'],
       ['Clasp condition', 'Clasp and Easylink area should be shown before publication.'],
       ['Polishing notes', 'Unworn status must be supported by real photos and review.'],
-      ['Bracelet fit / links included', 'Full link count and fit must be confirmed before sale.'],
+      ['Bracelet link count', 'Full link count and fit must be confirmed before sale.'],
       ['Known flaws or limitations', 'Demo-only watch page. Not real inventory or confirmed condition.']
     ],
     included: [
@@ -176,7 +177,7 @@ function fallbackDetails(watch: { box: boolean; papers: boolean }): DetailNotes 
       ['Bracelet condition', 'Bracelet condition will be listed with stretch, scratches, and finish notes where applicable.'],
       ['Clasp condition', 'Clasp wear and operation will be documented with photos.'],
       ['Polishing notes', 'Polishing history and visible line condition will be documented where known.'],
-      ['Bracelet fit / links included', 'Link count and approximate fit will be documented before final sale.'],
+      ['Bracelet link count', 'Link count and approximate fit will be documented before final sale.'],
       ['Known flaws or limitations', 'Any known flaws will be disclosed before final transaction.']
     ],
     included: [
@@ -293,7 +294,7 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
           <div className="mt-5 space-y-3">{details.included.map(([label, value]) => <div key={label} className="rounded-2xl border border-white/10 bg-black/25 p-4"><p className="text-sm font-semibold text-white">{label}</p><p className="mt-1 text-sm leading-6 text-slate-300">{value}</p></div>)}</div>
         </article>
         <article className="surface-card p-6">
-          <p className="eyebrow">Transaction Notes</p>
+          <p className="eyebrow">Payment / Shipping / Return Notes</p>
           <div className="mt-5 space-y-3">{transactionNotes.map(([label, value]) => <div key={label} className="rounded-2xl border border-white/10 bg-black/25 p-4"><p className="text-sm font-semibold text-white">{label}</p><p className="mt-1 text-sm leading-6 text-slate-300">{value}</p></div>)}</div>
         </article>
       </section>

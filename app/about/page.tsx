@@ -112,7 +112,7 @@ export default function AboutPage() {
             <p className="mt-4 text-sm leading-7 text-slate-300">
               Positive Watch HQ is appointment-led and concierge-style. If a client wants a watch or wants to trade into one, the best next step is to share the target model, trade details, and schedule a focused conversation.
             </p>
-            <Button href="/contact" className="mt-6">Request an Appointment</Button>
+            <Button href="/contact?intent=appointment#contact-form" className="mt-6">Request Appointment</Button>
           </article>
 
           <article className="surface-card overflow-hidden p-0">
@@ -158,6 +158,10 @@ export default function AboutPage() {
             <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Phone</p>
               <p className="mt-2 text-sm font-semibold text-white">{siteConfig.phoneConsultationText}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Button href="/contact?intent=appointment#contact-form" variant="secondary" className="px-3 py-2 text-[10px]">Schedule Watch Review</Button>
+                <Button href="/contact?intent=appointment#contact-form" variant="secondary" className="px-3 py-2 text-[10px]">Book Trade Consultation</Button>
+              </div>
             </div>
             <a href={`mailto:${siteConfig.email}`} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Email</p>

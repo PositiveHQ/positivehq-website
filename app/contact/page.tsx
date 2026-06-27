@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import { BeforeSubmit } from '@/components/before-submit';
 import { Button } from '@/components/button';
 import { ContactForm } from '@/components/contact-form';
@@ -40,6 +41,7 @@ export default function ContactPage() {
       sameAs: [siteConfig.social.instagram]
     }
   };
+  const appointmentHref = '/contact?intent=appointment#contact-form';
 
   return (
     <>
@@ -59,6 +61,7 @@ export default function ContactPage() {
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button href="#contact-form" className="sm:min-w-52">Start Contact Form</Button>
+                <Button href={appointmentHref} variant="secondary" className="sm:min-w-52">Request Appointment</Button>
                 <Button href={`mailto:${siteConfig.email}`} variant="secondary" className="sm:min-w-44">Email Us</Button>
               </div>
             </div>
@@ -82,6 +85,10 @@ export default function ContactPage() {
                 ) : (
                   <div key={label} className="rounded-2xl border border-white/10 bg-black/25 p-5">
                     {content}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Button href={appointmentHref} variant="secondary" className="px-3 py-2 text-[10px]">Request Appointment</Button>
+                      <Button href={appointmentHref} variant="secondary" className="px-3 py-2 text-[10px]">Schedule Watch Review</Button>
+                    </div>
                   </div>
                 );
               })}
@@ -106,6 +113,10 @@ export default function ContactPage() {
               <p className="mt-4 text-sm leading-7 text-slate-300">
                 Use the form to request an appointment or scheduled call. Include the watch reference, photos you can provide, your timing, and whether you want to buy, sell, trade, or consign.
               </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <Button href={appointmentHref}>Request Appointment</Button>
+                <Button href={appointmentHref} variant="secondary">Book Trade Consultation</Button>
+              </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
               <p className="text-sm font-semibold text-white">Fastest useful context</p>
@@ -124,7 +135,9 @@ export default function ContactPage() {
           <div id="contact-form" className="scroll-mt-28">
             <BeforeSubmit />
             <div className="mt-5">
-              <ContactForm action={submitContactAction} />
+              <Suspense fallback={<div className="surface-card p-6 text-sm text-slate-300">Loading contact form…</div>}>
+                <ContactForm action={submitContactAction} />
+              </Suspense>
             </div>
           </div>
         </section>

@@ -17,7 +17,7 @@ const tradeSteps = [
 ];
 
 const services = [
-  ['Buy watches', 'Curated pieces with clear details and a guided path to purchase.', '/watches'],
+  ['Source', 'Tell us the watch you want and the cleanest path you need.', '/contact?intent=buy#contact-form'],
   ['Sell', 'Get a clear cash offer after review.', '/sell'],
   ['Trade in', 'Put your current watch toward the next one.', '/trade-in'],
   ['Consign', 'List with a clear price plan when time allows.', '/consignment']
@@ -32,9 +32,9 @@ const proofBullets = [
 ];
 
 export const metadata: Metadata = {
-  title: 'Luxury Watches for Sale & Trade-Ins',
+  title: 'Luxury Watch Concierge: Sell, Trade, Consign, Source',
   description:
-    'Positive Watch HQ sells luxury watches and helps clients trade into the next piece with clear condition review, verification, insured shipping, and concierge communication.',
+    'Positive Watch HQ helps clients sell, trade, consign, or source luxury watches with clear condition review, verification, insured shipping, and concierge communication.',
   alternates: { canonical: '/' }
 };
 
@@ -61,21 +61,21 @@ export default async function Home() {
           <div className="max-w-4xl space-y-8 animate-fade-up">
             <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-100/85 shadow-[0_20px_50px_rgba(0,0,0,0.25)] backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,0.85)]" />
-              Watches for sale · trade-ins welcome
+              Sell · trade · consign · source
             </div>
 
             <div className="space-y-5">
               <p className="eyebrow">Positive Watch HQ</p>
               <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-7xl lg:text-8xl">
-                Luxury Watches for Sale. Trade Yours In.
+                Sell, trade, consign, or source your next luxury watch.
               </h1>
               <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                Curated watches, clean trade-in values, verified condition, and calm concierge communication.
+                A premium watch concierge for sourcing requests, trade-in reviews, consignment conversations, and future inventory inquiries.
               </p>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button href="/watches" className="sm:min-w-44">View Watches</Button>
+              <Button href="/contact?intent=buy#contact-form" className="sm:min-w-44">Request a Watch</Button>
               <Button href="/trade-in" variant="secondary" className="sm:min-w-44">Start Trade-In</Button>
             </div>
 
@@ -109,10 +109,10 @@ export default async function Home() {
 
         <section className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
-            <p className="eyebrow">How trade-ins work</p>
-            <h2 className="section-title mt-3">Move into the next watch.</h2>
+            <p className="eyebrow">How it works</p>
+            <h2 className="section-title mt-3">Start with the goal. We guide the path.</h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">
-              Simple, documented, and verified before anything is final.
+              Sourcing, selling, trading, or consigning — simple, documented, and verified before anything is final.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -141,12 +141,28 @@ export default async function Home() {
           </div>
         </section>
 
+        <section className="surface-card relative overflow-hidden p-8 lg:p-10">
+          <div className="absolute left-0 top-0 h-56 w-56 -translate-x-16 -translate-y-16 rounded-full bg-amber-100/10 blur-3xl" />
+          <div className="relative grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="eyebrow">Sourcing concierge</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Looking for a specific watch?</h2>
+            </div>
+            <div>
+              <p className="text-sm leading-7 text-slate-300">
+                If the watch you want is not listed, tell us the brand, model, reference, budget, and timeline. We can review sourcing options, trade possibilities, and the cleanest path forward.
+              </p>
+              <Button href="/contact?intent=buy#contact-form" className="mt-6">Request a Watch</Button>
+            </div>
+          </div>
+        </section>
+
         <section className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <p className="eyebrow">Featured watches</p>
+            <p className="eyebrow">Sourcing examples</p>
             <h2 className="section-title mt-3">{isSampleInventory ? 'Example Inventory Layout — Demo Only' : 'Available pieces and trade targets.'}</h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">
-              {isSampleInventory ? 'This section shows layout only until real inventory is published.' : 'The marketplace is built for watches we sell now — and the brands we want on trade later.'}
+              {isSampleInventory ? 'This section shows layout only until real inventory is published. Use it as a preview of how future listings will work.' : 'Live listings include real photos, real condition notes, included accessories, availability, and a direct inquiry path.'}
             </p>
           </div>
           <div className="flex justify-start lg:justify-end">

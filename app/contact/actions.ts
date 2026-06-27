@@ -41,6 +41,14 @@ export async function submitContactAction(
       return { status: 'error', message: 'Please complete name, email, inquiry type, and message.' };
     }
 
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return { status: 'error', message: 'Please enter a valid email address.' };
+    }
+
+    if (message.length < 10) {
+      return { status: 'error', message: 'Please add a little more detail in the message so we can review properly.' };
+    }
+
     if (!isInquiryIntent(inquiryIntentValue)) {
       return { status: 'error', message: 'Please select what you are looking to do.' };
     }
