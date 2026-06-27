@@ -30,6 +30,7 @@ export function Footer() {
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             <Link className="block transition hover:text-amber-100" href="/watches">Inventory</Link>
             <Link className="block transition hover:text-amber-100" href="/sell">Sell Your Watch</Link>
+            <Link className="block transition hover:text-amber-100" href="/consignment">Consignment</Link>
             <Link className="block transition hover:text-amber-100" href="/trade-in">Trade-In</Link>
             <Link className="block transition hover:text-amber-100" href="/about">Process</Link>
           </div>

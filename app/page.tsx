@@ -32,6 +32,11 @@ const services = [
     href: '/sell'
   },
   {
+    title: 'Consign with a clear plan',
+    copy: 'Target a stronger possible net price with pricing strategy, premium photography, listing support, and realistic timing.',
+    href: '/consignment'
+  },
+  {
     title: 'Trade into the next one',
     copy: 'Use your current watch as part of the deal with transparent trade value, costs, and upgrade path.',
     href: '/trade-in'
@@ -158,7 +163,7 @@ export default async function Home() {
           ))}
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-3">
+        <section className="grid gap-6 lg:grid-cols-4">
           {services.map((service, index) => (
             <article key={service.title} className="surface-card group relative overflow-hidden p-7 hover:-translate-y-1 hover:border-amber-100/35">
               <div className="absolute right-0 top-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-amber-100/10 blur-2xl transition group-hover:bg-amber-100/20" />
