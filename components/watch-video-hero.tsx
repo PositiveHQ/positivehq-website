@@ -42,7 +42,6 @@ export function WatchVideoHero() {
           <source src={heroVideo} type="video/mp4" />
         </video>
       )}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#050608] to-transparent" />
     </section>
   );
 }

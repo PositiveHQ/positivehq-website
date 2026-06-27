@@ -5,24 +5,19 @@ import { useEffect, useRef, useState } from 'react';
 
 const slides = [
   {
-    label: 'Beauty shot',
-    image: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=2200&q=90',
-    alt: 'Luxury watch full beauty shot on a dark background'
+    label: 'Rolex',
+    image: '/media/brand-showcase/rolex-hero.webp',
+    alt: 'Rolex watch photo showcase slide'
   },
   {
-    label: 'Dial detail',
-    image: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=2200&q=90',
-    alt: 'Close-up watch dial detail with dark lighting'
+    label: 'Cartier',
+    image: '/media/brand-showcase/cartier-hero.webp',
+    alt: 'Cartier watch photo showcase slide'
   },
   {
-    label: 'Case profile',
-    image: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=2200&q=90',
-    alt: 'Luxury watch case profile and bracelet detail'
-  },
-  {
-    label: 'Bracelet detail',
-    image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2200&q=90',
-    alt: 'Luxury watch bracelet and case detail'
+    label: 'Tudor',
+    image: '/media/brand-showcase/tudor-hero.webp',
+    alt: 'Tudor watch photo showcase slide'
   }
 ];
 
