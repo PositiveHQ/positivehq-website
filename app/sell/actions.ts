@@ -21,6 +21,21 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
     const yearValue = String(formData.get('year') ?? '').trim();
     const askingPriceValue = String(formData.get('askingPrice') ?? '').trim();
     const notes = String(formData.get('notes') ?? '').trim();
+    const boxPapers = String(formData.get('boxPapers') ?? '').trim();
+    const serviceHistory = String(formData.get('serviceHistory') ?? '').trim();
+    const aftermarketParts = String(formData.get('aftermarketParts') ?? '').trim();
+    const timeline = String(formData.get('timeline') ?? '').trim();
+    const targetWatch = String(formData.get('targetWatch') ?? '').trim();
+    const cashDifference = String(formData.get('cashDifference') ?? '').trim();
+    const extendedNotes = [
+      notes,
+      boxPapers && `Box/papers: ${boxPapers}`,
+      serviceHistory && `Service history: ${serviceHistory}`,
+      aftermarketParts && `Aftermarket parts: ${aftermarketParts}`,
+      timeline && `Timeline: ${timeline}`,
+      targetWatch && `Target watch: ${targetWatch}`,
+      cashDifference && `Expected cash difference: ${cashDifference}`
+    ].filter(Boolean).join('\n');
 
     if (!customerName || !email || !brand || !model) {
       return { status: 'error', message: 'Please complete name, email, brand, and model.' };
@@ -54,10 +69,10 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
       referenceNumber,
       condition,
       year,
-      box: formData.get('box') === 'on',
-      papers: formData.get('papers') === 'on',
+      box: formData.get('box') === 'on' || boxPapers === 'Full set' || boxPapers === 'Box only',
+      papers: formData.get('papers') === 'on' || boxPapers === 'Full set' || boxPapers === 'Papers only',
       askingPrice,
-      notes
+      notes: extendedNotes
     });
 
     return {

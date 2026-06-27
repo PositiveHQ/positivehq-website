@@ -120,7 +120,24 @@ export default function ConsignmentPage() {
             Include the reference, condition, box/papers, asking or target net price, and any timing constraints in the notes. We will review whether consignment, immediate sale, or waiting is the cleaner route.
           </p>
         </div>
-        <SellForm action={submitSellSubmissionAction} submissionLabel="Request a Consignment Review" />
+        <SellForm action={submitSellSubmissionAction} submissionLabel="Request a Consignment Review" variant="consignment" />
+      </section>
+
+      <section className="space-y-5">
+        <p className="eyebrow">FAQ</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            ['Is consignment faster than a cash offer?', 'Usually no. Consignment may target a stronger net result, but it can take longer and depends on buyer demand.'],
+            ['Who sets the asking price?', 'The pricing plan should be agreed before listing, using condition, completeness, comps, and realistic sell-through expectations.'],
+            ['When is payment made?', 'Seller payment follows buyer payment clearance and the agreed settlement terms.'],
+            ['Can consignment be declined?', 'Yes. If market demand, condition, reserve, or risk profile does not fit, an immediate sale or waiting may be cleaner.']
+          ].map(([question, answer]) => (
+            <article key={question} className="surface-card p-5">
+              <h3 className="font-semibold text-white">{question}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{answer}</p>
+            </article>
+          ))}
+        </div>
       </section>
     </Container>
   );

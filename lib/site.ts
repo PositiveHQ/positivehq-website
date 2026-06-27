@@ -7,10 +7,12 @@ export function getSiteUrl() {
 export const siteConfig = {
   name: 'Positive Watch HQ',
   description:
-    'A premium watch platform for buying, selling, and trading luxury watches with clear condition review and concierge communication.',
+    'A premium watch platform for curated luxury watch sales, trade-ins, and consignment with clear condition review and concierge communication.',
   email: 'hello@positivewatchhq.com',
-  phone: '+1 (305) 555-0142',
+  phone: '',
+  phoneConsultationText: 'Phone consultations available by appointment.',
   social: {
-    instagram: 'https://www.instagram.com/positivewatchhq'
+    instagram: 'https://www.instagram.com/positivewatchhq',
+    founderInstagram: 'https://www.instagram.com/mr.positive'
   }
 };

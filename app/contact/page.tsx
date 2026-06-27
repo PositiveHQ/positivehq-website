@@ -13,7 +13,7 @@ const inquiryRoutes = [
 ];
 
 const contactMethods = [
-  ['Phone number', siteConfig.phone, `tel:${siteConfig.phone}`],
+  ['Phone consultations', siteConfig.phoneConsultationText, ''],
   ['Email', siteConfig.email, `mailto:${siteConfig.email}`],
   ['Instagram', '@positivewatchhq', siteConfig.social.instagram]
 ];
@@ -36,7 +36,6 @@ export default function ContactPage() {
       '@type': 'Organization',
       name: siteConfig.name,
       email: siteConfig.email,
-      telephone: siteConfig.phone,
       sameAs: [siteConfig.social.instagram]
     }
   };
@@ -64,16 +63,27 @@ export default function ContactPage() {
             </div>
 
             <div className="grid gap-3">
-              {contactMethods.map(([label, value, href]) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35 hover:bg-white/[0.05]"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">{label}</p>
-                  <p className="mt-2 text-lg font-semibold text-white">{value}</p>
-                </a>
-              ))}
+              {contactMethods.map(([label, value, href]) => {
+                const content = (
+                  <>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">{label}</p>
+                    <p className="mt-2 text-lg font-semibold text-white">{value}</p>
+                  </>
+                );
+                return href ? (
+                  <a
+                    key={label}
+                    href={href}
+                    className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35 hover:bg-white/[0.05]"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div key={label} className="rounded-2xl border border-white/10 bg-black/25 p-5">
+                    {content}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </header>

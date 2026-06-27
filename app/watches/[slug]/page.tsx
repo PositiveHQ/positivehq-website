@@ -10,6 +10,32 @@ import { getSiteUrl } from '@/lib/site';
 import { formatBoxAndPapers, formatPrice, formatWatchStatus } from '@/lib/utils';
 import { submitWatchInquiryAction } from './actions';
 
+const conditionRows = [
+  ['Case condition', 'Reviewed during final condition verification.'],
+  ['Bezel condition', 'Reviewed during final condition verification.'],
+  ['Crystal condition', 'Reviewed during final condition verification.'],
+  ['Bracelet condition', 'Reviewed during final condition verification.'],
+  ['Clasp condition', 'Reviewed during final condition verification.'],
+  ['Polishing notes', 'Shared when confirmed during review.'],
+  ['Bracelet fit / links included', 'Confirmed with final accessories and sizing review.']
+];
+
+const transactionNotes = [
+  ['Availability confirmation', 'Availability is confirmed before payment or trade terms are finalized.'],
+  ['Authentication review', 'Every transaction is subject to final authentication review.'],
+  ['Payment options', 'Payment route is confirmed directly before settlement.'],
+  ['Insured shipping', 'Eligible shipments use insured shipping with tracking/signature requirements.'],
+  ['Return eligibility', 'Return eligibility depends on watch, deal structure, payment route, and written terms.'],
+  ['Trade-in eligibility', 'Trade-ins are reviewed by brand, model, condition, completeness, and market demand.']
+];
+
+const faqs = [
+  ['Is this watch available?', 'Availability is confirmed before final transaction, payment, or trade terms.'],
+  ['Can I request more photos or video?', 'Yes. Use the inquiry form or CTA to request dial, case, bracelet, clasp, accessories, and video details.'],
+  ['Can I trade toward this watch?', 'Yes, if your trade is a fit after review. Final trade value depends on authentication, condition, demand, and deal structure.'],
+  ['Is the price final?', 'Prices and offers are not final until availability, condition, authentication, and payment terms are complete.']
+];
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const watch = await getWatchBySlug(params.slug);
   if (!watch) {
@@ -61,6 +87,15 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
     }
   };
 
+  const included = [
+    ['Box', watch.box ? 'Included' : 'Not confirmed / not included'],
+    ['Papers / warranty card', watch.papers ? 'Included' : 'Not confirmed / not included'],
+    ['Booklets', 'Confirmed during final accessories review.'],
+    ['Tags', 'Confirmed during final accessories review.'],
+    ['Extra links', 'Confirmed during final bracelet fit review.'],
+    ['Service records if available', 'Shared if available and verified.']
+  ];
+
   return (
     <Container className="space-y-14 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }} />
@@ -96,21 +131,64 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
             <div><dt className="text-slate-400">Material</dt><dd className="font-medium text-white">{watch.material}</dd></div>
           </dl>
           <p className="text-sm leading-7 text-slate-300">{watch.description}</p>
-          <div className="flex flex-wrap gap-3">
-            <Button href="#watch-inquiry">Inquire About This Watch</Button>
-            <Button href="/trade-in" variant="secondary">Request Trade-In</Button>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Button href="#watch-inquiry">Ask About This Watch</Button>
+            <Button href="#watch-inquiry" variant="secondary">Request More Photos / Video</Button>
+            <Button href={`/trade-in?target=${encodeURIComponent(`${watch.brand} ${watch.model}`)}`} variant="secondary">Trade Toward This Watch</Button>
+            <Button href="#watch-inquiry" variant="secondary">Make an Offer</Button>
           </div>
-          <div className="surface-card p-5 text-sm text-slate-300">
-            <p className="font-semibold text-white">Trust & Delivery</p>
-            <ul className="mt-3 space-y-2">
-              <li>• Multi-point authentication before listing.</li>
-              <li>• Insured overnight shipping with signature required.</li>
-              <li>• Straightforward return policy on eligible inventory.</li>
-            </ul>
+        </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-3">
+        <article className="surface-card p-6">
+          <p className="eyebrow">Condition Notes</p>
+          <div className="mt-5 space-y-3">
+            {conditionRows.map(([label, value]) => (
+              <div key={label} className="rounded-2xl border border-white/10 bg-black/25 p-4">
+                <p className="text-sm font-semibold text-white">{label}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{value}</p>
+              </div>
+            ))}
           </div>
-          <div id="watch-inquiry">
-            <WatchInquiryForm action={inquiryAction} />
+        </article>
+        <article className="surface-card p-6">
+          <p className="eyebrow">What’s Included</p>
+          <div className="mt-5 space-y-3">
+            {included.map(([label, value]) => (
+              <div key={label} className="rounded-2xl border border-white/10 bg-black/25 p-4">
+                <p className="text-sm font-semibold text-white">{label}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{value}</p>
+              </div>
+            ))}
           </div>
+        </article>
+        <article className="surface-card p-6">
+          <p className="eyebrow">Transaction Notes</p>
+          <div className="mt-5 space-y-3">
+            {transactionNotes.map(([label, value]) => (
+              <div key={label} className="rounded-2xl border border-white/10 bg-black/25 p-4">
+                <p className="text-sm font-semibold text-white">{label}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{value}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section id="watch-inquiry" className="scroll-mt-28">
+        <WatchInquiryForm action={inquiryAction} />
+      </section>
+
+      <section className="space-y-5">
+        <p className="eyebrow">FAQ</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          {faqs.map(([question, answer]) => (
+            <article key={question} className="surface-card p-5">
+              <h3 className="font-semibold text-white">{question}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{answer}</p>
+            </article>
+          ))}
         </div>
       </section>
 

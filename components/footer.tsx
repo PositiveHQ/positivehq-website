@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { Container } from './container';
 import { siteConfig } from '@/lib/site';
 
+const disclaimer = 'Every transaction is subject to final authentication review, condition verification, availability confirmation, and cleared payment. Offers, prices, and trade values are not final until review is complete.';
+
 export function Footer() {
   return (
     <footer className="mt-28 border-t border-white/10 bg-[#030405]">
@@ -11,33 +13,32 @@ export function Footer() {
           <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
             A premium watch platform for curated sales, trade-ins, and consignment with clearer details, calmer communication, and stronger presentation.
           </p>
-          <p className="mt-4 text-sm text-slate-300">
+          <p className="mt-4 text-sm leading-6 text-slate-300">
             Contact:{' '}
             <a href={`mailto:${siteConfig.email}`} className="text-amber-100 transition hover:text-amber-50">
               {siteConfig.email}
-            </a>{' '}
-            ·{' '}
-            <a href={`tel:${siteConfig.phone}`} className="text-amber-100 transition hover:text-amber-50">
-              {siteConfig.phone}
             </a>
+            <br />
+            <span className="text-slate-400">{siteConfig.phoneConsultationText}</span>
           </p>
-          <p className="mt-5 max-w-lg text-xs leading-5 text-slate-500">
-            Watch availability, pricing, condition, accessories, and trade values are subject to review and confirmation. Positive Watch HQ does not guarantee authenticity without appropriate verification.
-          </p>
+          <p className="mt-5 max-w-lg text-xs leading-5 text-slate-500">{disclaimer}</p>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Explore</p>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
-            <Link className="block transition hover:text-amber-100" href="/watches">Inventory</Link>
-            <Link className="block transition hover:text-amber-100" href="/trade-in">Trade-In</Link>
-            <Link className="block transition hover:text-amber-100" href="/consignment">Consignment</Link>
-            <Link className="block transition hover:text-amber-100" href="/about">Process</Link>
+            <Link className="block transition hover:text-amber-100" href="/watches">Buy</Link>
+            <Link className="block transition hover:text-amber-100" href="/sell">Sell</Link>
+            <Link className="block transition hover:text-amber-100" href="/trade-in">Trade</Link>
+            <Link className="block transition hover:text-amber-100" href="/consignment">Consign</Link>
+            <Link className="block transition hover:text-amber-100" href="/process">Process</Link>
+            <Link className="block transition hover:text-amber-100" href="/about">About</Link>
             <Link className="block transition hover:text-amber-100" href="/contact">Contact</Link>
           </div>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Content</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Proof</p>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
+            <Link className="block transition hover:text-amber-100" href="/recently-sold">Recently Sold</Link>
             <Link className="block transition hover:text-amber-100" href="/blog">Journal</Link>
             <Link className="block transition hover:text-amber-100" href="/newsletter">Newsletter</Link>
             <a className="block transition hover:text-amber-100" href={siteConfig.social.instagram}>Instagram</a>

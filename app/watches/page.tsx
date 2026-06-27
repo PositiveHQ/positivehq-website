@@ -28,6 +28,23 @@ export default async function WatchesPage() {
       </header>
 
       <WatchesCatalog watches={watches} isSampleInventory={isSampleInventory} />
+
+      <section className="space-y-5">
+        <p className="eyebrow">FAQ</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            ['Are all watches shown available?', 'Availability is confirmed before payment, trade terms, or shipment. Demo/sample inventory is clearly labeled when live inventory is not connected.'],
+            ['Can I trade toward a listed watch?', 'Yes. Submit your current watch details and we will review trade value, deal structure, and any cash difference.'],
+            ['Can I request more photos?', 'Yes. Ask for additional photos or video of dial, case, bracelet, clasp, accessories, and condition details.'],
+            ['Are prices final?', 'Prices are not final until availability, authentication review, condition verification, and cleared payment terms are complete.']
+          ].map(([question, answer]) => (
+            <article key={question} className="surface-card p-5">
+              <h3 className="font-semibold text-white">{question}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{answer}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </Container>
   );
 }

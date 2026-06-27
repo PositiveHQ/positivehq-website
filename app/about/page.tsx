@@ -11,9 +11,10 @@ const philosophy = [
 ];
 
 const founderNotes = [
-  'Independent, appointment-led luxury watch guidance.',
-  'Built around transparent conversations, documented terms, and clean presentation.',
-  'Focused on helping clients buy, sell, trade, or consign with confidence.'
+  'Founder photo placeholder',
+  'Appointment-led consultation',
+  'Location/market served to be confirmed',
+  'Instagram: @mr.positive'
 ];
 
 export const metadata: Metadata = {
@@ -34,8 +35,7 @@ export default function AboutPage() {
       '@type': 'Organization',
       name: siteConfig.name,
       email: siteConfig.email,
-      telephone: siteConfig.phone,
-      sameAs: [siteConfig.social.instagram]
+      sameAs: [siteConfig.social.instagram, siteConfig.social.founderInstagram]
     }
   };
 
@@ -116,17 +116,31 @@ export default function AboutPage() {
             <Button href="/contact" className="mt-6">Request an Appointment</Button>
           </article>
 
-          <article className="surface-card p-6 lg:p-8">
-            <p className="eyebrow">Founder section</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Positive Watch HQ leadership</h2>
-            <p className="mt-4 text-sm leading-7 text-slate-300">
-              Positive Watch HQ is operated with a practical, relationship-first mindset: clear answers, clean records, premium presentation, and no pressure to force a transaction that is not right.
-            </p>
-            <ul className="mt-5 space-y-3 text-sm text-slate-300">
-              {founderNotes.map((note) => (
-                <li key={note} className="rounded-2xl border border-white/10 bg-black/25 p-4">{note}</li>
-              ))}
-            </ul>
+          <article className="surface-card overflow-hidden p-0">
+            <div className="grid gap-0 lg:grid-cols-[0.86fr_1.14fr]">
+              <div className="min-h-72 border-b border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(253,230,138,0.18),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-8 lg:border-b-0 lg:border-r lg:border-white/10">
+                <p className="eyebrow">Founder photo</p>
+                <div className="mt-8 grid aspect-square max-w-xs place-items-center rounded-[2rem] border border-white/10 bg-black/25 text-center text-sm text-slate-400">
+                  Founder photo placeholder
+                </div>
+              </div>
+              <div className="p-6 lg:p-8">
+                <p className="eyebrow">Founder</p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Nicola Trani / Mr.Positive</h2>
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  Positive Watch HQ was built by Nicola Trani, also known as Mr.Positive, with a simple belief: high-value watch transactions should be clear, documented, and handled with respect. The goal is not hype or pressure. The goal is a cleaner way to buy, sell, trade, and consign luxury watches with honest communication from first message to final delivery.
+                </p>
+                <ul className="mt-5 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+                  {founderNotes.map((note) => (
+                    <li key={note} className="rounded-2xl border border-white/10 bg-black/25 p-4">{note}</li>
+                  ))}
+                </ul>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button href={siteConfig.social.founderInstagram} variant="secondary">Instagram</Button>
+                  <Button href="/contact">Request Consultation</Button>
+                </div>
+              </div>
+            </div>
           </article>
         </section>
 
@@ -139,10 +153,10 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
-            <a href={`tel:${siteConfig.phone}`} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
+            <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Phone</p>
-              <p className="mt-2 text-sm font-semibold text-white">{siteConfig.phone}</p>
-            </a>
+              <p className="mt-2 text-sm font-semibold text-white">{siteConfig.phoneConsultationText}</p>
+            </div>
             <a href={`mailto:${siteConfig.email}`} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Email</p>
               <p className="mt-2 break-all text-sm font-semibold text-white">{siteConfig.email}</p>

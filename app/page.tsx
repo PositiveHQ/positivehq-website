@@ -17,10 +17,10 @@ const tradeSteps = [
 ];
 
 const services = [
-  ['Shop watches', 'Curated pieces with clear details and a guided path to purchase.', '/watches'],
+  ['Buy watches', 'Curated pieces with clear details and a guided path to purchase.', '/watches'],
+  ['Sell', 'Get a clear cash offer after review.', '/sell'],
   ['Trade in', 'Put your current watch toward the next one.', '/trade-in'],
-  ['Consign', 'List with a clear price plan when time allows.', '/consignment'],
-  ['Contact', 'Ask about a watch, appointment, or trade.', '/contact']
+  ['Consign', 'List with a clear price plan when time allows.', '/consignment']
 ];
 
 export const metadata: Metadata = {
@@ -40,7 +40,6 @@ export default async function Home() {
     name: siteConfig.name,
     url: siteUrl,
     email: siteConfig.email,
-    telephone: siteConfig.phone,
     sameAs: [siteConfig.social.instagram]
   };
 
@@ -149,6 +148,20 @@ export default async function Home() {
           {featuredWatches.map((watch) => (
             <WatchCard key={watch.id} watch={watch} isSampleInventory={isSampleInventory} />
           ))}
+        </section>
+
+        <section className="surface-card relative overflow-hidden p-8 lg:p-10">
+          <div className="absolute right-0 top-0 h-40 w-40 translate-x-12 -translate-y-16 rounded-full bg-amber-100/10 blur-3xl" />
+          <div className="relative grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <p className="eyebrow">Recently Sold & Client Proof</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Verified proof only.</h2>
+            </div>
+            <div>
+              <p className="text-sm leading-7 text-slate-300">Coming soon as verified transactions are completed.</p>
+              <Button href="/recently-sold" variant="secondary" className="mt-5">View Proof Page</Button>
+            </div>
+          </div>
         </section>
 
         <section className="grid gap-6 lg:grid-cols-4">
