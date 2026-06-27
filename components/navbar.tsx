@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Container } from './container';
@@ -33,13 +34,15 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#050608]/76 backdrop-blur-2xl">
       <Container className="flex h-20 items-center justify-between gap-4">
-        <Link href="/" className="group flex items-center gap-3 text-white">
-          <span className="grid h-10 w-10 place-items-center rounded-full border border-amber-100/35 bg-amber-100/10 text-xs font-semibold tracking-[-0.04em] text-amber-50 shadow-[0_0_35px_rgba(201,166,91,0.16)]">
-            PHQ
-          </span>
-          <span className="hidden text-sm font-semibold uppercase tracking-[0.22em] sm:block">
-            Positive Watch HQ
-          </span>
+        <Link href="/" className="group flex items-center text-white" aria-label="Positive Watch HQ home">
+          <Image
+            src="/positive-watch-hq-wordmark-gentry-inspired.svg"
+            alt="Positive Watch HQ"
+            width={980}
+            height={220}
+            priority
+            className="h-11 w-44 object-contain object-left sm:h-12 sm:w-52 lg:w-60"
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
@@ -62,7 +65,7 @@ export function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
-            className="rounded-xl border border-white/20 p-2 text-slate-200 transition hover:border-amber-100/45 hover:text-amber-100 lg:hidden"
+            className="absolute right-6 top-1/2 inline-flex -translate-y-1/2 flex-shrink-0 flex-col rounded-xl border border-white/20 p-2 text-slate-200 transition hover:border-amber-100/45 hover:text-amber-100 lg:hidden"
           >
             <span className="block h-0.5 w-5 bg-current" />
             <span className="mt-1 block h-0.5 w-5 bg-current" />

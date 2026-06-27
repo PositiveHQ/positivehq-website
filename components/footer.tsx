@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Container } from './container';
 import { siteConfig } from '@/lib/site';
 
@@ -9,7 +10,13 @@ export function Footer() {
     <footer className="mt-28 border-t border-white/10 bg-[#030405]">
       <Container className="grid gap-10 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-100/80">Positive Watch HQ</p>
+          <Image
+            src="/positive-watch-hq-wordmark-gentry-inspired.svg"
+            alt="Positive Watch HQ"
+            width={980}
+            height={220}
+            className="h-16 w-72 object-contain object-left"
+          />
           <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
             A premium watch concierge for sourcing, trade-ins, consignment, and future curated inventory with clearer details, calmer communication, and stronger presentation.
           </p>
