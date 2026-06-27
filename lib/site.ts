@@ -9,5 +9,8 @@ export const siteConfig = {
   description:
     'A premium watch platform for buying, selling, and trading luxury watches with clear condition review and concierge communication.',
   email: 'hello@positivewatchhq.com',
-  phone: '+1 (305) 555-0142'
+  phone: '+1 (305) 555-0142',
+  social: {
+    instagram: 'https://www.instagram.com/positivewatchhq'
+  }
 };

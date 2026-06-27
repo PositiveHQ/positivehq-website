@@ -33,6 +33,7 @@ export function Footer() {
             <Link className="block transition hover:text-amber-100" href="/consignment">Consignment</Link>
             <Link className="block transition hover:text-amber-100" href="/trade-in">Trade-In</Link>
             <Link className="block transition hover:text-amber-100" href="/about">Process</Link>
+            <Link className="block transition hover:text-amber-100" href="/contact">Contact</Link>
           </div>
         </div>
         <div>
@@ -40,6 +41,7 @@ export function Footer() {
           <div className="mt-4 space-y-3 text-sm text-slate-300">
             <Link className="block transition hover:text-amber-100" href="/blog">Journal</Link>
             <Link className="block transition hover:text-amber-100" href="/newsletter">Newsletter</Link>
+            <a className="block transition hover:text-amber-100" href={siteConfig.social.instagram}>Instagram</a>
           </div>
         </div>
       </Container>

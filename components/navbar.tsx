@@ -10,7 +10,8 @@ const links = [
   { href: '/consignment', label: 'Consign' },
   { href: '/trade-in', label: 'Trade' },
   { href: '/blog', label: 'Journal' },
-  { href: '/about', label: 'Process' }
+  { href: '/about', label: 'Process' },
+  { href: '/contact', label: 'Contact' }
 ];
 
 export function Navbar() {
