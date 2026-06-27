@@ -45,7 +45,7 @@ export default function ProcessPage() {
           Positive Watch HQ is built for clear communication, documented expectations, and realistic market guidance across buying, selling, trade-ins, and consignment.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="/watches">Buy</Button>
+          <Button href="/catalog">Catalog</Button>
           <Button href="/sell" variant="secondary">Sell</Button>
           <Button href="/trade-in" variant="secondary">Trade</Button>
         </div>

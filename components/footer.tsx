@@ -26,7 +26,7 @@ export function Footer() {
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Explore</p>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
-            <Link className="block transition hover:text-amber-100" href="/watches">Buy</Link>
+            <Link className="block transition hover:text-amber-100" href="/catalog">Catalog</Link>
             <Link className="block transition hover:text-amber-100" href="/sell">Sell</Link>
             <Link className="block transition hover:text-amber-100" href="/trade-in">Trade</Link>
             <Link className="block transition hover:text-amber-100" href="/consignment">Consign</Link>

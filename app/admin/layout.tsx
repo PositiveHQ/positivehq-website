@@ -8,7 +8,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link href="/admin/watches" className="text-sm font-semibold tracking-wide text-slate-900">Positive Watch Co. Admin</Link>
           <nav className="flex items-center gap-4 text-sm">
             <Link href="/admin/watches" className="text-slate-700 hover:text-slate-900">Watches</Link>
-            <Link href="/watches" className="text-slate-700 hover:text-slate-900">View Public Site</Link>
+            <Link href="/catalog" className="text-slate-700 hover:text-slate-900">View Public Site</Link>
           </nav>
         </div>
       </header>

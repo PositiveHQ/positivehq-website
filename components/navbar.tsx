@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Container } from './container';
 
 const links = [
-  { href: '/watches', label: 'Buy' },
+  { href: '/catalog', label: 'Catalog' },
   { href: '/sell', label: 'Sell' },
   { href: '/trade-in', label: 'Trade' },
   { href: '/consignment', label: 'Consign' },
@@ -18,7 +18,7 @@ const links = [
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const cta = pathname.startsWith('/watches')
+  const cta = pathname.startsWith('/catalog') || pathname.startsWith('/watches')
     ? { href: '/contact?intent=buy#contact-form', label: 'Request a Watch' }
     : pathname.startsWith('/sell')
       ? { href: '/sell#sell-form', label: 'Sell Watch' }
