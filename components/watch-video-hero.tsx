@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-const heroVideo = '/media/positive-watch-hero-showcase.mp4';
-const heroPoster = '/media/positive-watch-hero-poster.webp';
+const heroVideo = '/media/positive-watch-hero-showcase-hd.mp4';
+const heroPoster = '/media/positive-watch-hero-poster-hd.webp';
 
 export function WatchVideoHero() {
   const [reducedMotion, setReducedMotion] = useState(false);
