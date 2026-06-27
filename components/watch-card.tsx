@@ -20,12 +20,14 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-90" />
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-          <span className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-100">
-            {formatWatchStatus(watch.status)}
-          </span>
+          {!isSampleInventory && (
+            <span className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-100">
+              {formatWatchStatus(watch.status)}
+            </span>
+          )}
           {isSampleInventory && (
             <span className="rounded-full border border-amber-100/30 bg-amber-100/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-100">
-              Sample
+              Example Inventory Layout — Demo Only
             </span>
           )}
         </div>
@@ -39,7 +41,7 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
         </div>
 
         <div className="flex items-center justify-between gap-4 border-y border-white/10 py-4">
-          <span className="text-2xl font-semibold text-amber-100">{formatPrice(watch.price)}</span>
+          <span className="text-2xl font-semibold text-amber-100">{isSampleInventory ? 'Example ' : ''}{formatPrice(watch.price)}</span>
           <span className="text-xs uppercase tracking-[0.16em] text-slate-400">{watch.year}</span>
         </div>
 
@@ -58,7 +60,7 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
           </div>
           <div>
             <dt className="text-xs uppercase tracking-[0.14em] text-slate-500">Availability</dt>
-            <dd className="mt-1 font-medium text-slate-100">{formatWatchStatus(watch.status)}</dd>
+            <dd className="mt-1 font-medium text-slate-100">{isSampleInventory ? 'Demo only' : formatWatchStatus(watch.status)}</dd>
           </div>
         </dl>
 

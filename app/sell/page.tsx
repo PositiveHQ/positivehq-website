@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { BeforeSubmit } from '@/components/before-submit';
 import { Container } from '@/components/container';
 import { SellForm } from '@/components/sell-form';
 import { submitSellSubmissionAction } from './actions';
@@ -93,6 +94,7 @@ export default function SellPage() {
           <p className="eyebrow">Sell form</p>
           <h2 className="section-title mt-3">Send the details.</h2>
         </div>
+        <BeforeSubmit />
         <SellForm action={submitSellSubmissionAction} submissionLabel="Submit Sell Request" variant="sell" />
       </section>
     </Container>

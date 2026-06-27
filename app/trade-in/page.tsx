@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { BeforeSubmit } from '@/components/before-submit';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { SellForm } from '@/components/sell-form';
@@ -50,6 +51,7 @@ export default function TradeInPage() {
       <section id="trade-form" className="space-y-4 scroll-mt-28">
         <h2 className="text-2xl font-semibold text-white">Submit your trade details</h2>
         <p className="text-sm text-slate-300">Share your current watch and the target watch you want. We will come back with trade options.</p>
+        <BeforeSubmit />
         <SellForm action={submitTradeSubmissionAction} submissionLabel="Submit Trade Request" variant="trade" />
       </section>
 

@@ -30,6 +30,9 @@ export async function submitContactAction(
     const email = String(formData.get('email') ?? '').trim();
     const phone = String(formData.get('phone') ?? '').trim();
     const inquiryIntentValue = String(formData.get('inquiryIntent') ?? '').trim();
+    const watchContext = String(formData.get('watchContext') ?? '').trim();
+    const budgetOrExpectedValue = String(formData.get('budgetOrExpectedValue') ?? '').trim();
+    const desiredTimeline = String(formData.get('desiredTimeline') ?? '').trim();
     const appointmentRequest = formData.get('appointmentRequest') === 'on';
     const preferredTime = String(formData.get('preferredTime') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
@@ -46,6 +49,9 @@ export async function submitContactAction(
       `Inquiry type: ${inquiryLabels[inquiryIntentValue]}`,
       appointmentRequest ? 'Appointment requested: Yes' : 'Appointment requested: No',
       preferredTime ? `Preferred time: ${preferredTime}` : null,
+      watchContext ? `Brand/model/reference: ${watchContext}` : null,
+      budgetOrExpectedValue ? `Budget or expected value: ${budgetOrExpectedValue}` : null,
+      desiredTimeline ? `Desired timeline: ${desiredTimeline}` : null,
       '',
       message
     ]

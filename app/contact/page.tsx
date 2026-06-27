@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { BeforeSubmit } from '@/components/before-submit';
 import { Button } from '@/components/button';
 import { ContactForm } from '@/components/contact-form';
 import { Container } from '@/components/container';
@@ -121,7 +122,10 @@ export default function ContactPage() {
           </aside>
 
           <div id="contact-form" className="scroll-mt-28">
-            <ContactForm action={submitContactAction} />
+            <BeforeSubmit />
+            <div className="mt-5">
+              <ContactForm action={submitContactAction} />
+            </div>
           </div>
         </section>
       </Container>

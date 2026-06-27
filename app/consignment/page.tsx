@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { BeforeSubmit } from '@/components/before-submit';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { SellForm } from '@/components/sell-form';
@@ -15,7 +16,7 @@ const howItWorks = [
   },
   {
     title: '3. Listing agreement',
-    copy: 'If consignment is the right route, the watch, reserve, commission placeholder, and communication plan are agreed before listing.'
+    copy: 'If consignment is the right route, the watch, reserve, commission terms, and communication plan are agreed before listing.'
   },
   {
     title: '4. Sale and settlement',
@@ -26,7 +27,7 @@ const howItWorks = [
 const serviceDetails = [
   ['Expected timeline', 'Some watches move quickly; others may need weeks or longer depending on price, demand, seasonality, and buyer confidence.'],
   ['Pricing strategy', 'We position the watch around realistic market evidence: condition, completeness, recent comps, dealer spread, and desired net outcome.'],
-  ['Commission structure placeholder', 'Commission is agreed before listing. Final terms should be confirmed in writing before the watch is marketed.'],
+  ['Commission structure', 'Commission is agreed before listing. Final terms should be confirmed in writing before the watch is marketed.'],
   ['Photography', 'Clean, premium photography highlights dial, case, bracelet, clasp, accessories, and any material condition details.'],
   ['Listing', 'The listing should be clear on reference, condition, box/papers, service history where known, and what is included.'],
   ['Buyer communication', 'We handle buyer questions, negotiation context, and next-step communication while keeping expectations realistic.'],
@@ -120,6 +121,7 @@ export default function ConsignmentPage() {
             Include the reference, condition, box/papers, asking or target net price, and any timing constraints in the notes. We will review whether consignment, immediate sale, or waiting is the cleaner route.
           </p>
         </div>
+        <BeforeSubmit />
         <SellForm action={submitSellSubmissionAction} submissionLabel="Request a Consignment Review" variant="consignment" />
       </section>
 

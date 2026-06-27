@@ -23,6 +23,14 @@ const services = [
   ['Consign', 'List with a clear price plan when time allows.', '/consignment']
 ];
 
+const proofBullets = [
+  'Authentication review before final transaction',
+  'Condition details documented clearly',
+  'Box, papers, and accessories reviewed',
+  'Insured shipping guidance',
+  'Payment and settlement route confirmed before completion'
+];
+
 export const metadata: Metadata = {
   title: 'Luxury Watches for Sale & Trade-Ins',
   description:
@@ -122,21 +130,23 @@ export default async function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(201,166,91,0.16),transparent_32%),radial-gradient(circle_at_90%_80%,rgba(118,142,190,0.13),transparent_34%)]" />
           <div className="relative grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div>
-              <p className="eyebrow">Built for Trust, Not Pressure</p>
-              <h2 className="mt-3 max-w-xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">No hype. Just clear details.</h2>
+              <p className="eyebrow">Trust standard</p>
+              <h2 className="mt-3 max-w-xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">Built on verification, documentation, and clear communication.</h2>
             </div>
-            <p className="text-base leading-8 text-slate-300">
-              Every deal depends on condition review, availability, verification, and cleared payment.
-            </p>
+            <ul className="grid gap-3 text-sm leading-6 text-slate-300 sm:grid-cols-2">
+              {proofBullets.map((item) => (
+                <li key={item} className="rounded-2xl border border-white/10 bg-black/25 p-4">{item}</li>
+              ))}
+            </ul>
           </div>
         </section>
 
         <section className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
             <p className="eyebrow">Featured watches</p>
-            <h2 className="section-title mt-3">Available pieces and trade targets.</h2>
+            <h2 className="section-title mt-3">{isSampleInventory ? 'Example Inventory Layout — Demo Only' : 'Available pieces and trade targets.'}</h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">
-              The marketplace is built for watches we sell now — and the brands we want on trade later.
+              {isSampleInventory ? 'This section shows layout only until real inventory is published.' : 'The marketplace is built for watches we sell now — and the brands we want on trade later.'}
             </p>
           </div>
           <div className="flex justify-start lg:justify-end">

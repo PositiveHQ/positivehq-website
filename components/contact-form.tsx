@@ -22,6 +22,8 @@ const options = [
   ['general', 'Ask a general question']
 ];
 
+const timelineOptions = ['ASAP', 'This week', 'This month', 'Flexible', 'Just exploring'];
+
 export function ContactForm({ action }: ContactFormProps) {
   const [state, formAction] = useFormState(action, initialState);
 
@@ -30,6 +32,17 @@ export function ContactForm({ action }: ContactFormProps) {
       <div>
         <p className="eyebrow">Contact form</p>
         <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">Tell us the right next step.</h2>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <input required name="customerName" placeholder="Name" className="field-input" />
+        <input name="phone" placeholder="Phone" className="field-input" />
+        <input required type="email" name="email" placeholder="Email" className="field-input" />
+        <input name="watchContext" placeholder="Brand/model/reference if applicable" className="field-input" />
+        <input name="budgetOrExpectedValue" placeholder="Budget or expected value" className="field-input" />
+        <select name="desiredTimeline" defaultValue="Flexible" className="field-input normal-case tracking-normal">
+          {timelineOptions.map((option) => <option key={option}>{option}</option>)}
+        </select>
       </div>
 
       <fieldset className="space-y-3">
@@ -47,23 +60,16 @@ export function ContactForm({ action }: ContactFormProps) {
         </div>
       </fieldset>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input required name="customerName" placeholder="Your name" className="field-input" />
-        <input required type="email" name="email" placeholder="Email" className="field-input" />
-        <input name="phone" placeholder="Phone" className="field-input" />
-        <input name="preferredTime" placeholder="Preferred appointment time" className="field-input" />
-      </div>
-
-      <label className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm leading-6 text-slate-300">
-        <input type="checkbox" name="appointmentRequest" className="mt-1 accent-amber-200" />
-        <span>I would like to request an appointment or a scheduled call.</span>
+      <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+        Photo upload if relevant
+        <input name="photos" type="file" multiple accept="image/*,video/*" className="field-input w-full file:mr-3 file:rounded-full file:border-0 file:bg-amber-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-black" />
       </label>
 
       <textarea
         required
         name="message"
         rows={6}
-        placeholder="Tell us about the watch, reference, budget, trade details, consignment goal, or general question."
+        placeholder="Message"
         className="field-input w-full"
       />
 

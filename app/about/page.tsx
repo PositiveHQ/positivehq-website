@@ -11,9 +11,8 @@ const philosophy = [
 ];
 
 const founderNotes = [
-  'Founder photo placeholder',
+  'New Jersey-based, appointment-led, with shipping options available where appropriate',
   'Appointment-led consultation',
-  'Location/market served to be confirmed',
   'Instagram: @mr.positive'
 ];
 
@@ -119,9 +118,12 @@ export default function AboutPage() {
           <article className="surface-card overflow-hidden p-0">
             <div className="grid gap-0 lg:grid-cols-[0.86fr_1.14fr]">
               <div className="min-h-72 border-b border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(253,230,138,0.18),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-8 lg:border-b-0 lg:border-r lg:border-white/10">
-                <p className="eyebrow">Founder photo</p>
-                <div className="mt-8 grid aspect-square max-w-xs place-items-center rounded-[2rem] border border-white/10 bg-black/25 text-center text-sm text-slate-400">
-                  Founder photo placeholder
+                <p className="eyebrow">Founder photo area</p>
+                <div className="mt-8 grid aspect-square max-w-xs place-items-center rounded-[2rem] border border-amber-100/20 bg-[radial-gradient(circle_at_50%_32%,rgba(253,230,138,0.18),transparent_36%),linear-gradient(145deg,rgba(255,255,255,0.08),rgba(0,0,0,0.35))] text-center shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
+                  <div>
+                    <p className="text-5xl font-semibold tracking-[-0.08em] text-amber-100">NT</p>
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">Mr.Positive</p>
+                  </div>
                 </div>
               </div>
               <div className="p-6 lg:p-8">

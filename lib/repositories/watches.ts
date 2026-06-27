@@ -115,6 +115,14 @@ export async function getWatchBySlug(slug: string): Promise<Watch | null> {
   return allWatches.find((watch) => watch.slug === slug) ?? null;
 }
 
+export async function getWatchDetail(slug: string): Promise<{ watch: Watch | null; isSampleInventory: boolean }> {
+  const inventory = await getWatchesInventory();
+  return {
+    watch: inventory.watches.find((watch) => watch.slug === slug) ?? null,
+    isSampleInventory: inventory.isSampleInventory
+  };
+}
+
 export async function getAdminWatches(): Promise<Watch[]> {
   const liveData = await fetchSupabaseWatches({ includePrivate: true });
   if (liveData && liveData.length > 0) return liveData;
