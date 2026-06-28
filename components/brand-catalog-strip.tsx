@@ -9,11 +9,11 @@ export function BrandCatalogStrip() {
           <div>
             <p className="eyebrow">Luxury brands</p>
             <h2 id="shop-by-brand" className="mt-2 text-2xl font-semibold uppercase tracking-[0.18em] text-white sm:text-3xl">
-              Shop by Brand
+              Request by Brand
             </h2>
           </div>
           <p className="max-w-md text-sm leading-6 text-slate-400 sm:text-right">
-            Browse example layouts or request a specific reference from the brands collectors ask for most.
+            Choose a brand to start a private sourcing, trade, selling, or consignment conversation.
           </p>
         </div>
 

@@ -8,32 +8,27 @@ import { Container } from './container';
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/catalog', label: 'Shop' },
-  { href: '/catalog#brands', label: 'Brands' },
+  { href: '/catalog', label: 'Private Sourcing' },
   { href: '/sell', label: 'Sell' },
+  { href: '/trade-in', label: 'Trade' },
+  { href: '/consignment', label: 'Consign' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' }
-];
-
-const utilityLinks = [
-  { href: '/contact?intent=buy#contact-form', label: 'Wishlist', icon: '♡' },
-  { href: '/contact?intent=appointment#contact-form', label: 'Account', icon: '◌' },
-  { href: '/contact?intent=buy#contact-form', label: 'Cart', icon: '○' }
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
   const pathname = usePathname();
-  const cta = pathname.startsWith('/catalog') || pathname.startsWith('/watches')
-    ? { href: '/contact?intent=buy#contact-form', label: 'Request a Watch' }
-    : pathname.startsWith('/sell')
-      ? { href: '/sell#sell-form', label: 'Sell Watch' }
-      : pathname.startsWith('/trade-in')
-        ? { href: '/trade-in#trade-form', label: 'Start Trade-In' }
-        : pathname.startsWith('/consignment')
-          ? { href: '/consignment#consignment-review', label: 'Request Consignment Review' }
-          : { href: '/sell#sell-form', label: 'Sell Your Watch' };
+  const cta = pathname.startsWith('/sell')
+    ? { href: '/sell#sell-form', label: 'Start Watch Review' }
+    : pathname.startsWith('/trade-in')
+      ? { href: '/trade-in#trade-form', label: 'Discuss a Trade' }
+      : pathname.startsWith('/consignment')
+        ? { href: '/consignment#consignment-review', label: 'Explore Consignment' }
+        : pathname.startsWith('/catalog') || pathname.startsWith('/watches')
+          ? { href: '/contact?intent=buy#contact-form', label: 'Request a Watch' }
+          : { href: '/contact?intent=appointment#contact-form', label: 'Start Private Review' };
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 18);
@@ -66,13 +61,6 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden items-center gap-1 xl:flex">
-              {utilityLinks.map((link) => (
-                <Link key={link.label} href={link.href} aria-label={link.label} className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.035] text-sm text-slate-200 transition duration-300 hover:border-amber-100/35 hover:text-amber-100">
-                  {link.icon}
-                </Link>
-              ))}
-            </div>
             <Link
               href={cta.href}
               className="hidden rounded-full border border-amber-100/35 bg-amber-100/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-100 transition duration-300 hover:bg-amber-100/20 sm:inline-flex"
@@ -96,7 +84,7 @@ export function Navbar() {
         {open && (
           <div className="border-t border-white/10 bg-[#050608]/96 lg:hidden">
             <Container className="space-y-3 py-4">
-              {[...links, { href: '/trade-in', label: 'Trade' }, { href: '/consignment', label: 'Consign' }].map((link) => (
+              {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -122,9 +110,9 @@ export function Navbar() {
         <div className="grid grid-cols-5 gap-1 text-center">
           {[
             { href: '/', label: 'Home', icon: '⌂' },
-            { href: '/catalog', label: 'Shop', icon: '◈' },
-            { href: '/sell', label: 'Sell', icon: '$' },
-            { href: '/contact?intent=buy#contact-form', label: 'Wish', icon: '♡' },
+            { href: '/catalog', label: 'Source', icon: '◈' },
+            { href: '/sell', label: 'Review', icon: '✓' },
+            { href: '/trade-in', label: 'Trade', icon: '↔' },
             { href: '/contact', label: 'Contact', icon: '•' }
           ].map((item) => (
             <Link key={item.label} href={item.href} className="rounded-xl px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-300 transition hover:bg-white/5 hover:text-amber-100">

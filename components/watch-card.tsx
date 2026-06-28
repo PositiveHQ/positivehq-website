@@ -18,20 +18,13 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
           className="object-cover transition duration-500 group-hover:scale-[1.045] group-hover:brightness-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/8 to-transparent" />
-        <button
-          type="button"
-          aria-label={`Add ${watch.brand} ${watch.model} to wishlist`}
-          className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-black/45 text-lg text-white backdrop-blur-xl transition duration-300 hover:border-amber-100/50 hover:bg-amber-100/15 hover:text-amber-100"
-        >
-          ♥
-        </button>
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
           <span className="rounded-full border border-white/15 bg-black/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-xl">
-            {isSampleInventory ? 'Demo Only' : formatWatchStatus(watch.status)}
+            {isSampleInventory ? 'Example request' : formatWatchStatus(watch.status)}
           </span>
           {watch.box && watch.papers && (
             <span className="rounded-full border border-amber-100/30 bg-amber-100/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-100 backdrop-blur-xl">
-              Box & Papers
+              Box & Papers reviewed
             </span>
           )}
         </div>
@@ -44,15 +37,18 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
           <p className="mt-1 text-sm text-slate-400">Ref. {watch.reference}</p>
         </div>
 
-        <div className="flex items-center justify-between gap-4 border-y border-white/10 py-4">
-          <span className="text-2xl font-semibold text-white">{isSampleInventory ? 'Example ' : ''}{formatPrice(watch.price)}</span>
-          <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs uppercase tracking-[0.16em] text-slate-300">{watch.year}</span>
+        <div className="space-y-2 border-y border-white/10 py-4">
+          <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{isSampleInventory ? 'Estimated market guide' : 'Price'}</p>
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-2xl font-semibold text-white">{formatPrice(watch.price)}</span>
+            <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs uppercase tracking-[0.16em] text-slate-300">{watch.year}</span>
+          </div>
         </div>
 
         <dl className="grid grid-cols-2 gap-3 text-sm">
           <div>
             <dt className="text-[10px] uppercase tracking-[0.16em] text-slate-500">Condition</dt>
-            <dd className="mt-1 font-medium text-slate-100">{watch.condition}</dd>
+            <dd className="mt-1 font-medium text-slate-100">Reviewed privately</dd>
           </div>
           <div>
             <dt className="text-[10px] uppercase tracking-[0.16em] text-slate-500">Box/Papers</dt>
@@ -64,16 +60,24 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
           </div>
           <div>
             <dt className="text-[10px] uppercase tracking-[0.16em] text-slate-500">Availability</dt>
-            <dd className="mt-1 font-medium text-slate-100">{isSampleInventory ? 'Demo only' : formatWatchStatus(watch.status)}</dd>
+            <dd className="mt-1 font-medium text-slate-100">{isSampleInventory ? 'Reviewed privately' : formatWatchStatus(watch.status)}</dd>
           </div>
         </dl>
 
-        <Link
-          href={`/watches/${watch.slug}`}
-          className="inline-flex w-full items-center justify-center rounded-xl border border-amber-100/30 bg-amber-100 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-950 transition duration-300 hover:-translate-y-0.5 hover:bg-amber-50"
-        >
-          View Details
-        </Link>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Link
+            href={`/contact?intent=buy&brand=${encodeURIComponent(watch.brand)}&model=${encodeURIComponent(watch.model)}&reference=${encodeURIComponent(watch.reference)}#contact-form`}
+            className="inline-flex items-center justify-center rounded-xl border border-amber-100/30 bg-amber-100 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-950 transition duration-300 hover:-translate-y-0.5 hover:bg-amber-50"
+          >
+            Request Similar
+          </Link>
+          <Link
+            href={`/contact?intent=buy&brand=${encodeURIComponent(watch.brand)}&model=${encodeURIComponent(watch.model)}&reference=${encodeURIComponent(watch.reference)}#contact-form`}
+            className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-0.5 hover:border-amber-100/35 hover:bg-white/10"
+          >
+            Discuss Model
+          </Link>
+        </div>
       </div>
     </article>
   );
