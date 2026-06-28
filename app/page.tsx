@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { BrandCatalogStrip } from '@/components/brand-catalog-strip';
+import { WatchVideoHero } from '@/components/watch-video-hero';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
@@ -70,31 +71,35 @@ export default async function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
 
-      <section className="relative min-h-[calc(100vh-5rem)] overflow-hidden border-b border-white/10 bg-black">
+      <WatchVideoHero />
+
+      <section className="relative overflow-hidden border-b border-white/10 bg-black py-16 lg:py-20">
         <Image
           src="/media/positive-watch-hero-drive-v2-best-poster.webp"
-          alt="Luxury watch detail on dark background"
+          alt="Luxury watch detail background"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-62"
+          className="object-cover opacity-34"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,5,0.94)_0%,rgba(3,4,5,0.78)_42%,rgba(3,4,5,0.38)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(201,166,91,0.20),transparent_32%)]" />
-        <Container className="relative flex min-h-[calc(100vh-5rem)] items-center py-20">
-          <div className="max-w-3xl animate-fade-up">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,5,0.96)_0%,rgba(3,4,5,0.82)_46%,rgba(3,4,5,0.62)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(201,166,91,0.16),transparent_30%),radial-gradient(circle_at_88%_18%,rgba(120,140,190,0.10),transparent_28%)]" />
+        <Container className="relative grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div className="max-w-4xl animate-fade-up">
             <p className="eyebrow">Positive Watch HQ Marketplace</p>
             <h1 className="mt-5 text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white sm:text-7xl lg:text-8xl">
               Discover Your Next Timepiece
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
+          </div>
+          <div className="max-w-2xl lg:ml-auto">
+            <p className="text-lg leading-8 text-slate-200 sm:text-xl">
               Buy, sell, and trade authenticated luxury watches from trusted collectors worldwide.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/catalog">Shop Watches</Button>
               <Button href="/sell#sell-form" variant="secondary">Sell Your Watch</Button>
             </div>
-            <div className="mt-10 grid max-w-2xl grid-cols-2 gap-3 text-xs uppercase tracking-[0.14em] text-slate-300 sm:grid-cols-4">
+            <div className="mt-8 grid grid-cols-2 gap-3 text-xs uppercase tracking-[0.14em] text-slate-300 sm:grid-cols-4">
               {['Rolex', 'Cartier', 'Omega', 'Patek'].map((brand) => (
                 <span key={brand} className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-3 text-center backdrop-blur-xl">{brand}</span>
               ))}
