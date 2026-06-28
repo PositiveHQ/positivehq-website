@@ -4,15 +4,15 @@ import { useMemo, useState } from 'react';
 import { Watch, WatchCondition } from '@/types/watch';
 import { WatchCard } from './watch-card';
 
-type Props = { watches: Watch[]; isSampleInventory?: boolean };
+type Props = { watches: Watch[]; isSampleInventory?: boolean; initialBrand?: string };
 type SortOption = 'newest' | 'price-low' | 'price-high';
 type BoxPapersFilter = 'All' | 'Full Set' | 'Box Only' | 'Papers Only' | 'Watch Only';
 
 const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 
-export function WatchesCatalog({ watches, isSampleInventory = false }: Props) {
+export function WatchesCatalog({ watches, isSampleInventory = false, initialBrand }: Props) {
   const highestPrice = Math.max(...watches.map((watch) => watch.price), 20000);
-  const [brand, setBrand] = useState('All');
+  const [brand, setBrand] = useState(initialBrand ?? 'All');
   const [condition, setCondition] = useState<'All' | WatchCondition>('All');
   const [availability, setAvailability] = useState<'All' | Watch['status']>('All');
   const [boxPapers, setBoxPapers] = useState<BoxPapersFilter>('All');
@@ -21,7 +21,7 @@ export function WatchesCatalog({ watches, isSampleInventory = false }: Props) {
   const [maxPrice, setMaxPrice] = useState(Math.ceil(highestPrice / 1000) * 1000);
   const [sort, setSort] = useState<SortOption>('newest');
 
-  const brands = ['All', ...Array.from(new Set(watches.map((watch) => watch.brand))).sort()];
+  const brands = ['All', ...Array.from(new Set([...watches.map((watch) => watch.brand), ...(initialBrand ? [initialBrand] : [])])).sort()];
   const caseSizes = ['All', ...Array.from(new Set(watches.map((watch) => watch.caseSize))).sort()];
 
   const filtered = useMemo(() => {
@@ -49,7 +49,7 @@ export function WatchesCatalog({ watches, isSampleInventory = false }: Props) {
         <section className="rounded-2xl border border-amber-100/25 bg-amber-100/10 p-5 text-sm leading-6 text-amber-50">
           <p className="font-semibold uppercase tracking-[0.16em]">Example Inventory Layout — Demo Only</p>
           <p className="mt-2 text-amber-50/85">
-            These watches are example layout content only. They are not presented as real inventory, real availability, or real prices. Live watches will be published only after details, photos, condition, and availability are confirmed.
+            These watches are example layout content only. They are not presented as real inventory, real availability, or real prices. If a selected brand has no examples yet, use the contact form to request a specific reference.
           </p>
         </section>
       )}
@@ -60,7 +60,7 @@ export function WatchesCatalog({ watches, isSampleInventory = false }: Props) {
             <p className="eyebrow">Filters</p>
             <h2 className="mt-2 text-2xl font-semibold text-white">Find the right watch faster.</h2>
           </div>
-          <p className="text-sm text-slate-400">Showing {filtered.length} of {watches.length} watches</p>
+          <p className="text-sm text-slate-400">Showing {filtered.length} of {watches.length} example watches</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -126,7 +126,7 @@ export function WatchesCatalog({ watches, isSampleInventory = false }: Props) {
       {filtered.length === 0 ? (
         <div className="surface-card border-dashed p-10 text-center">
           <h3 className="text-lg font-semibold text-white">No watches match your filters.</h3>
-          <p className="mt-2 text-sm text-slate-300">Adjust filters or contact us with the watch you want sourced.</p>
+          <p className="mt-2 text-sm text-slate-300">Adjust filters or request the exact brand/reference you want sourced.</p>
         </div>
       ) : (
         <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">

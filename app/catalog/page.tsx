@@ -1,22 +1,8 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/container';
 import { WatchesCatalog } from '@/components/watches-catalog';
+import { catalogBrands, getBrandBySlug } from '@/lib/brands';
 import { getWatchesInventory } from '@/lib/repositories/watches';
-
-const browseBrands = [
-  'Rolex',
-  'Cartier',
-  'Audemars Piguet',
-  'Patek Philippe',
-  'Omega',
-  'Tudor',
-  'Breitling',
-  'Vacheron Constantin',
-  'IWC',
-  'Panerai',
-  'Jaeger-LeCoultre',
-  'Richard Mille'
-];
 
 export const metadata: Metadata = {
   title: 'Catalog | Positive Watch HQ',
@@ -24,8 +10,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/catalog' }
 };
 
-export default async function CatalogPage() {
+type CatalogPageProps = {
+  searchParams?: { brand?: string | string[] };
+};
+
+export default async function CatalogPage({ searchParams }: CatalogPageProps) {
   const { watches, isSampleInventory } = await getWatchesInventory();
+  const selectedBrand = getBrandBySlug(searchParams?.brand);
 
   return (
     <Container className="space-y-12 py-16 lg:py-20">
@@ -37,7 +28,9 @@ export default async function CatalogPage() {
             Browse brands. Request the right reference.
           </h1>
           <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-            Positive Watch HQ is currently in demo-inventory mode. Catalog examples show how real listings will be presented once live inventory is connected.
+            {selectedBrand
+              ? `Browse ${selectedBrand.name} examples or request a specific reference. Positive Watch HQ is currently in demo-inventory mode.`
+              : 'Positive Watch HQ is currently in demo-inventory mode. Catalog examples show how real listings will be presented once live inventory is connected.'}
           </p>
           <div className="rounded-2xl border border-amber-100/20 bg-amber-100/10 p-4 text-sm leading-6 text-amber-50">
             Example Inventory Layout — Demo Only. Not real inventory, real availability, or confirmed sale listing. Demo only.
@@ -52,20 +45,20 @@ export default async function CatalogPage() {
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">Use a brand category to start a sourcing request. Demo inventory remains clearly labeled and is not presented as live stock.</p>
         </div>
         <div className="grid grid-cols-2 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] sm:grid-cols-3 lg:grid-cols-4">
-          {browseBrands.map((brand) => (
+          {catalogBrands.map((brand) => (
             <a
-              key={brand}
-              href={`/contact?intent=buy&brand=${encodeURIComponent(brand)}#contact-form`}
-              className="group border-b border-r border-white/10 p-5 transition hover:bg-white/[0.07] sm:p-7"
+              key={brand.slug}
+              href={`/catalog?brand=${brand.slug}`}
+              className={`group border-b border-r border-white/10 p-5 transition hover:bg-white/[0.07] sm:p-7 ${selectedBrand?.slug === brand.slug ? 'bg-amber-100/10' : ''}`}
             >
-              <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-white transition group-hover:text-amber-100">{brand}</span>
-              <span className="mt-3 block text-xs leading-5 text-slate-400">Request reference →</span>
+              <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-white transition group-hover:text-amber-100">{brand.name}</span>
+              <span className="mt-3 block text-xs leading-5 text-slate-400">Browse / request →</span>
             </a>
           ))}
         </div>
       </section>
 
-      <WatchesCatalog watches={watches} isSampleInventory={isSampleInventory} />
+      <WatchesCatalog watches={watches} isSampleInventory={isSampleInventory} initialBrand={selectedBrand?.name} />
 
       <section className="grid gap-4 lg:grid-cols-2">
         <article className="surface-card p-6 lg:p-8">

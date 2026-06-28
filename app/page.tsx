@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { WatchVideoHero } from '@/components/watch-video-hero';
-import { WatchPhotoShowcase } from '@/components/watch-photo-showcase';
+import { BrandCatalogStrip } from '@/components/brand-catalog-strip';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
@@ -50,7 +50,7 @@ export default async function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
 
       <WatchVideoHero />
-      <WatchPhotoShowcase />
+      <BrandCatalogStrip />
 
       <Container className="space-y-24 py-18 lg:py-24">
         <section className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
