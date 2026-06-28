@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { catalogBrands } from '@/lib/brands';
 
 export function BrandCatalogStrip() {
@@ -26,12 +27,25 @@ export function BrandCatalogStrip() {
                 className="group flex w-40 shrink-0 flex-col items-center gap-5 rounded-3xl border border-white/0 p-3 text-center transition duration-300 hover:-translate-y-1 hover:border-amber-100/20 hover:bg-white/[0.035] hover:shadow-[0_18px_45px_rgba(201,166,91,0.12)] focus:outline-none focus:ring-2 focus:ring-amber-100/35 lg:w-auto"
               >
                 <span className="relative grid h-36 w-36 place-items-center rounded-full border border-white/20 bg-[radial-gradient(circle_at_34%_24%,#ffffff_0%,#e6ebf1_17%,#bac3cf_36%,#727d8c_58%,#252d39_82%,#101620_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.82),inset_0_-16px_34px_rgba(0,0,0,0.48),0_22px_52px_rgba(0,0,0,0.42)] transition duration-300 group-hover:scale-105 group-hover:border-amber-100/45 group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.88),inset_0_-16px_34px_rgba(0,0,0,0.44),0_0_42px_rgba(217,183,107,0.24)]">
-                  <span className="absolute inset-3 rounded-full border border-black/20 bg-[linear-gradient(145deg,rgba(255,255,255,0.28),rgba(255,255,255,0.04)_42%,rgba(0,0,0,0.30))]" />
-                  <span className={`relative flex max-w-[7.6rem] flex-col items-center justify-center text-center font-semibold uppercase text-[#071018] drop-shadow-[0_1px_0_rgba(255,255,255,0.55)] ${brand.wordmarkClass}`}>
-                    {brand.wordmark.map((line) => (
-                      <span key={line}>{line}</span>
-                    ))}
-                  </span>
+                  {brand.medallionImage ? (
+                    <Image
+                      src={brand.medallionImage}
+                      alt={`${brand.name} logo medallion`}
+                      width={288}
+                      height={288}
+                      className="h-full w-full rounded-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <>
+                      <span className="absolute inset-3 rounded-full border border-black/20 bg-[linear-gradient(145deg,rgba(255,255,255,0.28),rgba(255,255,255,0.04)_42%,rgba(0,0,0,0.30))]" />
+                      <span className={`relative flex max-w-[7.6rem] flex-col items-center justify-center text-center font-semibold uppercase text-[#071018] drop-shadow-[0_1px_0_rgba(255,255,255,0.55)] ${brand.wordmarkClass}`}>
+                        {brand.wordmark.map((line) => (
+                          <span key={line}>{line}</span>
+                        ))}
+                      </span>
+                    </>
+                  )}
                 </span>
                 <span className="flex min-h-10 items-start justify-center text-[12px] font-bold uppercase leading-5 tracking-[0.14em] text-white transition group-hover:text-amber-100">
                   {brand.name}
