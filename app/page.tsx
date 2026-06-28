@@ -4,6 +4,7 @@ import { BrandCatalogStrip } from '@/components/brand-catalog-strip';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
+import { submitNewsletterAction } from '@/app/newsletter/actions';
 import { getSiteUrl, siteConfig } from '@/lib/site';
 
 const tradeSteps = [
@@ -145,7 +146,7 @@ export default async function Home() {
                 New watches, trade opportunities, and market notes.
               </p>
               <div className="mt-7">
-                <NewsletterForm />
+                <NewsletterForm action={submitNewsletterAction} sourcePage="/" />
               </div>
             </div>
           </div>

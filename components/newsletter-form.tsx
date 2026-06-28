@@ -1,24 +1,35 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { Button } from './button';
+import { useFormState } from 'react-dom';
+import { FormSubmitButton } from './form-submit-button';
 
-export function NewsletterForm() {
-  const [state, setState] = useState<'idle' | 'success'>('idle');
+type NewsletterState = {
+  status: 'idle' | 'success' | 'error';
+  message?: string;
+};
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setState('success');
-  };
+type NewsletterFormProps = {
+  action: (state: NewsletterState, formData: FormData) => Promise<NewsletterState>;
+  sourcePage: string;
+};
+
+const initialState: NewsletterState = { status: 'idle' };
+
+export function NewsletterForm({ action, sourcePage }: NewsletterFormProps) {
+  const [state, formAction] = useFormState(action, initialState);
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form action={formAction} className="space-y-4" noValidate={false}>
+      <input type="hidden" name="sourcePage" value={sourcePage} />
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-        <input required type="email" placeholder="Email address" className="field-input" />
-        <Button type="submit">Subscribe</Button>
+        <input required type="email" name="email" autoComplete="email" placeholder="Email address" className="field-input" />
+        <FormSubmitButton label="Subscribe" pendingLabel="Subscribing..." />
       </div>
-      <p className="text-xs text-slate-400">
-        {state === 'success' ? 'Thanks for subscribing. You are on the list.' : 'No spam. Just new arrivals, market context, and practical buying/selling guidance.'}
+      <p
+        role={state.status === 'error' ? 'alert' : state.status === 'success' ? 'status' : undefined}
+        className={`text-xs ${state.status === 'success' ? 'text-emerald-300' : state.status === 'error' ? 'text-red-300' : 'text-slate-400'}`}
+      >
+        {state.message || 'No spam. Just new arrivals, market context, and practical buying/selling guidance.'}
       </p>
     </form>
   );

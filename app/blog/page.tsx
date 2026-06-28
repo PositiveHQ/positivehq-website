@@ -7,7 +7,7 @@ import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Journal',
-  description: 'Watch market insights, buying guidance, and selling strategies from Positive Watch Co.',
+  description: 'Watch market insights, buying guidance, and selling strategies from Positive Watch HQ.',
   alternates: { canonical: '/blog' }
 };
 

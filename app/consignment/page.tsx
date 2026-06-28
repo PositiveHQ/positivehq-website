@@ -3,7 +3,7 @@ import { BeforeSubmit } from '@/components/before-submit';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { SellForm } from '@/components/sell-form';
-import { submitSellSubmissionAction } from '@/app/sell/actions';
+import { submitConsignmentSubmissionAction } from '@/app/sell/actions';
 
 const howItWorks = [
   {
@@ -122,7 +122,7 @@ export default function ConsignmentPage() {
           </p>
         </div>
         <BeforeSubmit />
-        <SellForm action={submitSellSubmissionAction} submissionLabel="Request a Consignment Review" variant="consignment" />
+        <SellForm action={submitConsignmentSubmissionAction} submissionLabel="Request a Consignment Review" variant="consignment" />
       </section>
 
       <section className="space-y-5">

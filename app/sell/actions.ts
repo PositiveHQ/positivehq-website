@@ -75,10 +75,14 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
       notes: extendedNotes
     });
 
-    return {
-      status: 'success',
-      message: submissionType === 'sell' ? 'Submission received. We will send an offer shortly.' : 'Trade request received. We will follow up with options.'
-    };
+    const successMessage =
+      submissionType === 'sell'
+        ? 'Submission received. We will send an offer shortly.'
+        : submissionType === 'trade'
+          ? 'Trade request received. We will follow up with options.'
+          : 'Consignment review received. We will follow up with the cleanest route.';
+
+    return { status: 'success', message: successMessage };
   } catch (error) {
     return {
       status: 'error',
@@ -99,4 +103,11 @@ export async function submitTradeSubmissionAction(
   formData: FormData
 ): Promise<SubmissionState> {
   return submitLead('trade', formData);
+}
+
+export async function submitConsignmentSubmissionAction(
+  _prevState: SubmissionState,
+  formData: FormData
+): Promise<SubmissionState> {
+  return submitLead('consignment', formData);
 }

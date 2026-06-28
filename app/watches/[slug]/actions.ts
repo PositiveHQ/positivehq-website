@@ -18,8 +18,16 @@ export async function submitWatchInquiryAction(
     const phone = String(formData.get('phone') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
 
-    if (!customerName || !email) {
-      return { status: 'error', message: 'Please provide your name and email.' };
+    if (!customerName || !email || !message) {
+      return { status: 'error', message: 'Please provide your name, email, and message.' };
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return { status: 'error', message: 'Please enter a valid email address.' };
+    }
+
+    if (message.length < 10) {
+      return { status: 'error', message: 'Please add a little more detail so we can review properly.' };
     }
 
     await createWatchInquiry({

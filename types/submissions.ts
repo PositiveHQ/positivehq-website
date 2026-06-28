@@ -1,7 +1,7 @@
 import { WatchCondition } from './watch';
 
 export type LeadStatus = 'new' | 'contacted' | 'closed';
-export type SubmissionType = 'sell' | 'trade';
+export type SubmissionType = 'sell' | 'trade' | 'consignment';
 
 export interface WatchInquiry {
   id: string;
@@ -61,4 +61,9 @@ export interface SellSubmissionInput {
   papers: boolean;
   askingPrice?: number;
   notes?: string;
+}
+
+export interface NewsletterSignupInput {
+  email: string;
+  sourcePage: string;
 }

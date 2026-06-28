@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { Watch, WatchCondition } from '@/types/watch';
 import { WatchCard } from './watch-card';
@@ -125,8 +126,14 @@ export function WatchesCatalog({ watches, isSampleInventory = false, initialBran
 
       {filtered.length === 0 ? (
         <div className="surface-card border-dashed p-10 text-center">
-          <h3 className="text-lg font-semibold text-white">No watches match your filters.</h3>
-          <p className="mt-2 text-sm text-slate-300">Adjust filters or request the exact brand/reference you want sourced.</p>
+          <h3 className="text-lg font-semibold text-white">No examples match this brand yet.</h3>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-300">Request the specific reference you want and we’ll review sourcing options.</p>
+          <Link
+            href={`/contact?intent=buy${brand !== 'All' ? `&brand=${encodeURIComponent(brand)}` : ''}#contact-form`}
+            className="mt-6 inline-flex items-center justify-center rounded-xl border border-amber-100/25 bg-amber-100/90 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-amber-50"
+          >
+            Request This Brand
+          </Link>
         </div>
       ) : (
         <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">

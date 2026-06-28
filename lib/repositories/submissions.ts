@@ -1,5 +1,5 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { SellSubmissionInput, WatchInquiryInput } from '@/types/submissions';
+import { NewsletterSignupInput, SellSubmissionInput, WatchInquiryInput } from '@/types/submissions';
 
 const isSupabaseConfigured =
   Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
@@ -53,6 +53,24 @@ export async function createSellSubmission(input: SellSubmissionInput): Promise<
     notes: input.notes || null,
     status: 'new'
   });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function createNewsletterSignup(input: NewsletterSignupInput): Promise<void> {
+  assertSupabaseConfigured();
+
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase.from('newsletter_signups').upsert(
+    {
+      email: input.email,
+      source_page: input.sourcePage,
+      status: 'new'
+    },
+    { onConflict: 'email' }
+  );
 
   if (error) {
     throw new Error(error.message);
