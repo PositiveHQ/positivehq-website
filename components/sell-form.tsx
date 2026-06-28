@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import { useFormState } from 'react-dom';
 import { FormSubmitButton } from './form-submit-button';
+import { siteConfig } from '@/lib/site';
 
 type SubmissionState = {
   status: 'idle' | 'success' | 'error';
@@ -64,7 +65,7 @@ export function SellForm({ action, submissionLabel, variant = 'sell' }: SellForm
             </select>
           </Field>
           <Field label="Service history?"><input name="serviceHistory" placeholder="Service history?" className="field-input w-full" /></Field>
-          <Field label="Photo upload" helper="Secure browser uploads are not enabled yet. Submit the form first, then email photos to hello@positivewatchhq.com if requested or relevant."><input name="photos" type="file" multiple accept="image/*,video/*" disabled aria-disabled="true" className="field-input w-full opacity-70 file:mr-3 file:rounded-full file:border-0 file:bg-slate-700 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-slate-200" /></Field>
+          <Field label="Photo upload" helper={`Secure browser uploads are not enabled yet. Submit the form first, then email photos to ${siteConfig.emailDisplay} if requested or relevant.`}><input name="photos" type="file" multiple accept="image/*,video/*" disabled aria-disabled="true" className="field-input w-full opacity-70 file:mr-3 file:rounded-full file:border-0 file:bg-slate-700 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-slate-200" /></Field>
 
           {isTrade ? (
             <>

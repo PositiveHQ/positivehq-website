@@ -35,6 +35,11 @@ export default function AboutPage() {
       '@type': 'Organization',
       name: siteConfig.name,
       email: siteConfig.email,
+      contactPoint: siteConfig.contactEmails.map((email) => ({
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email
+      })),
       sameAs: [siteConfig.social.instagram, siteConfig.social.founderInstagram]
     }
   };
@@ -168,9 +173,9 @@ export default function AboutPage() {
                 <Button href="/contact?intent=appointment#contact-form" variant="secondary" className="px-3 py-2 text-[10px]">Book Trade Consultation</Button>
               </div>
             </div>
-            <a href={`mailto:${siteConfig.email}`} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
+            <a href={siteConfig.emailHref} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Email</p>
-              <p className="mt-2 break-all text-sm font-semibold text-white">{siteConfig.email}</p>
+              <p className="mt-2 break-all text-sm font-semibold text-white">{siteConfig.emailDisplay}</p>
             </a>
             <a href={siteConfig.social.instagram} className="rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-amber-100/35">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-100/70">Instagram</p>

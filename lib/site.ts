@@ -8,7 +8,10 @@ export const siteConfig = {
   name: 'Positive Watch HQ',
   description:
     'A premium watch platform for curated luxury watch sales, trade-ins, and consignment with clear condition review and concierge communication.',
-  email: 'hello@positivewatchhq.com',
+  email: 'nick@mrpositivehq.com',
+  emailDisplay: 'nick@mrpositivehq.com | robert@positivewatchhq.com',
+  emailHref: 'mailto:nick@mrpositivehq.com?cc=robert@positivewatchhq.com',
+  contactEmails: ['nick@mrpositivehq.com', 'robert@positivewatchhq.com'],
   phone: '',
   phoneConsultationText: 'Phone consultations available by appointment.',
   social: {

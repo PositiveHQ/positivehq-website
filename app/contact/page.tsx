@@ -16,7 +16,7 @@ const inquiryRoutes = [
 
 const contactMethods = [
   ['Phone consultations', siteConfig.phoneConsultationText, ''],
-  ['Email', siteConfig.email, `mailto:${siteConfig.email}`],
+  ['Email', siteConfig.emailDisplay, siteConfig.emailHref],
   ['Instagram', '@positivewatchhq', siteConfig.social.instagram]
 ];
 
@@ -38,6 +38,11 @@ export default function ContactPage() {
       '@type': 'Organization',
       name: siteConfig.name,
       email: siteConfig.email,
+      contactPoint: siteConfig.contactEmails.map((email) => ({
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email
+      })),
       sameAs: [siteConfig.social.instagram]
     }
   };
@@ -62,7 +67,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button href="#contact-form" className="sm:min-w-52">Start Contact Form</Button>
                 <Button href={appointmentHref} variant="secondary" className="sm:min-w-52">Request Appointment</Button>
-                <Button href={`mailto:${siteConfig.email}`} variant="secondary" className="sm:min-w-44">Email Us</Button>
+                <Button href={siteConfig.emailHref} variant="secondary" className="sm:min-w-44">Email Us</Button>
               </div>
             </div>
 

@@ -42,6 +42,11 @@ export default async function Home() {
     name: siteConfig.name,
     url: siteUrl,
     email: siteConfig.email,
+    contactPoint: siteConfig.contactEmails.map((email) => ({
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email
+    })),
     sameAs: [siteConfig.social.instagram]
   };
 

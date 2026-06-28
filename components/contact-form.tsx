@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useFormState } from 'react-dom';
 import { FormSubmitButton } from '@/components/form-submit-button';
+import { siteConfig } from '@/lib/site';
 
 type ContactState = {
   status: 'idle' | 'success' | 'error';
@@ -118,7 +119,7 @@ export function ContactForm({ action }: ContactFormProps) {
         </div>
       </fieldset>
 
-      <Field label="Photo upload if relevant" htmlFor="contact-photos" helper="Secure browser uploads are not enabled yet. Submit the form first, then email photos to hello@positivewatchhq.com if requested or relevant.">
+      <Field label="Photo upload if relevant" htmlFor="contact-photos" helper={`Secure browser uploads are not enabled yet. Submit the form first, then email photos to ${siteConfig.emailDisplay} if requested or relevant.`}>
         <input id="contact-photos" name="photos" type="file" multiple accept="image/*,video/*" disabled aria-disabled="true" className="field-input w-full opacity-70 file:mr-3 file:rounded-full file:border-0 file:bg-slate-700 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-slate-200" />
       </Field>
 

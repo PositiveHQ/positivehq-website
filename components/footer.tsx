@@ -22,8 +22,8 @@ export function Footer() {
           </p>
           <p className="mt-4 text-sm leading-6 text-slate-300">
             Contact:{' '}
-            <a href={`mailto:${siteConfig.email}`} className="text-amber-100 transition hover:text-amber-50">
-              {siteConfig.email}
+            <a href={siteConfig.emailHref} className="text-amber-100 transition hover:text-amber-50">
+              {siteConfig.emailDisplay}
             </a>
             <br />
             <span className="text-slate-400">{siteConfig.phoneConsultationText}</span>
