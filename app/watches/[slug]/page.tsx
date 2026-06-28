@@ -243,45 +243,67 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
         </section>
       )}
 
-      <section className="grid gap-10 lg:grid-cols-2">
+      <section className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
         <div className="space-y-4">
-          <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
-            <Image src={watch.images[0].url} alt={watch.images[0].alt} fill className="object-cover transition duration-700 hover:scale-105" priority />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent" />
-          </div>
-          <div className="grid grid-cols-3 gap-4">
+          <a href={watch.images[0].url} target="_blank" rel="noreferrer" className="group relative block aspect-square overflow-hidden rounded-3xl border border-white/10 bg-black shadow-[0_24px_70px_rgba(0,0,0,0.58)]" aria-label="Open fullscreen watch image">
+            <Image src={watch.images[0].url} alt={watch.images[0].alt} fill className="object-cover transition duration-700 group-hover:scale-110" priority />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
+            <span className="absolute bottom-4 right-4 rounded-full border border-white/15 bg-black/50 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-xl">Zoom / Fullscreen</span>
+          </a>
+          <div className="grid grid-cols-4 gap-3 overflow-x-auto">
             {watch.images.map((image, index) => (
-              <div key={image.id + index} className="relative aspect-square overflow-hidden rounded-xl border border-white/10">
+              <a href={image.url} target="_blank" rel="noreferrer" key={image.id + index} className="relative aspect-square min-w-20 overflow-hidden rounded-xl border border-white/10 bg-black transition duration-300 hover:border-amber-100/35">
                 <Image src={image.url} alt={image.alt} fill className="object-cover transition duration-500 hover:scale-105" />
-              </div>
+              </a>
             ))}
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div>
-            <p className="eyebrow">{watch.brand}</p>
-            <h1 className="mt-1 text-4xl font-semibold text-white">{watch.model}</h1>
-            <p className="mt-2 text-sm text-slate-300">Reference {watch.reference}</p>
+        <aside className="space-y-6 lg:sticky lg:top-28">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.46)] backdrop-blur-xl lg:p-8">
+            <div>
+              <p className="eyebrow">{watch.brand}</p>
+              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white">{watch.model}</h1>
+              <p className="mt-2 text-sm text-slate-300">Reference Number {watch.reference}</p>
+            </div>
+            <p className="mt-7 text-4xl font-semibold text-amber-100">{isSampleInventory ? 'Example ' : ''}{formatPrice(watch.price)}</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <span className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-100">{isSampleInventory ? 'Demo only' : formatWatchStatus(watch.status)}</span>
+              <span className="rounded-full border border-amber-100/25 bg-amber-100/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-100">{formatBoxAndPapers(watch.box, watch.papers)}</span>
+            </div>
+            <dl className="mt-7 grid grid-cols-2 gap-4 text-sm">
+              <div><dt className="text-slate-400">Availability</dt><dd className="mt-1 font-medium text-white">{isSampleInventory ? 'Demo only' : formatWatchStatus(watch.status)}</dd></div>
+              <div><dt className="text-slate-400">Condition</dt><dd className="mt-1 font-medium text-white">{watch.condition}</dd></div>
+              <div><dt className="text-slate-400">Year</dt><dd className="mt-1 font-medium text-white">{watch.year}</dd></div>
+              <div><dt className="text-slate-400">Movement</dt><dd className="mt-1 font-medium text-white">{watch.movement}</dd></div>
+              <div><dt className="text-slate-400">Case Size</dt><dd className="mt-1 font-medium text-white">{watch.caseSize}</dd></div>
+              <div><dt className="text-slate-400">Material</dt><dd className="mt-1 font-medium text-white">{watch.material}</dd></div>
+              <div><dt className="text-slate-400">Box & Papers</dt><dd className="mt-1 font-medium text-white">{formatBoxAndPapers(watch.box, watch.papers)}</dd></div>
+              <div><dt className="text-slate-400">SKU</dt><dd className="mt-1 font-medium text-white">{watch.sku}</dd></div>
+            </dl>
+            <p className="mt-7 text-sm leading-7 text-slate-300">{watch.description}</p>
+            <div className="mt-7 grid gap-3">
+              <Button href="#watch-inquiry">Buy Now</Button>
+              <Button href="#watch-inquiry" variant="secondary">Add to Wishlist</Button>
+              <Button href={`mailto:?subject=${encodeURIComponent(`${watch.brand} ${watch.model}`)}&body=${encodeURIComponent(`${siteUrl}/watches/${watch.slug}`)}`} variant="secondary">Share</Button>
+            </div>
           </div>
-          <p className="text-4xl font-semibold text-amber-100">{isSampleInventory ? 'Example ' : ''}{formatPrice(watch.price)}</p>
-          <dl className="surface-card grid grid-cols-2 gap-4 p-5 text-sm">
-            <div><dt className="text-slate-400">Condition</dt><dd className="font-medium text-white">{watch.condition}</dd></div>
-            <div><dt className="text-slate-400">Year</dt><dd className="font-medium text-white">{watch.year}</dd></div>
-            <div><dt className="text-slate-400">Box & Papers</dt><dd className="font-medium text-white">{formatBoxAndPapers(watch.box, watch.papers)}</dd></div>
-            <div><dt className="text-slate-400">Availability</dt><dd className="font-medium text-white">{isSampleInventory ? 'Demo only' : formatWatchStatus(watch.status)}</dd></div>
-            <div><dt className="text-slate-400">Movement</dt><dd className="font-medium text-white">{watch.movement}</dd></div>
-            <div><dt className="text-slate-400">Case Size</dt><dd className="font-medium text-white">{watch.caseSize}</dd></div>
-            <div><dt className="text-slate-400">Material</dt><dd className="font-medium text-white">{watch.material}</dd></div>
-          </dl>
-          <p className="text-sm leading-7 text-slate-300">{watch.description}</p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Button href="#watch-inquiry">Ask About This Watch</Button>
-            <Button href="#watch-inquiry" variant="secondary">Request More Photos / Video</Button>
-            <Button href={`/trade-in?target=${encodeURIComponent(`${watch.brand} ${watch.model}`)}`} variant="secondary">Trade Toward This Watch</Button>
-            <Button href="#watch-inquiry" variant="secondary">Make an Offer</Button>
+          <div className="rounded-3xl border border-white/10 bg-black/28 p-6">
+            <p className="eyebrow">Seller profile</p>
+            <div className="mt-4 flex items-center gap-4">
+              <div className="grid h-12 w-12 place-items-center rounded-full border border-amber-100/25 bg-amber-100/10 text-sm font-semibold text-amber-100">PW</div>
+              <div>
+                <h2 className="font-semibold text-white">Positive Watch HQ</h2>
+                <p className="text-sm text-slate-400">Verified concierge seller · Member since 2026</p>
+              </div>
+            </div>
+            <dl className="mt-5 grid grid-cols-3 gap-3 text-center text-xs text-slate-400">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-3"><dt>Sales</dt><dd className="mt-1 font-semibold text-white">Private</dd></div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-3"><dt>Response</dt><dd className="mt-1 font-semibold text-white">By appt.</dd></div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-3"><dt>Reviews</dt><dd className="mt-1 font-semibold text-white">Verified only</dd></div>
+            </dl>
           </div>
-        </div>
+        </aside>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-3">
@@ -312,6 +334,10 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
       <section className="space-y-5"><p className="eyebrow">FAQ</p><div className="grid gap-4 md:grid-cols-2">{faqs.map(([question, answer]) => <article key={question} className="surface-card p-5"><h3 className="font-semibold text-white">{question}</h3><p className="mt-2 text-sm leading-6 text-slate-300">{answer}</p></article>)}</div></section>
 
       {related.length > 0 && <section className="space-y-6"><h2 className="text-2xl font-semibold text-white">Related watches</h2><div className="grid gap-6 md:grid-cols-3">{related.map((item) => <WatchCard key={item.id} watch={item} isSampleInventory={isSampleInventory} />)}</div></section>}
+
+      <div className="fixed inset-x-4 bottom-24 z-30 lg:hidden">
+        <Button href="#watch-inquiry" className="w-full shadow-[0_18px_45px_rgba(0,0,0,0.55)]">Buy Now / Inquire</Button>
+      </div>
     </Container>
   );
 }

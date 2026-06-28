@@ -1,68 +1,57 @@
+import Image from 'next/image';
 import { Metadata } from 'next';
-import { WatchVideoHero } from '@/components/watch-video-hero';
 import { BrandCatalogStrip } from '@/components/brand-catalog-strip';
 import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
+import { WatchCard } from '@/components/watch-card';
 import { submitNewsletterAction } from '@/app/newsletter/actions';
+import { getWatchesInventory } from '@/lib/repositories/watches';
 import { getSiteUrl, siteConfig } from '@/lib/site';
+import { formatPrice } from '@/lib/utils';
 
-const tradeSteps = [
-  ['01', 'Share the goal', 'Tell us if you want to buy, sell, trade, or consign — and what outcome would make the most sense.'],
-  ['02', 'Document the details', 'Brand, model, reference, photos, condition, box/papers, budget, value expectations, and timing.'],
-  ['03', 'Move with clarity', 'We review the path, verify what matters, then guide the next step with clear communication.']
+const trustBar = [
+  ['✓', 'Authenticity Guaranteed', 'Every transaction starts with verification.'],
+  ['✓', 'Secure Payments', 'Settlement routes confirmed before completion.'],
+  ['✓', 'Worldwide Shipping', 'Insured shipping guidance for eligible deals.'],
+  ['✓', 'Verified Sellers', 'Private seller and watch review before listing.']
 ];
 
-const trustBullets = [
-  'Authentication review before any final transaction',
-  'Condition, completeness, and supporting details documented clearly',
-  'Private guidance before serious pricing or trade discussions',
-  'Insured shipping and secure settlement route reviewed before completion',
-  'No fake inventory, fake sold examples, or inflated claims'
-];
-
-const intentCards = [
-  {
-    title: 'Buy a Watch',
-    copy: 'Looking for a specific Rolex, Cartier, AP, Patek, Omega, or other luxury piece? Tell us what you want and we will help source the right option.',
-    href: '/contact?intent=buy#contact-form',
-    cta: 'Request a Watch'
-  },
-  {
-    title: 'Sell a Watch',
-    copy: 'Submit your watch details, condition, box, papers, and photos. We will review the opportunity and guide the next step.',
-    href: '/sell#sell-form',
-    cta: 'Start Watch Review'
-  },
-  {
-    title: 'Trade a Watch',
-    copy: 'Looking to move from one piece into another? We can help review your current watch and discuss possible trade paths.',
-    href: '/trade-in#trade-form',
-    cta: 'Discuss a Trade'
-  },
-  {
-    title: 'Consign a Watch',
-    copy: 'Want help selling without handling the process alone? We can review whether consignment makes sense for your watch.',
-    href: '/consignment#consignment-review',
-    cta: 'Explore Consignment'
-  }
+const whyChoose = [
+  ['◇', 'Authenticity Guaranteed', 'Brand, model, reference, condition, and accessories are reviewed before serious transaction steps.'],
+  ['◌', 'Verified Sellers', 'We review the seller context and supporting details before presenting a watch as available.'],
+  ['▣', 'Secure Checkout', 'Payment, settlement, and final written terms are confirmed directly before completion.'],
+  ['✈', 'Global Shipping', 'Shipping paths are handled with tracking, insurance guidance, and clear handoff expectations.']
 ];
 
 const proofCards = [
-  ['Real Watches Only', 'Every watch is reviewed for brand, model, condition, box, papers, and supporting details.'],
-  ['Private Review Process', 'We confirm the situation first before discussing serious pricing, sourcing, trade, or consignment options.'],
-  ['Clean Communication', 'No pressure. No games. No vague promises. Just clear next steps.']
+  ['Private Review Process', 'No faceless marketplace intake. A concierge reviews the watch, goal, timing, and next step.'],
+  ['Real Proof Only', 'No fake reviews, fake sold examples, or inflated claims. Public proof is published only when verified.'],
+  ['Clean Communication', 'No pressure. No games. No vague promises. Just direct guidance and clear next steps.']
 ];
 
 export const metadata: Metadata = {
-  title: 'Private Luxury Watch Concierge | Positive Watch HQ',
+  title: 'Luxury Watch Marketplace | Positive Watch HQ',
   description:
-    'Positive Watch HQ helps clients buy, sell, trade, or consign Rolex, Cartier, Audemars Piguet, Patek Philippe, Omega, and other luxury watches through a private concierge process.',
-  alternates: { canonical: '/' }
+    'Discover, sell, and trade authenticated luxury watches through Positive Watch HQ, a premium concierge marketplace for Rolex, Cartier, Omega, Patek Philippe, Audemars Piguet, and more.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Discover Your Next Timepiece | Positive Watch HQ',
+    description: 'Buy, sell, and trade authenticated luxury watches through a cleaner concierge marketplace.',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Discover Your Next Timepiece | Positive Watch HQ',
+    description: 'Buy, sell, and trade authenticated luxury watches through a cleaner concierge marketplace.'
+  }
 };
 
 export default async function Home() {
   const siteUrl = getSiteUrl();
+  const { watches, isSampleInventory } = await getWatchesInventory();
+  const featured = watches.filter((watch) => watch.featured).slice(0, 3);
+  const recentlyAdded = [...watches].sort((a, b) => b.year - a.year).slice(0, 4);
   const organizationLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -81,128 +70,148 @@ export default async function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
 
-      <WatchVideoHero />
+      <section className="relative min-h-[calc(100vh-5rem)] overflow-hidden border-b border-white/10 bg-black">
+        <Image
+          src="/media/positive-watch-hero-drive-v2-best-poster.webp"
+          alt="Luxury watch detail on dark background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-62"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,5,0.94)_0%,rgba(3,4,5,0.78)_42%,rgba(3,4,5,0.38)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(201,166,91,0.20),transparent_32%)]" />
+        <Container className="relative flex min-h-[calc(100vh-5rem)] items-center py-20">
+          <div className="max-w-3xl animate-fade-up">
+            <p className="eyebrow">Positive Watch HQ Marketplace</p>
+            <h1 className="mt-5 text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white sm:text-7xl lg:text-8xl">
+              Discover Your Next Timepiece
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
+              Buy, sell, and trade authenticated luxury watches from trusted collectors worldwide.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button href="/catalog">Shop Watches</Button>
+              <Button href="/sell#sell-form" variant="secondary">Sell Your Watch</Button>
+            </div>
+            <div className="mt-10 grid max-w-2xl grid-cols-2 gap-3 text-xs uppercase tracking-[0.14em] text-slate-300 sm:grid-cols-4">
+              {['Rolex', 'Cartier', 'Omega', 'Patek'].map((brand) => (
+                <span key={brand} className="rounded-full border border-white/10 bg-white/[0.045] px-4 py-3 text-center backdrop-blur-xl">{brand}</span>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-white/10 bg-[#050608]/95 py-5">
+        <Container>
+          <div className="grid gap-3 md:grid-cols-4">
+            {trustBar.map(([icon, title, copy]) => (
+              <article key={title} className="group rounded-xl border border-white/10 bg-white/[0.035] p-4 transition duration-300 hover:-translate-y-0.5 hover:border-amber-100/30 hover:bg-white/[0.055]">
+                <div className="flex items-start gap-3">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-amber-100/30 bg-amber-100/10 text-amber-100">{icon}</span>
+                  <div>
+                    <h2 className="text-sm font-semibold text-white">{title}</h2>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">{copy}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <Container className="space-y-24 py-18 lg:py-24">
+        {isSampleInventory && (
+          <section className="rounded-2xl border border-amber-100/25 bg-amber-100/10 p-5 text-sm leading-6 text-amber-50">
+            <p className="font-semibold uppercase tracking-[0.16em]">Example Inventory Layout — Demo Only</p>
+            <p className="mt-2 text-amber-50/85">Featured and recently added watches below demonstrate the marketplace design. They are not presented as real inventory, real availability, or real prices.</p>
+          </section>
+        )}
+
+        <section className="space-y-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow">Featured Watches</p>
+              <h2 className="section-title mt-3">Curated pieces, presented clearly.</h2>
+            </div>
+            <Button href="/catalog" variant="secondary">View All Watches</Button>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {featured.map((watch) => <WatchCard key={watch.id} watch={watch} isSampleInventory={isSampleInventory} />)}
+          </div>
+        </section>
+      </Container>
+
       <BrandCatalogStrip />
 
       <Container className="space-y-24 py-18 lg:py-24">
-        <section className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-          <div>
-            <p className="eyebrow">Positive Watch HQ</p>
-            <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">
-              A Private Luxury Watch Concierge
-            </h1>
-          </div>
-          <div className="max-w-xl lg:ml-auto">
-            <p className="text-base leading-8 text-slate-300">
-              Buy, sell, trade, or consign Rolex, Cartier, Audemars Piguet, Patek Philippe, Omega, and other luxury watches through a cleaner, more personal process.
-            </p>
-            <p className="mt-4 text-sm leading-7 text-slate-400">
-              No pressure. No inflated promises. No guessing games. Just a clear path to the right watch decision.
-            </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact?intent=buy#contact-form">Request a Watch</Button>
-              <Button href="/contact?intent=appointment#contact-form" variant="secondary">Start Watch Review</Button>
-            </div>
-          </div>
-        </section>
-
-        <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.018)_45%,rgba(201,166,91,0.08))] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.48)] md:p-10 lg:p-12">
-          <div className="absolute left-0 top-0 h-72 w-72 -translate-x-20 -translate-y-24 rounded-full bg-amber-100/10 blur-3xl" />
-          <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="max-w-3xl">
-              <p className="eyebrow">Private concierge</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">A Private Watch Concierge, Not a Random Online Form</h2>
-              <p className="mt-5 text-base leading-8 text-slate-300">
-                Positive Watch HQ was built for people who want a cleaner, more personal way to buy, sell, trade, or consign luxury watches. You are not submitting your watch into a faceless marketplace. You are working directly with a concierge team that reviews the details, communicates clearly, and helps guide the next step with care.
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-amber-100/20 bg-black/35 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-100/75">Concierge team</p>
-              <div className="mt-5 space-y-4">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
-                  <h3 className="text-xl font-semibold text-white">Nick Trani</h3>
-                  <p className="mt-1 text-sm text-slate-400">Private watch guidance and client support</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
-                  <h3 className="text-xl font-semibold text-white">Robert / Watch Concierge</h3>
-                  <p className="mt-1 text-sm text-slate-400">Private sourcing, selling, trade, and consignment support</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section className="space-y-8">
-          <div className="max-w-3xl">
-            <p className="eyebrow">Client intent</p>
-            <h2 className="section-title mt-3">What Are You Looking To Do?</h2>
-            <p className="mt-4 text-sm leading-7 text-slate-300">Choose the cleanest starting point. Each route is reviewed privately before any serious pricing, sourcing, trade, or consignment discussion.</p>
-          </div>
-          <div className="grid gap-5 lg:grid-cols-4">
-            {intentCards.map((card, index) => (
-              <article key={card.title} className="surface-card group relative overflow-hidden p-7 hover:-translate-y-1 hover:border-amber-100/35">
-                <div className="absolute right-0 top-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-amber-100/10 blur-2xl transition group-hover:bg-amber-100/20" />
-                <p className="text-sm font-semibold text-amber-100/70">0{index + 1}</p>
-                <h3 className="mt-8 text-2xl font-semibold tracking-tight text-white">{card.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-300">{card.copy}</p>
-                <Button href={card.href} variant="secondary" className="mt-8">{card.cta}</Button>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <div>
-            <p className="eyebrow">How it works</p>
-            <h2 className="section-title mt-3">Start with the goal. We guide the path.</h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {tradeSteps.map(([step, title, copy]) => (
-              <article key={step} className="surface-card p-6">
-                <p className="text-sm font-semibold text-amber-100/80">{step}</p>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{copy}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.48)] md:p-10 lg:p-12">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(201,166,91,0.14),transparent_32%),radial-gradient(circle_at_90%_80%,rgba(118,142,190,0.11),transparent_34%)]" />
-          <div className="relative grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="eyebrow">Trust standard</p>
-              <h2 className="mt-3 max-w-xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">Verification, documentation, and clear communication.</h2>
+              <p className="eyebrow">Recently Added</p>
+              <h2 className="section-title mt-3">Latest marketplace examples.</h2>
             </div>
-            <ul className="grid gap-3 text-sm leading-6 text-slate-300 sm:grid-cols-2">
-              {trustBullets.map((item) => (
-                <li key={item} className="rounded-2xl border border-white/10 bg-black/25 p-4">{item}</li>
-              ))}
-            </ul>
+            <Button href="/catalog?sort=recent" variant="secondary">Browse Latest</Button>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {recentlyAdded.map((watch) => {
+              const image = watch.images.find((item) => item.isPrimary) ?? watch.images[0];
+              return (
+                <a key={watch.id} href={`/watches/${watch.slug}`} className="group overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] transition duration-300 hover:-translate-y-1 hover:border-amber-100/30 hover:shadow-[0_22px_70px_rgba(0,0,0,0.55)]">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-black">
+                    {image && <Image src={image.url} alt={image.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />}
+                  </div>
+                  <div className="space-y-2 p-4">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-amber-100/80">{watch.brand}</p>
+                    <h3 className="font-semibold text-white">{watch.model}</h3>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-slate-100">{isSampleInventory ? 'Example ' : ''}{formatPrice(watch.price)}</span>
+                      <span className="text-slate-500">Listed recently</span>
+                    </div>
+                    <p className="text-xs text-slate-400">Private marketplace · Location confirmed before transaction</p>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </section>
 
-        <section className="surface-card relative overflow-hidden p-8 lg:p-10">
-          <div className="absolute right-0 top-0 h-40 w-40 translate-x-12 -translate-y-16 rounded-full bg-amber-100/10 blur-3xl" />
-          <div className="relative space-y-8">
-            <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-              <div>
-                <p className="eyebrow">Verified Proof Only</p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Real proof, not borrowed credibility.</h2>
-              </div>
-              <p className="text-sm leading-7 text-slate-300">
-                We only publish real sold watches, verified client feedback, and documented transactions. No fake reviews. No fake sold examples. No inflated claims. Until public proof is available, every inquiry is handled privately with clear communication, documentation, and verification.
-              </p>
+        <section className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div>
+            <p className="eyebrow">Why Choose Us</p>
+            <h2 className="section-title mt-3">Built for confidence before commitment.</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {whyChoose.map(([icon, title, copy]) => (
+              <article key={title} className="surface-card p-6 hover:-translate-y-1 hover:border-amber-100/30">
+                <span className="grid h-11 w-11 place-items-center rounded-xl border border-amber-100/25 bg-amber-100/10 text-xl text-amber-100">{icon}</span>
+                <h3 className="mt-5 text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-300">{copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-3">
+          {proofCards.map(([title, copy]) => (
+            <article key={title} className="surface-card p-7">
+              <p className="text-amber-100">★★★★★</p>
+              <h3 className="mt-5 text-xl font-semibold text-white">{title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-300">{copy}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="relative overflow-hidden rounded-[2rem] border border-amber-100/20 bg-[linear-gradient(135deg,rgba(201,166,91,0.18),rgba(255,255,255,0.045)_45%,rgba(0,0,0,0.34))] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.48)] lg:p-12">
+          <div className="absolute right-0 top-0 h-72 w-72 translate-x-16 -translate-y-20 rounded-full bg-amber-100/16 blur-3xl" />
+          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="eyebrow">Sell your watch</p>
+              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">Ready to Sell Your Watch?</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">Share the reference, condition, box and papers, photos, and timing. We’ll review the path privately and guide the next step.</p>
             </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {proofCards.map(([title, copy]) => (
-                <article key={title} className="rounded-2xl border border-white/10 bg-black/25 p-5">
-                  <h3 className="text-lg font-semibold text-white">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{copy}</p>
-                </article>
-              ))}
-            </div>
-            <Button href="/recently-sold" variant="secondary">View Proof Page</Button>
+            <Button href="/sell#sell-form">Get Started</Button>
           </div>
         </section>
 
@@ -210,16 +219,12 @@ export default async function Home() {
           <div className="absolute left-0 top-0 h-56 w-56 -translate-x-16 -translate-y-16 rounded-full bg-amber-100/10 blur-3xl" />
           <div className="relative grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
             <div>
-              <p className="eyebrow">Private list</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Drops. Trade notes. No noise.</h2>
+              <p className="eyebrow">Newsletter</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Private drops. Market notes. No noise.</h2>
             </div>
             <div>
-              <p className="text-sm leading-7 text-slate-300">
-                New watches, trade opportunities, and market notes.
-              </p>
-              <div className="mt-7">
-                <NewsletterForm action={submitNewsletterAction} sourcePage="/" />
-              </div>
+              <p className="text-sm leading-7 text-slate-300">A minimal update list for new watches, trade opportunities, and collecting notes.</p>
+              <div className="mt-7"><NewsletterForm action={submitNewsletterAction} sourcePage="/" /></div>
             </div>
           </div>
         </section>

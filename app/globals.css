@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  @apply min-h-screen bg-[#050608] text-slate-100 antialiased;
+  @apply min-h-screen bg-[#050608] pb-24 text-slate-100 antialiased lg:pb-0;
   background-image:
     radial-gradient(circle at 15% 0%, rgba(201, 166, 91, 0.18), transparent 34%),
     radial-gradient(circle at 92% 12%, rgba(85, 111, 160, 0.16), transparent 30%),
