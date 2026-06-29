@@ -71,10 +71,10 @@ export default function AboutPage() {
             <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(253,230,138,0.12),transparent_36%),#050608] p-8 lg:border-b-0 lg:border-r lg:border-white/10">
               <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.05)_42%,transparent_44%),radial-gradient(circle_at_18%_20%,rgba(255,255,255,0.08),transparent_25%)]" />
               <Image
-                src="/media/nicola-trani-founder.webp"
-                alt="Nicola Trani, founder of Positive Watch HQ"
-                width={1200}
-                height={1200}
+                src="/media/nicola-trani-founder-speaking.webp"
+                alt="Nicola Trani speaking at a private event"
+                width={920}
+                height={1346}
                 quality={100}
                 priority
                 sizes="(min-width: 1024px) 360px, 78vw"
