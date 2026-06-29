@@ -62,7 +62,7 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
           </div>
           <div>
             <dt className="text-[10px] uppercase tracking-[0.16em] text-slate-500">Availability</dt>
-            <dd className="mt-1 font-medium text-slate-100">{isSampleInventory ? 'Reviewed privately' : formatWatchStatus(watch.status)}</dd>
+            <dd className="mt-1 font-medium text-slate-100">{isSampleInventory ? 'Availability reviewed privately' : formatWatchStatus(watch.status)}</dd>
           </div>
         </dl>
 
