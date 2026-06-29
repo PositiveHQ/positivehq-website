@@ -110,7 +110,7 @@ export default async function Home() {
         <Container className="relative grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div className="max-w-4xl animate-fade-up">
             <p className="eyebrow">Positive Watch HQ Concierge</p>
-            <h1 className="mt-5 text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white sm:text-7xl lg:text-8xl">
+            <h1 className="mt-5 text-4xl font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl lg:text-8xl">
               A Private Luxury Watch Concierge
             </h1>
           </div>
