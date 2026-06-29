@@ -9,7 +9,7 @@ import { submitContactAction } from './actions';
 
 const inquiryRoutes = [
   ['Buy inquiry', 'Looking for a specific model, current inventory, sourcing help, or guidance on value and condition.'],
-  ['Sell inquiry', 'Send details for an immediate cash offer route with clear review and verification expectations.'],
+  ['Sell inquiry', 'Send details for a private sale review with clear review and verification expectations.'],
   ['Trade inquiry', 'Use your current watch toward the next one with transparent numbers and a clean upgrade path.'],
   ['Consignment inquiry', 'Review whether a listed sale may target a stronger possible net result than an immediate offer.']
 ];

@@ -153,7 +153,7 @@ export default async function Home() {
             <p className="eyebrow">Human guidance</p>
             <h2 className="section-title">Private Watch Guidance From Real People</h2>
             <p className="text-sm leading-7 text-slate-300">
-              Positive Watch HQ was built for people who want a more personal way to buy, sell, trade, or consign luxury watches. You are not submitting a watch into a faceless marketplace. You are starting a private conversation with real people who review the details, communicate clearly, and guide the next step with care.
+              Positive Watch HQ was built for people who want a more personal way to buy, sell, trade, or consign luxury watches. You are not submitting a watch into a faceless platform. You are starting a private conversation with real people who review the details, communicate clearly, and guide the next step with care.
             </p>
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
