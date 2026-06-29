@@ -32,10 +32,10 @@ const whyChoose = [
 ];
 
 const proofCards = [
-  ['Real Watches Only', 'Every watch is reviewed for brand, model, condition, box, papers, service history, and supporting details.'],
-  ['Private Review First', 'We confirm the situation before discussing serious pricing, sourcing, trade, or consignment options.'],
-  ['Clear Communication', 'No pressure. No vague promises. No games. Just direct guidance and the next right step.'],
-  ['Secure Process', 'Payment, shipping, authentication, and documentation are handled carefully before anything moves forward.']
+  ['Real Review', 'Real Watches Only', 'Every watch is reviewed for brand, model, condition, box, papers, service history, and supporting details.'],
+  ['Private Process', 'Private Review First', 'We confirm the situation before discussing serious pricing, sourcing, trade, or consignment options.'],
+  ['Clear Communication', 'Clear Communication', 'No pressure. No vague promises. No games. Just direct guidance and the next right step.'],
+  ['Secure Process', 'Secure Process', 'Payment, shipping, authentication, and documentation are handled carefully before anything moves forward.']
 ];
 
 const teamMembers = [
@@ -194,7 +194,7 @@ export default async function Home() {
             <div>
               <p className="eyebrow">Popular Watch Requests</p>
               <h2 className="section-title mt-3">Watches clients often ask us to review or source.</h2>
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">These are examples of the types of watches clients often ask us to source, sell, trade, or consign. Availability, pricing, and condition are reviewed privately before anything is presented as real inventory.</p>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">These are examples of the types of watches clients often ask us to source, sell, trade, or consign. Availability, pricing, condition, and final terms are reviewed privately before anything is presented as real inventory.</p>
             </div>
             <Button href="/contact?intent=buy#contact-form" variant="secondary">Request a Specific Watch</Button>
           </div>
@@ -234,9 +234,9 @@ export default async function Home() {
         </section>
 
         <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {proofCards.map(([title, copy]) => (
+          {proofCards.map(([label, title, copy]) => (
             <article key={title} className="surface-card p-7">
-              <p className="text-amber-100">Verified proof only</p>
+              <p className="text-amber-100">{label}</p>
               <h3 className="mt-5 text-xl font-semibold text-white">{title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-300">{copy}</p>
             </article>
