@@ -43,7 +43,7 @@ const teamMembers = [
     name: 'Nick Trani',
     role: 'Founder / Positive Watch HQ',
     focus: 'Private sourcing, client relationships, and deal guidance.',
-    image: '/media/nicola-trani-founder.webp',
+    image: '/media/nicola-trani-homepage-concierge.webp',
     alt: 'Nick Trani of Positive Watch HQ'
   },
   {
