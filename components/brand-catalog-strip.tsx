@@ -3,17 +3,17 @@ import { catalogBrands } from '@/lib/brands';
 
 export function BrandCatalogStrip() {
   return (
-    <section id="brands" aria-labelledby="shop-by-brand" className="bg-[#050608] py-14 md:py-18 scroll-mt-28">
+    <section id="brands" aria-labelledby="brands-and-requests" className="bg-[#050608] py-14 md:py-18 scroll-mt-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="eyebrow">Luxury brands</p>
-            <h2 id="shop-by-brand" className="mt-2 text-2xl font-semibold uppercase tracking-[0.18em] text-white sm:text-3xl">
-              Request by Brand
+            <h2 id="brands-and-requests" className="mt-2 text-2xl font-semibold uppercase tracking-[0.18em] text-white sm:text-3xl">
+              Brands We Commonly Source and Review
             </h2>
           </div>
           <p className="max-w-md text-sm leading-6 text-slate-400 sm:text-right">
-            Choose a brand to start a private sourcing, trade, selling, or consignment conversation.
+            From Rolex and Cartier to Audemars Piguet, Patek Philippe, Omega, and other respected watchmakers, we help clients privately source, review, sell, trade, or consign luxury watches across trusted brands.
           </p>
         </div>
 

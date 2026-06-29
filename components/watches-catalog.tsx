@@ -6,7 +6,7 @@ import { Watch, WatchCondition } from '@/types/watch';
 import { WatchCard } from './watch-card';
 
 type Props = { watches: Watch[]; isSampleInventory?: boolean; initialBrand?: string };
-type SortOption = 'newest' | 'price-low' | 'price-high' | 'popular' | 'recent';
+type SortOption = 'newest' | 'price-low' | 'price-high' | 'popular';
 type BoxPapersFilter = 'All' | 'Full Set' | 'Box Only' | 'Papers Only' | 'Watch Only';
 
 const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
@@ -160,11 +160,10 @@ export function WatchesCatalog({ watches, isSampleInventory = false, initialBran
           <label className="space-y-2 text-xs uppercase tracking-[0.14em] text-slate-400">
             Sort by
             <select value={sort} onChange={(e) => setSort(e.target.value as SortOption)} className="field-input w-full normal-case tracking-normal">
-              <option value="newest">Newest</option>
+              <option value="newest">Newest Requests</option>
               <option value="price-low">Price Low–High</option>
               <option value="price-high">Price High–Low</option>
-              <option value="popular">Most Popular</option>
-              <option value="recent">Recently Added</option>
+              <option value="popular">Popular Requests</option>
             </select>
           </label>
         </div>

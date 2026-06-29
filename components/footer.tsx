@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Container } from './container';
 import { siteConfig } from '@/lib/site';
 
-const disclaimer = 'Every transaction is subject to final authentication review, condition verification, availability confirmation, and cleared payment. Offers, prices, and trade values are not final until review is complete.';
+const disclaimer = 'Positive Watch HQ is a private luxury watch concierge. Public examples, model references, or market discussions are for informational purposes only unless specific availability, pricing, and condition are confirmed directly. We do not publish fake sold watches, fake testimonials, or unverified inventory. Every transaction is subject to final authentication review, condition verification, availability confirmation, and cleared payment.';
 
 export function Footer() {
   return (
@@ -18,7 +18,7 @@ export function Footer() {
             className="h-16 w-72 object-contain object-left"
           />
           <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
-            A premium watch concierge for sourcing, trade-ins, consignment, and future curated inventory with clearer details, calmer communication, and stronger presentation.
+            A premium watch concierge for sourcing, trade-ins, consignment, and private watch requests with clearer details, calmer communication, and stronger presentation.
           </p>
           <p className="mt-4 text-sm leading-6 text-slate-300">
             Contact:{' '}
@@ -33,7 +33,7 @@ export function Footer() {
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Explore</p>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
-            <Link className="block transition hover:text-amber-100" href="/catalog">Catalog</Link>
+            <Link className="block transition hover:text-amber-100" href="/catalog">Brands & Requests</Link>
             <Link className="block transition hover:text-amber-100" href="/sell">Sell</Link>
             <Link className="block transition hover:text-amber-100" href="/trade-in">Trade</Link>
             <Link className="block transition hover:text-amber-100" href="/consignment">Consign</Link>

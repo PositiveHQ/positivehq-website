@@ -5,8 +5,8 @@ import { catalogBrands, getBrandBySlug } from '@/lib/brands';
 import { getWatchesInventory } from '@/lib/repositories/watches';
 
 export const metadata: Metadata = {
-  title: 'Catalog | Positive Watch HQ',
-  description: 'Browse Positive Watch HQ brand categories and demo-only inventory examples. Real availability, pricing, and sale listings are confirmed only after review.',
+  title: 'Brands & Requests | Positive Watch HQ',
+  description: 'Explore brands Positive Watch HQ commonly sources and reviews through a private concierge process. Real availability, pricing, and condition are confirmed directly.',
   alternates: { canonical: '/catalog' }
 };
 
@@ -23,14 +23,14 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
       <header className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-amber-100/[0.07] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.48)] md:p-12">
         <div className="absolute right-0 top-0 h-72 w-72 translate-x-20 -translate-y-24 rounded-full bg-amber-100/12 blur-3xl" />
         <div className="relative max-w-4xl space-y-5">
-          <p className="eyebrow">Catalog</p>
+          <p className="eyebrow">Brands & Requests</p>
           <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">
-            Browse brands. Request the right reference.
+            Explore trusted brands. Request the right reference.
           </h1>
           <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
             {selectedBrand
-              ? `Browse ${selectedBrand.name} examples or request a specific reference. Positive Watch HQ is currently in demo-inventory mode.`
-              : 'Positive Watch HQ is currently in demo-inventory mode. Catalog examples show how real listings will be presented once live inventory is connected.'}
+              ? `Review ${selectedBrand.name} examples or request a specific reference. Positive Watch HQ is currently in demo-inventory mode.`
+              : 'Positive Watch HQ is currently in demo-inventory mode. Brand and watch examples show how private requests are reviewed before any availability is confirmed.'}
           </p>
           <div className="rounded-2xl border border-amber-100/20 bg-amber-100/10 p-4 text-sm leading-6 text-amber-50">
             Example Inventory Layout — Demo Only. Not real inventory, real availability, or confirmed sale listing. Demo only.
@@ -52,7 +52,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
               className={`group border-b border-r border-white/10 p-5 transition hover:bg-white/[0.07] sm:p-7 ${selectedBrand?.slug === brand.slug ? 'bg-amber-100/10' : ''}`}
             >
               <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-white transition group-hover:text-amber-100">{brand.name}</span>
-              <span className="mt-3 block text-xs leading-5 text-slate-400">Browse / request →</span>
+              <span className="mt-3 block text-xs leading-5 text-slate-400">Request / review →</span>
             </a>
           ))}
         </div>

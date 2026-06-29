@@ -61,7 +61,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button href="/contact" className="sm:min-w-52">Contact the Team</Button>
-              <Button href="/catalog" variant="secondary" className="sm:min-w-44">View Catalog</Button>
+              <Button href="/catalog" variant="secondary" className="sm:min-w-44">Brands & Requests</Button>
             </div>
           </div>
         </header>

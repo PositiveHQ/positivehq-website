@@ -29,7 +29,7 @@ export function NewsletterForm({ action, sourcePage }: NewsletterFormProps) {
         role={state.status === 'error' ? 'alert' : state.status === 'success' ? 'status' : undefined}
         className={`text-xs ${state.status === 'success' ? 'text-emerald-300' : state.status === 'error' ? 'text-red-300' : 'text-slate-400'}`}
       >
-        {state.message || 'No spam. Just new arrivals, market context, and practical buying/selling guidance.'}
+        {state.message || 'No spam. Just private sourcing notes, market context, and practical buying/selling guidance.'}
       </p>
     </form>
   );

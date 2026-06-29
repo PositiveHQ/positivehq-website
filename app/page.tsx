@@ -32,9 +32,27 @@ const whyChoose = [
 ];
 
 const proofCards = [
-  ['A real person reviews the details', 'Positive Watch HQ is built around private conversation, not a generic checkout flow.'],
-  ['No fake inventory or fake proof', 'Public inventory and sold examples only belong on the site when they are verified and documented.'],
-  ['Clear next step before commitment', 'Sourcing, selling, trading, and consignment all start with context, review, and direct guidance.']
+  ['Real Watches Only', 'Every watch is reviewed for brand, model, condition, box, papers, service history, and supporting details.'],
+  ['Private Review First', 'We confirm the situation before discussing serious pricing, sourcing, trade, or consignment options.'],
+  ['Clear Communication', 'No pressure. No vague promises. No games. Just direct guidance and the next right step.'],
+  ['Secure Process', 'Payment, shipping, authentication, and documentation are handled carefully before anything moves forward.']
+];
+
+const teamMembers = [
+  {
+    name: 'Nick Trani',
+    role: 'Founder / Positive Watch HQ',
+    focus: 'Private sourcing, client relationships, and deal guidance.',
+    image: '/media/nicola-trani-founder.webp',
+    alt: 'Nick Trani of Positive Watch HQ'
+  },
+  {
+    name: 'Robert Cejalvo',
+    role: 'Watch Concierge',
+    focus: 'Watch review, sourcing support, and client communication.',
+    image: '/media/robert-cejalvo-watch-concierge.webp',
+    alt: 'Robert Cejalvo, Positive Watch HQ watch concierge'
+  }
 ];
 
 export const metadata: Metadata = {
@@ -130,6 +148,37 @@ export default async function Home() {
       </section>
 
       <Container className="space-y-24 py-18 lg:py-24">
+        <section className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div className="space-y-5">
+            <p className="eyebrow">Human guidance</p>
+            <h2 className="section-title">Private Watch Guidance From Real People</h2>
+            <p className="text-sm leading-7 text-slate-300">
+              Positive Watch HQ was built for people who want a more personal way to buy, sell, trade, or consign luxury watches. You are not submitting a watch into a faceless marketplace. You are starting a private conversation with real people who review the details, communicate clearly, and guide the next step with care.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {teamMembers.map((member) => (
+              <article key={member.name} className="surface-card overflow-hidden p-0">
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-white/10 bg-white/[0.035]">
+                  <Image
+                    src={member.image}
+                    alt={member.alt}
+                    fill
+                    sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/42 via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold tracking-tight text-white">{member.name}</h3>
+                  <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-amber-100/80">{member.role}</p>
+                  <p className="mt-4 text-sm leading-6 text-slate-300">{member.focus}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {isSampleInventory && (
           <section className="rounded-2xl border border-amber-100/25 bg-amber-100/10 p-5 text-sm leading-6 text-amber-50">
             <p className="font-semibold uppercase tracking-[0.16em]">Private sourcing examples — not public inventory</p>
@@ -181,7 +230,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-3">
+        <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {proofCards.map(([title, copy]) => (
             <article key={title} className="surface-card p-7">
               <p className="text-amber-100">Verified proof only</p>

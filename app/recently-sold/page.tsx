@@ -29,7 +29,7 @@ export default function RecentlySoldPage() {
           This page will only show completed, verified examples with permission and accurate details. Until then, Positive Watch HQ will not use fake sold watches, fake testimonials, or fake proof.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href="/catalog">View Catalog</Button>
+          <Button href="/catalog">Brands & Requests</Button>
           <Button href="/sell" variant="secondary">Sell Your Watch</Button>
         </div>
       </section>
