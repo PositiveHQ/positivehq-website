@@ -176,6 +176,9 @@ export default async function Home() {
                 </div>
               </article>
             ))}
+            <p className="text-xs leading-5 text-slate-500 sm:col-span-2">
+              Initial conversations are handled privately by direct inquiry or appointment.
+            </p>
           </div>
         </section>
 

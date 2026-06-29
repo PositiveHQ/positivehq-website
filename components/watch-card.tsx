@@ -24,7 +24,7 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
           </span>
           {watch.box && watch.papers && (
             <span className="rounded-full border border-amber-100/30 bg-amber-100/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-100 backdrop-blur-xl">
-              Box & Papers reviewed
+              Box/papers considered
             </span>
           )}
         </div>
@@ -38,7 +38,7 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
         </div>
 
         <div className="space-y-2 border-y border-white/10 py-4">
-          <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{isSampleInventory ? 'Estimated market guide' : 'Price'}</p>
+          <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{isSampleInventory ? 'Market range reviewed privately' : 'Price'}</p>
           <div className="flex items-center justify-between gap-4">
             <span className="text-2xl font-semibold text-white">{formatPrice(watch.price)}</span>
             <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs uppercase tracking-[0.16em] text-slate-300">{watch.year}</span>

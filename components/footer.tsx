@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Container } from './container';
 import { siteConfig } from '@/lib/site';
 
-const disclaimer = 'Positive Watch HQ is a private luxury watch concierge. Public examples, model references, or market discussions are for informational purposes only unless specific availability, pricing, and condition are confirmed directly. We do not publish fake sold watches, fake testimonials, or unverified inventory. Every transaction is subject to final authentication review, condition verification, availability confirmation, and cleared payment.';
+const disclaimer = 'Positive Watch HQ is a private luxury watch concierge. Public examples, model references, or market discussions are for informational purposes only unless specific availability, pricing, and condition are confirmed directly. We do not publish fake sold watches, fake testimonials, or unverified inventory. Every transaction is subject to authentication review, condition verification, availability confirmation, and cleared payment. Offers, prices, and trade values are not final until review is complete.';
 
 export function Footer() {
   return (
@@ -45,7 +45,7 @@ export function Footer() {
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Proof</p>
           <div className="mt-4 space-y-3 text-sm text-slate-300">
-            <Link className="block transition hover:text-amber-100" href="/recently-sold">Recently Sold</Link>
+            <Link className="block transition hover:text-amber-100" href="/recently-sold">Verified Proof</Link>
             <Link className="block transition hover:text-amber-100" href="/blog">Journal</Link>
             <Link className="block transition hover:text-amber-100" href="/newsletter">Newsletter</Link>
             <a className="block transition hover:text-amber-100" href={siteConfig.social.instagram}>Instagram</a>

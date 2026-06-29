@@ -3,8 +3,8 @@ import { Button } from '@/components/button';
 import { Container } from '@/components/container';
 
 export const metadata: Metadata = {
-  title: 'Recently Sold Watches',
-  description: 'Verified recently sold watch examples from Positive Watch HQ. No fake sold inventory is displayed.',
+  title: 'Verified Proof',
+  description: 'Verified proof from Positive Watch HQ. Real sold watches, client feedback, and documented transactions are only published when verified.',
   alternates: { canonical: '/recently-sold' }
 };
 
@@ -15,9 +15,9 @@ export default function RecentlySoldPage() {
         <div className="absolute right-0 top-0 h-72 w-72 translate-x-20 -translate-y-24 rounded-full bg-amber-100/12 blur-3xl" />
         <div className="relative max-w-4xl space-y-5">
           <p className="eyebrow">Proof</p>
-          <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">Recently Sold Watches</h1>
+          <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">Verified Proof</h1>
           <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-            Real sold examples will be added as transactions are completed. We do not display fake sold inventory.
+            We only publish real sold watches, verified client feedback, and documented transactions. No fake reviews. No fake sold examples. No inflated claims.
           </p>
         </div>
       </header>
@@ -26,7 +26,7 @@ export default function RecentlySoldPage() {
         <p className="eyebrow">Verified transactions only</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Coming soon.</h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-300">
-          This page will only show completed, verified examples with permission and accurate details. Until then, Positive Watch HQ will not use fake sold watches, fake testimonials, or fake proof.
+          Every serious inquiry is handled privately with clear communication, documentation, and verification. Until real proof is verified and approved for publication, Positive Watch HQ will not use fake sold watches, fake testimonials, or fake proof.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Button href="/catalog">Brands & Requests</Button>
