@@ -115,9 +115,9 @@ export function Navbar() {
             { href: '/trade-in', label: 'Trade', icon: '↔' },
             { href: '/contact', label: 'Contact', icon: '•' }
           ].map((item) => (
-            <Link key={item.label} href={item.href} className="rounded-xl px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-300 transition hover:bg-white/5 hover:text-amber-100">
+            <Link key={item.label} href={item.href} className="min-w-0 rounded-xl px-1 py-2 text-[9px] font-semibold uppercase tracking-[0.06em] text-slate-300 transition hover:bg-white/5 hover:text-amber-100">
               <span className="block text-base leading-none">{item.icon}</span>
-              <span className="mt-1 block">{item.label}</span>
+              <span className="mt-1 block truncate">{item.label}</span>
             </Link>
           ))}
         </div>

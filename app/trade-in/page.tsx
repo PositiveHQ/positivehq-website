@@ -31,7 +31,7 @@ export default function TradeInPage() {
       <section className="grid gap-6 md:grid-cols-3">
         {[
           ['Share your watch', 'Submit reference, condition, box/papers, service history, and photos.'],
-          ['Choose replacement', 'Browse inventory or tell us the target watch desired.'],
+          ['Choose replacement', 'Request the target watch desired so we can review sourcing options.'],
           ['Settle cleanly', 'We confirm value, payment difference, verification, and shipping.']
         ].map(([title, copy]) => (
           <article key={title} className="surface-card p-6">

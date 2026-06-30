@@ -64,9 +64,9 @@ export function WatchesCatalog({ watches, isSampleInventory = false, initialBran
     <div className="space-y-10">
       {isSampleInventory && (
         <section className="rounded-2xl border border-amber-100/25 bg-amber-100/10 p-5 text-sm leading-6 text-amber-50">
-          <p className="font-semibold uppercase tracking-[0.16em]">Example Inventory Layout — Demo Only</p>
+          <p className="font-semibold uppercase tracking-[0.16em]">Example Request Layout — Demo Only</p>
           <p className="mt-2 text-amber-50/85">
-            These watches are example layout content only. They are not presented as real inventory, real availability, or real prices. If a selected brand has no examples yet, use the contact form to request a specific reference.
+            These watches are example layout content only. They are not presented as real availability, confirmed pricing, or transaction-ready watches. If a selected brand has no examples yet, use the contact form to request a specific reference.
           </p>
         </section>
       )}
@@ -77,7 +77,7 @@ export function WatchesCatalog({ watches, isSampleInventory = false, initialBran
             <p className="eyebrow">Instant search</p>
             <h2 className="mt-2 text-2xl font-semibold text-white">Find the right watch faster.</h2>
           </div>
-          <p className="text-sm text-slate-400">Showing {filtered.length} of {watches.length} {isSampleInventory ? 'example ' : 'available '}watches</p>
+          <p className="text-sm text-slate-400">Showing {filtered.length} of {watches.length} {isSampleInventory ? 'example request ' : 'reviewed '}watches</p>
         </div>
 
         <label className="block space-y-2 text-xs uppercase tracking-[0.14em] text-slate-400">

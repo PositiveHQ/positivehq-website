@@ -238,8 +238,8 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
       {productLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }} />}
       {isSampleInventory && (
         <section className="rounded-2xl border border-amber-100/25 bg-amber-100/10 p-5 text-sm leading-6 text-amber-50">
-          <p className="font-semibold uppercase tracking-[0.16em]">Example Inventory Layout — Demo Only</p>
-          <p className="mt-2 text-amber-50/90">This page demonstrates the watch detail layout. It is not real inventory, real availability, or a confirmed sale listing.</p>
+          <p className="font-semibold uppercase tracking-[0.16em]">Example Request Layout — Demo Only</p>
+          <p className="mt-2 text-amber-50/90">This page demonstrates the watch detail layout. It is not real availability, confirmed pricing, or a transaction-ready watch.</p>
         </section>
       )}
 
@@ -283,18 +283,18 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
             </dl>
             <p className="mt-7 text-sm leading-7 text-slate-300">{watch.description}</p>
             <div className="mt-7 grid gap-3">
-              <Button href="#watch-inquiry">Buy Now</Button>
-              <Button href="#watch-inquiry" variant="secondary">Add to Wishlist</Button>
+              <Button href="#watch-inquiry">Request This Watch</Button>
+              <Button href="#watch-inquiry" variant="secondary">Discuss This Model</Button>
               <Button href={`mailto:?subject=${encodeURIComponent(`${watch.brand} ${watch.model}`)}&body=${encodeURIComponent(`${siteUrl}/watches/${watch.slug}`)}`} variant="secondary">Share</Button>
             </div>
           </div>
           <div className="rounded-3xl border border-white/10 bg-black/28 p-6">
-            <p className="eyebrow">Seller profile</p>
+            <p className="eyebrow">Concierge profile</p>
             <div className="mt-4 flex items-center gap-4">
               <div className="grid h-12 w-12 place-items-center rounded-full border border-amber-100/25 bg-amber-100/10 text-sm font-semibold text-amber-100">PW</div>
               <div>
                 <h2 className="font-semibold text-white">Positive Watch HQ</h2>
-                <p className="text-sm text-slate-400">Verified concierge seller · Member since 2026</p>
+                <p className="text-sm text-slate-400">Private luxury watch concierge · By appointment</p>
               </div>
             </div>
             <dl className="mt-5 grid grid-cols-3 gap-3 text-center text-xs text-slate-400">
@@ -323,7 +323,7 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
 
       <section className="surface-card p-6">
         <p className="eyebrow">Media Requirements</p>
-        <h2 className="mt-3 text-2xl font-semibold text-white">Every real listing should include complete watch media.</h2>
+        <h2 className="mt-3 text-2xl font-semibold text-white">Every verified watch page should include complete watch media.</h2>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {mediaRequirements.map((item) => <p key={item} className="rounded-2xl border border-white/10 bg-black/25 p-4 text-sm text-slate-300">{item}</p>)}
         </div>
@@ -336,7 +336,7 @@ export default async function WatchDetailPage({ params }: { params: { slug: stri
       {related.length > 0 && <section className="space-y-6"><h2 className="text-2xl font-semibold text-white">Related watches</h2><div className="grid gap-6 md:grid-cols-3">{related.map((item) => <WatchCard key={item.id} watch={item} isSampleInventory={isSampleInventory} />)}</div></section>}
 
       <div className="fixed inset-x-4 bottom-24 z-30 lg:hidden">
-        <Button href="#watch-inquiry" className="w-full shadow-[0_18px_45px_rgba(0,0,0,0.55)]">Buy Now / Inquire</Button>
+        <Button href="#watch-inquiry" className="w-full shadow-[0_18px_45px_rgba(0,0,0,0.55)]">Request This Watch</Button>
       </div>
     </Container>
   );

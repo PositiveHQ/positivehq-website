@@ -8,7 +8,7 @@ const isSupabaseConfigured =
 
 function assertSupabaseConfigured() {
   if (!isSupabaseConfigured) {
-    throw new Error('Supabase is not configured yet. Please complete environment setup.');
+    throw new Error('Online inquiry capture is not fully configured yet. Please email nick@mrpositivehq.com and cc robert@positivewatchhq.com so the team can review your request directly.');
   }
 }
 
