@@ -38,13 +38,26 @@ export function WatchCard({ watch, isSampleInventory = false }: { watch: Watch; 
         </div>
 
         <div className="space-y-2 border-y border-white/10 py-4">
-          <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{isSampleInventory ? 'Market context' : 'Price'}</p>
-          <div className="flex items-center justify-between gap-4">
-            <span className={isSampleInventory ? 'text-base font-semibold text-white' : 'text-2xl font-semibold text-white'}>
-              {isSampleInventory ? 'Market range reviewed privately' : formatPrice(watch.price)}
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs uppercase tracking-[0.16em] text-slate-300">{watch.year}</span>
-          </div>
+          {isSampleInventory ? (
+            <>
+              <div>
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Market Context</p>
+                <p className="mt-2 text-base font-semibold text-white">Market range reviewed privately</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Reference Year</p>
+                <p className="mt-2 text-base font-semibold text-white">{watch.year}</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Price</p>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-2xl font-semibold text-white">{formatPrice(watch.price)}</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs uppercase tracking-[0.16em] text-slate-300">{watch.year}</span>
+              </div>
+            </>
+          )}
         </div>
 
         <dl className="grid grid-cols-2 gap-3 text-sm">
