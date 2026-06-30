@@ -48,10 +48,10 @@ const teamMembers = [
   },
   {
     name: 'Robert Cejalvo',
-    role: 'Watch Concierge',
-    focus: 'Watch review, sourcing support, and client communication.',
+    role: 'Co-Founder / Watch Concierge',
+    focus: 'Co-founder support across watch review, private sourcing, client communication, and day-to-day concierge operations.',
     image: '/media/robert-cejalvo-watch-concierge.webp',
-    alt: 'Robert Cejalvo, Positive Watch HQ watch concierge'
+    alt: 'Robert Cejalvo, Positive Watch HQ co-founder and watch concierge'
   }
 ];
 
