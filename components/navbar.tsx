@@ -39,11 +39,11 @@ export function Navbar() {
 
   return (
     <>
-      <header className={`sticky top-0 z-40 border-b transition duration-300 ${solid || open ? 'border-white/10 bg-[#050608]/92 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-2xl' : 'border-white/5 bg-[#050608]/42 backdrop-blur-xl'}`}>
+      <header className={`sticky top-0 z-40 border-b transition duration-300 ${solid || open ? 'border-white/10 bg-[#020814]/94 shadow-[0_16px_50px_rgba(0,0,0,0.38)] backdrop-blur-2xl' : 'border-white/5 bg-[#020814]/50 backdrop-blur-xl'}`}>
         <Container className="flex h-20 items-center justify-between gap-4">
           <Link href="/" className="group flex items-center text-white" aria-label="Positive Watch HQ home">
             <Image
-              src="/positive-watch-hq-wordmark-gentry-inspired.svg"
+              src="/positive-watch-hq-blue-gold-wordmark.svg"
               alt="Positive Watch HQ"
               width={980}
               height={220}
@@ -82,7 +82,7 @@ export function Navbar() {
         </Container>
 
         {open && (
-          <div className="border-t border-white/10 bg-[#050608]/96 lg:hidden">
+          <div className="border-t border-white/10 bg-[#020814]/97 lg:hidden">
             <Container className="space-y-3 py-4">
               {links.map((link) => (
                 <Link
@@ -106,7 +106,7 @@ export function Navbar() {
         )}
       </header>
 
-      <nav className="fixed inset-x-3 bottom-3 z-40 rounded-2xl border border-white/10 bg-[#050608]/90 px-2 py-2 shadow-[0_18px_55px_rgba(0,0,0,0.55)] backdrop-blur-2xl lg:hidden" aria-label="Mobile bottom navigation">
+      <nav className="fixed inset-x-3 bottom-3 z-40 rounded-2xl border border-white/10 bg-[#020814]/92 px-2 py-2 shadow-[0_18px_55px_rgba(0,0,0,0.55)] backdrop-blur-2xl lg:hidden" aria-label="Mobile bottom navigation">
         <div className="grid grid-cols-5 gap-1 text-center">
           {[
             { href: '/', label: 'Home', icon: '⌂' },

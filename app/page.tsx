@@ -96,7 +96,7 @@ export default async function Home() {
 
       <WatchVideoHero />
 
-      <section className="relative overflow-hidden border-b border-white/10 bg-black py-16 lg:py-20">
+      <section className="relative overflow-hidden border-b border-white/10 bg-[#010309] py-16 lg:py-20">
         <Image
           src="/media/positive-watch-hero-drive-v2-best-poster.webp"
           alt="Luxury watch detail background"
@@ -105,8 +105,8 @@ export default async function Home() {
           sizes="100vw"
           className="object-cover opacity-34"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,5,0.96)_0%,rgba(3,4,5,0.82)_46%,rgba(3,4,5,0.62)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(201,166,91,0.16),transparent_30%),radial-gradient(circle_at_88%_18%,rgba(120,140,190,0.10),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(1,3,9,0.97)_0%,rgba(2,8,20,0.84)_46%,rgba(7,26,51,0.62)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(217,183,107,0.18),transparent_30%),radial-gradient(circle_at_88%_18%,rgba(18,58,111,0.22),transparent_28%)]" />
         <Container className="relative grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div className="max-w-4xl animate-fade-up">
             <p className="eyebrow">Positive Watch HQ Concierge</p>
@@ -129,7 +129,7 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="border-b border-white/10 bg-[#050608]/95 py-5">
+      <section className="border-b border-white/10 bg-[#020814]/95 py-5">
         <Container>
           <div className="grid gap-3 md:grid-cols-4">
             {trustBar.map(([icon, title, copy]) => (
@@ -243,7 +243,7 @@ export default async function Home() {
           ))}
         </section>
 
-        <section className="relative overflow-hidden rounded-[2rem] border border-amber-100/20 bg-[linear-gradient(135deg,rgba(201,166,91,0.18),rgba(255,255,255,0.045)_45%,rgba(0,0,0,0.34))] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.48)] lg:p-12">
+        <section className="relative overflow-hidden rounded-[2rem] border border-amber-100/20 bg-[linear-gradient(135deg,rgba(217,183,107,0.18),rgba(18,58,111,0.16)_46%,rgba(1,3,9,0.42))] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.48)] lg:p-12">
           <div className="absolute right-0 top-0 h-72 w-72 translate-x-16 -translate-y-20 rounded-full bg-amber-100/16 blur-3xl" />
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>

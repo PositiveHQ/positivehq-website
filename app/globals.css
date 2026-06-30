@@ -15,11 +15,11 @@ html {
 }
 
 body {
-  @apply min-h-screen bg-[#050608] pb-24 text-slate-100 antialiased lg:pb-0;
+  @apply min-h-screen bg-[#020814] pb-24 text-slate-100 antialiased lg:pb-0;
   background-image:
-    radial-gradient(circle at 15% 0%, rgba(201, 166, 91, 0.18), transparent 34%),
-    radial-gradient(circle at 92% 12%, rgba(85, 111, 160, 0.16), transparent 30%),
-    linear-gradient(180deg, #080a0f 0%, #050608 52%, #030405 100%);
+    radial-gradient(circle at 14% 0%, rgba(217, 183, 107, 0.20), transparent 32%),
+    radial-gradient(circle at 88% 10%, rgba(18, 58, 111, 0.34), transparent 34%),
+    linear-gradient(180deg, #071a33 0%, #020814 54%, #010309 100%);
 }
 
 body::before {
@@ -37,17 +37,17 @@ body::before {
 }
 
 ::selection {
-  background: rgba(201, 166, 91, 0.45);
+  background: rgba(217, 183, 107, 0.48);
   color: #f8fafc;
 }
 
 @layer utilities {
   .surface-card {
-    @apply rounded-2xl border border-white/10 bg-white/[0.035] shadow-[0_18px_55px_rgba(0,0,0,0.45)] backdrop-blur-xl transition duration-500;
+    @apply rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(18,58,111,0.09))] shadow-[0_18px_55px_rgba(0,0,0,0.48)] backdrop-blur-xl transition duration-500;
   }
 
   .field-input {
-    @apply rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 transition duration-300 focus:border-amber-200/60 focus:outline-none focus:ring-2 focus:ring-amber-100/25;
+    @apply rounded-xl border border-white/15 bg-[#020814]/55 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 transition duration-300 focus:border-amber-200/60 focus:outline-none focus:ring-2 focus:ring-amber-100/25;
   }
 
   .section-title {

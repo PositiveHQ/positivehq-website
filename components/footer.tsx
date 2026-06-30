@@ -7,11 +7,11 @@ const disclaimer = 'Positive Watch HQ is a private luxury watch concierge. Publi
 
 export function Footer() {
   return (
-    <footer className="mt-28 border-t border-white/10 bg-[#030405]">
+    <footer className="mt-28 border-t border-white/10 bg-[#010309]">
       <Container className="grid gap-10 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
           <Image
-            src="/positive-watch-hq-wordmark-gentry-inspired.svg"
+            src="/positive-watch-hq-blue-gold-wordmark.svg"
             alt="Positive Watch HQ"
             width={980}
             height={220}
