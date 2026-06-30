@@ -1,6 +1,7 @@
 'use server';
 
 import { createWatchInquiry } from '@/lib/repositories/submissions';
+import { getLeadFallbackMessage, leadSuccessMessage, sendLeadNotification, splitName } from '@/lib/lead-notifications';
 
 type ContactState = {
   status: 'idle' | 'success' | 'error';
@@ -20,6 +21,14 @@ type InquiryIntent = keyof typeof inquiryLabels;
 
 function isInquiryIntent(value: string): value is InquiryIntent {
   return value in inquiryLabels;
+}
+
+function subjectForIntent(intent: InquiryIntent) {
+  if (intent === 'buy') return 'New Positive Watch HQ Request a Watch Lead';
+  if (intent === 'sell') return 'New Positive Watch HQ Watch Review Lead';
+  if (intent === 'trade' || intent === 'consign') return 'New Positive Watch HQ Trade / Consignment Lead';
+  if (intent === 'appointment') return 'New Positive Watch HQ Appointment Request';
+  return 'New Positive Watch HQ Contact Lead';
 }
 
 export async function submitContactAction(
@@ -54,6 +63,8 @@ export async function submitContactAction(
       return { status: 'error', message: 'Please select what you are looking to do.' };
     }
 
+    const { firstName, lastName } = splitName(customerName);
+    const formName = inquiryIntentValue === 'buy' ? 'Request a Watch' : `Contact — ${inquiryLabels[inquiryIntentValue]}`;
     const compiledMessage = [
       `Inquiry type: ${inquiryLabels[inquiryIntentValue]}`,
       appointmentRequest ? 'Appointment requested: Yes' : 'Appointment requested: No',
@@ -67,19 +78,58 @@ export async function submitContactAction(
       .filter((line): line is string => line !== null)
       .join('\n');
 
-    await createWatchInquiry({
+    const storedLead = await createWatchInquiry({
       customerName,
+      firstName,
+      lastName,
       email,
       phone,
+      desiredBrand: watchContext.split(/\s+/)[0] || undefined,
+      desiredModelReference: watchContext,
+      budgetRange: budgetOrExpectedValue,
+      timeline: desiredTimeline,
       message: compiledMessage,
-      sourcePage: `/contact:${inquiryIntentValue}`
+      sourcePage: `/contact:${inquiryIntentValue}`,
+      formName,
+      leadPayload: {
+        inquiryIntent: inquiryIntentValue,
+        inquiryLabel: inquiryLabels[inquiryIntentValue],
+        appointmentRequest,
+        preferredTime,
+        watchContext,
+        budgetOrExpectedValue,
+        desiredTimeline,
+        message
+      }
     });
 
-    return { status: 'success', message: 'Contact request received. We will come back with the right next step.' };
-  } catch (error) {
+    await sendLeadNotification({
+      subject: subjectForIntent(inquiryIntentValue),
+      formName,
+      submittedAt: storedLead.createdAt,
+      fields: {
+        leadId: storedLead.id,
+        firstName,
+        lastName,
+        fullName: customerName,
+        email,
+        phone,
+        inquiryType: inquiryLabels[inquiryIntentValue],
+        desiredBrandModelReference: watchContext,
+        budgetOrExpectedValue,
+        desiredTimeline,
+        appointmentRequest,
+        preferredTime,
+        sourcePage: `/contact:${inquiryIntentValue}`,
+        message
+      }
+    });
+
+    return { status: 'success', message: leadSuccessMessage };
+  } catch (_error) {
     return {
       status: 'error',
-      message: error instanceof Error ? error.message : 'Unable to submit right now.'
+      message: getLeadFallbackMessage()
     };
   }
 }

@@ -1,6 +1,7 @@
 'use server';
 
 import { createWatchInquiry } from '@/lib/repositories/submissions';
+import { getLeadFallbackMessage, leadSuccessMessage, sendLeadNotification, splitName } from '@/lib/lead-notifications';
 
 type InquiryState = {
   status: 'idle' | 'success' | 'error';
@@ -30,22 +31,49 @@ export async function submitWatchInquiryAction(
       return { status: 'error', message: 'Please add a little more detail so we can review properly.' };
     }
 
-    await createWatchInquiry({
+    const { firstName, lastName } = splitName(customerName);
+    const storedLead = await createWatchInquiry({
       watchId: watch.id,
       watchSlug: watch.slug,
       watchReference: watch.reference,
       customerName,
+      firstName,
+      lastName,
       email,
       phone,
+      desiredModelReference: watch.reference,
       message,
-      sourcePage: `/watches/${watch.slug}`
+      sourcePage: `/watches/${watch.slug}`,
+      formName: 'Request This Watch',
+      leadPayload: {
+        watchSlug: watch.slug,
+        watchReference: watch.reference,
+        message
+      }
     });
 
-    return { status: 'success', message: 'Inquiry sent. We will contact you shortly.' };
-  } catch (error) {
+    await sendLeadNotification({
+      subject: 'New Positive Watch HQ Request a Watch Lead',
+      formName: 'Request This Watch',
+      submittedAt: storedLead.createdAt,
+      fields: {
+        leadId: storedLead.id,
+        firstName,
+        lastName,
+        fullName: customerName,
+        email,
+        phone,
+        desiredModelReference: watch.reference,
+        sourcePage: `/watches/${watch.slug}`,
+        message
+      }
+    });
+
+    return { status: 'success', message: leadSuccessMessage };
+  } catch (_error) {
     return {
       status: 'error',
-      message: error instanceof Error ? error.message : 'Unable to submit inquiry right now.'
+      message: getLeadFallbackMessage()
     };
   }
 }
