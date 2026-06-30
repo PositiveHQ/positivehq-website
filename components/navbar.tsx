@@ -43,12 +43,12 @@ export function Navbar() {
         <Container className="flex h-20 items-center justify-between gap-4">
           <Link href="/" className="group flex items-center text-white" aria-label="Positive Watch HQ home">
             <Image
-              src="/positive-watch-hq-blue-gold-wordmark.svg"
+              src="/positive-watch-hq-pw-dial-header-logo.svg"
               alt="Positive Watch HQ"
-              width={980}
-              height={220}
+              width={1180}
+              height={280}
               priority
-              className="h-11 w-44 object-contain object-left sm:h-12 sm:w-52 lg:w-60"
+              className="h-12 w-48 object-contain object-left sm:h-14 sm:w-56 lg:w-64"
             />
           </Link>
 

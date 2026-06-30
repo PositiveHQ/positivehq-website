@@ -11,11 +11,11 @@ export function Footer() {
       <Container className="grid gap-10 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
           <Image
-            src="/positive-watch-hq-blue-gold-wordmark.svg"
+            src="/positive-watch-hq-pw-dial-header-logo.svg"
             alt="Positive Watch HQ"
-            width={980}
-            height={220}
-            className="h-16 w-72 object-contain object-left"
+            width={1180}
+            height={280}
+            className="h-20 w-80 object-contain object-left"
           />
           <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
             A premium watch concierge for sourcing, trade-ins, consignment, and private watch requests with clearer details, calmer communication, and stronger presentation.
