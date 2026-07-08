@@ -1,0 +1,33 @@
+<svg width="1040" height="260" viewBox="0 0 1040 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Positive Watch HQ blue gold wordmark</title>
+  <desc id="desc">A premium Positive Watch HQ wordmark in deep navy, champagne gold, and refined white.</desc>
+  <defs>
+    <linearGradient id="gold" x1="128" y1="20" x2="912" y2="222" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF1B5"/>
+      <stop offset="0.28" stop-color="#D9B76B"/>
+      <stop offset="0.62" stop-color="#8B6824"/>
+      <stop offset="1" stop-color="#F7E2A6"/>
+    </linearGradient>
+    <linearGradient id="white" x1="138" y1="94" x2="902" y2="152" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.52" stop-color="#E6EDF5"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-35%" width="120%" height="170%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.52"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#D9B76B" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <text x="520" y="118" text-anchor="middle"
+      font-family="Didot, Bodoni 72, Bodoni MT, Cinzel, Cormorant Garamond, Times New Roman, serif"
+      font-size="84" font-weight="500" letter-spacing="13" fill="url(#white)">POSITIVE</text>
+    <text x="520" y="182" text-anchor="middle"
+      font-family="Didot, Bodoni 72, Bodoni MT, Cinzel, Cormorant Garamond, Times New Roman, serif"
+      font-size="46" font-weight="500" letter-spacing="16" fill="url(#gold)">WATCH HQ</text>
+    <line x1="282" y1="218" x2="448" y2="218" stroke="url(#gold)" stroke-width="2" stroke-linecap="round" opacity="0.88"/>
+    <circle cx="520" cy="218" r="4" fill="url(#gold)"/>
+    <line x1="592" y1="218" x2="758" y2="218" stroke="url(#gold)" stroke-width="2" stroke-linecap="round" opacity="0.88"/>
+  </g>
+</svg>

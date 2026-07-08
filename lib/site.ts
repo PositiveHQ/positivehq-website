@@ -5,8 +5,17 @@ export function getSiteUrl() {
 }
 
 export const siteConfig = {
-  name: 'Positive Watch Co.',
-  description: 'Buy and sell premium watches with a clean, trusted dealer process.',
-  email: 'hello@positivewatchco.com',
-  phone: '+1 (305) 555-0142'
+  name: 'Positive Watch HQ',
+  description:
+    'A premium watch platform for curated luxury watch sales, trade-ins, and consignment with clear condition review and concierge communication.',
+  email: 'nick@mrpositivehq.com',
+  emailDisplay: 'nick@mrpositivehq.com | robert@positivewatchhq.com',
+  emailHref: 'mailto:nick@mrpositivehq.com?cc=robert@positivewatchhq.com',
+  contactEmails: ['nick@mrpositivehq.com', 'robert@positivewatchhq.com'],
+  phone: '',
+  phoneConsultationText: 'Phone consultations available by appointment.',
+  social: {
+    instagram: 'https://www.instagram.com/positivewatchhq',
+    founderInstagram: 'https://www.instagram.com/mr.positive'
+  }
 };

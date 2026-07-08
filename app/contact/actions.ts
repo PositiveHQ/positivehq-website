@@ -1,0 +1,135 @@
+'use server';
+
+import { createWatchInquiry } from '@/lib/repositories/submissions';
+import { getLeadFallbackMessage, leadSuccessMessage, sendLeadNotification, splitName } from '@/lib/lead-notifications';
+
+type ContactState = {
+  status: 'idle' | 'success' | 'error';
+  message?: string;
+};
+
+const inquiryLabels = {
+  buy: 'Buy a watch',
+  sell: 'Sell a watch',
+  trade: 'Trade a watch',
+  consign: 'Consign a watch',
+  general: 'Ask a general question',
+  appointment: 'Appointment'
+} as const;
+
+type InquiryIntent = keyof typeof inquiryLabels;
+
+function isInquiryIntent(value: string): value is InquiryIntent {
+  return value in inquiryLabels;
+}
+
+function subjectForIntent(intent: InquiryIntent) {
+  if (intent === 'buy') return 'New Positive Watch HQ Request a Watch Lead';
+  if (intent === 'sell') return 'New Positive Watch HQ Watch Review Lead';
+  if (intent === 'trade' || intent === 'consign') return 'New Positive Watch HQ Trade / Consignment Lead';
+  if (intent === 'appointment') return 'New Positive Watch HQ Appointment Request';
+  return 'New Positive Watch HQ Contact Lead';
+}
+
+export async function submitContactAction(
+  _prevState: ContactState,
+  formData: FormData
+): Promise<ContactState> {
+  try {
+    const customerName = String(formData.get('customerName') ?? '').trim();
+    const email = String(formData.get('email') ?? '').trim();
+    const phone = String(formData.get('phone') ?? '').trim();
+    const inquiryIntentValue = String(formData.get('inquiryIntent') ?? '').trim();
+    const watchContext = String(formData.get('watchContext') ?? '').trim();
+    const budgetOrExpectedValue = String(formData.get('budgetOrExpectedValue') ?? '').trim();
+    const desiredTimeline = String(formData.get('desiredTimeline') ?? '').trim();
+    const appointmentRequest = formData.get('appointmentRequest') === 'on' || inquiryIntentValue === 'appointment';
+    const preferredTime = String(formData.get('preferredTime') ?? '').trim();
+    const message = String(formData.get('message') ?? '').trim();
+
+    if (!customerName || !email || !inquiryIntentValue || !message) {
+      return { status: 'error', message: 'Please complete name, email, inquiry type, and message.' };
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return { status: 'error', message: 'Please enter a valid email address.' };
+    }
+
+    if (message.length < 10) {
+      return { status: 'error', message: 'Please add a little more detail in the message so we can review properly.' };
+    }
+
+    if (!isInquiryIntent(inquiryIntentValue)) {
+      return { status: 'error', message: 'Please select what you are looking to do.' };
+    }
+
+    const { firstName, lastName } = splitName(customerName);
+    const formName = inquiryIntentValue === 'buy' ? 'Request a Watch' : `Contact — ${inquiryLabels[inquiryIntentValue]}`;
+    const compiledMessage = [
+      `Inquiry type: ${inquiryLabels[inquiryIntentValue]}`,
+      appointmentRequest ? 'Appointment requested: Yes' : 'Appointment requested: No',
+      preferredTime ? `Preferred time: ${preferredTime}` : null,
+      watchContext ? `Brand/model/reference: ${watchContext}` : null,
+      budgetOrExpectedValue ? `Budget or expected value: ${budgetOrExpectedValue}` : null,
+      desiredTimeline ? `Desired timeline: ${desiredTimeline}` : null,
+      '',
+      message
+    ]
+      .filter((line): line is string => line !== null)
+      .join('\n');
+
+    const storedLead = await createWatchInquiry({
+      customerName,
+      firstName,
+      lastName,
+      email,
+      phone,
+      desiredBrand: watchContext.split(/\s+/)[0] || undefined,
+      desiredModelReference: watchContext,
+      budgetRange: budgetOrExpectedValue,
+      timeline: desiredTimeline,
+      message: compiledMessage,
+      sourcePage: `/contact:${inquiryIntentValue}`,
+      formName,
+      leadPayload: {
+        inquiryIntent: inquiryIntentValue,
+        inquiryLabel: inquiryLabels[inquiryIntentValue],
+        appointmentRequest,
+        preferredTime,
+        watchContext,
+        budgetOrExpectedValue,
+        desiredTimeline,
+        message
+      }
+    });
+
+    await sendLeadNotification({
+      subject: subjectForIntent(inquiryIntentValue),
+      formName,
+      submittedAt: storedLead.createdAt,
+      fields: {
+        leadId: storedLead.id,
+        firstName,
+        lastName,
+        fullName: customerName,
+        email,
+        phone,
+        inquiryType: inquiryLabels[inquiryIntentValue],
+        desiredBrandModelReference: watchContext,
+        budgetOrExpectedValue,
+        desiredTimeline,
+        appointmentRequest,
+        preferredTime,
+        sourcePage: `/contact:${inquiryIntentValue}`,
+        message
+      }
+    });
+
+    return { status: 'success', message: leadSuccessMessage };
+  } catch (_error) {
+    return {
+      status: 'error',
+      message: getLeadFallbackMessage()
+    };
+  }
+}

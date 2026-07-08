@@ -214,6 +214,29 @@ In Supabase dashboard:
 - Email automations/notifications
 - Lead assignment workflows
 
+## Production Lead Capture (Phase 8)
+### What this phase adds
+- Structured lead capture fields for Request a Watch, contact, sell, trade, and consignment forms.
+- Server-side Supabase writes using `SUPABASE_SERVICE_ROLE_KEY`; the service key is never exposed to the browser.
+- Locked-down RLS on lead tables with no public read policies.
+- Resend email notifications to Nick with Robert CC for successful inquiries.
+
+### New migration
+Run migration:
+- `supabase/migrations/0005_production_lead_capture.sql`
+
+### Required Vercel environment variables
+Set these for both Preview and Production before launch:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESEND_API_KEY`
+- `LEADS_FROM_EMAIL`
+- `LEADS_TO_EMAIL=nick@mrpositivehq.com`
+- `LEADS_CC_EMAIL=robert@positivewatchhq.com`
+
+After env vars are set, redeploy and submit test leads through Request a Watch, Sell, Trade, Consignment, and Contact. A launch-ready submission must create a Supabase row and send the email notification.
+
 ## SEO + Trust + Production Polish (Phase 7)
 ### What this phase adds
 - Improved metadata coverage across key public pages.

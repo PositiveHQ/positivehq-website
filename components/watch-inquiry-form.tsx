@@ -25,7 +25,7 @@ export function WatchInquiryForm({
         <input type="email" name="email" required placeholder="Email" className="field-input" />
       </div>
       <input name="phone" placeholder="Phone (optional)" className="field-input w-full" />
-      <textarea name="message" rows={4} placeholder="Message" className="field-input w-full" />
+      <textarea name="message" required minLength={10} rows={4} placeholder="Message" className="field-input w-full" />
       <FormSubmitButton label="Send Inquiry" pendingLabel="Sending..." />
       {state.message && (
         <p className={`text-sm ${state.status === 'success' ? 'text-emerald-300' : state.status === 'error' ? 'text-red-300' : 'text-slate-300'}`}>

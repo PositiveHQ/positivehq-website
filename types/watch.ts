@@ -34,6 +34,42 @@ export interface Watch {
   description: string;
   images: WatchImage[];
   featured?: boolean;
+  listingDetails?: WatchListingDetails;
+}
+
+export interface WatchListingDetails {
+  media?: {
+    mainDialPhoto?: string;
+    caseSidePhoto?: string;
+    casebackPhoto?: string;
+    braceletPhoto?: string;
+    claspPhoto?: string;
+    bezelCloseUp?: string;
+    crystalCloseUp?: string;
+    accessoriesPhoto?: string;
+    videoWalkthrough?: string;
+  };
+  conditionNotes?: {
+    caseCondition?: string;
+    bezelCondition?: string;
+    crystalCondition?: string;
+    braceletCondition?: string;
+    claspCondition?: string;
+    polishingNotes?: string;
+    braceletLinkCount?: string;
+    knownFlaws?: string;
+  };
+  includedAccessories?: {
+    boxPapersStatus?: string;
+    warrantyDate?: string;
+    serviceHistory?: string;
+    bookletsTagsExtraLinks?: string;
+  };
+  transactionNotes?: {
+    payment?: string;
+    shipping?: string;
+    returns?: string;
+  };
 }
 
 export interface WatchDbRow {

@@ -1,6 +1,7 @@
 'use server';
 
 import { createSellSubmission } from '@/lib/repositories/submissions';
+import { getLeadFallbackMessage, leadSuccessMessage, sendLeadNotification, splitName } from '@/lib/lead-notifications';
 import { SubmissionType } from '@/types/submissions';
 import { WatchCondition } from '@/types/watch';
 
@@ -8,6 +9,17 @@ type SubmissionState = {
   status: 'idle' | 'success' | 'error';
   message?: string;
 };
+
+function subjectForSubmission(submissionType: SubmissionType) {
+  if (submissionType === 'trade' || submissionType === 'consignment') return 'New Positive Watch HQ Trade / Consignment Lead';
+  return 'New Positive Watch HQ Watch Review Lead';
+}
+
+function formNameForSubmission(submissionType: SubmissionType) {
+  if (submissionType === 'trade') return 'Trade Inquiry';
+  if (submissionType === 'consignment') return 'Consignment Inquiry';
+  return 'Start Watch Review / Sell Your Watch';
+}
 
 async function submitLead(submissionType: SubmissionType, formData: FormData): Promise<SubmissionState> {
   try {
@@ -21,9 +33,31 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
     const yearValue = String(formData.get('year') ?? '').trim();
     const askingPriceValue = String(formData.get('askingPrice') ?? '').trim();
     const notes = String(formData.get('notes') ?? '').trim();
+    const boxPapers = String(formData.get('boxPapers') ?? '').trim();
+    const serviceHistory = String(formData.get('serviceHistory') ?? '').trim();
+    const aftermarketParts = String(formData.get('aftermarketParts') ?? '').trim();
+    const timeline = String(formData.get('timeline') ?? '').trim();
+    const targetWatch = String(formData.get('targetWatch') ?? '').trim();
+    const cashDifference = String(formData.get('cashDifference') ?? '').trim();
+    const desiredOutcome = submissionType;
+    const sourcePage = submissionType === 'sell' ? '/sell#sell-form' : submissionType === 'trade' ? '/trade-in#trade-form' : '/consignment#consignment-review';
+    const formName = formNameForSubmission(submissionType);
+    const extendedNotes = [
+      notes,
+      boxPapers && `Box/papers: ${boxPapers}`,
+      serviceHistory && `Service history: ${serviceHistory}`,
+      aftermarketParts && `Aftermarket parts: ${aftermarketParts}`,
+      timeline && `Timeline: ${timeline}`,
+      targetWatch && `Target watch: ${targetWatch}`,
+      cashDifference && `Expected cash difference: ${cashDifference}`
+    ].filter(Boolean).join('\n');
 
     if (!customerName || !email || !brand || !model) {
       return { status: 'error', message: 'Please complete name, email, brand, and model.' };
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return { status: 'error', message: 'Please enter a valid email address.' };
     }
 
     let year: number | undefined;
@@ -44,9 +78,12 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
       askingPrice = parsedAskingPrice;
     }
 
-    await createSellSubmission({
+    const { firstName, lastName } = splitName(customerName);
+    const storedLead = await createSellSubmission({
       submissionType,
       customerName,
+      firstName,
+      lastName,
       email,
       phone,
       brand,
@@ -54,20 +91,59 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
       referenceNumber,
       condition,
       year,
-      box: formData.get('box') === 'on',
-      papers: formData.get('papers') === 'on',
+      box: formData.get('box') === 'on' || boxPapers === 'Full set' || boxPapers === 'Box only',
+      papers: formData.get('papers') === 'on' || boxPapers === 'Full set' || boxPapers === 'Papers only',
+      boxPapersStatus: boxPapers,
       askingPrice,
-      notes
+      desiredOutcome,
+      sourcePage,
+      formName,
+      leadPayload: {
+        submissionType,
+        desiredOutcome,
+        boxPapers,
+        serviceHistory,
+        aftermarketParts,
+        timeline,
+        targetWatch,
+        cashDifference,
+        notes
+      },
+      notes: extendedNotes
     });
 
-    return {
-      status: 'success',
-      message: submissionType === 'sell' ? 'Submission received. We will send an offer shortly.' : 'Trade request received. We will follow up with options.'
-    };
-  } catch (error) {
+    await sendLeadNotification({
+      subject: subjectForSubmission(submissionType),
+      formName,
+      submittedAt: storedLead.createdAt,
+      fields: {
+        leadId: storedLead.id,
+        firstName,
+        lastName,
+        fullName: customerName,
+        email,
+        phone,
+        desiredOutcome,
+        watchBrand: brand,
+        modelReference: [model, referenceNumber].filter(Boolean).join(' / '),
+        year: year || '',
+        condition,
+        boxPapersStatus: boxPapers,
+        serviceHistory,
+        aftermarketParts,
+        timeline,
+        targetWatch,
+        expectedCashDifference: cashDifference,
+        sourcePage,
+        notes
+      }
+    });
+
+    return { status: 'success', message: leadSuccessMessage };
+  } catch (_error) {
     return {
       status: 'error',
-      message: error instanceof Error ? error.message : 'Unable to submit right now.'
+      message: getLeadFallbackMessage()
     };
   }
 }
@@ -84,4 +160,11 @@ export async function submitTradeSubmissionAction(
   formData: FormData
 ): Promise<SubmissionState> {
   return submitLead('trade', formData);
+}
+
+export async function submitConsignmentSubmissionAction(
+  _prevState: SubmissionState,
+  formData: FormData
+): Promise<SubmissionState> {
+  return submitLead('consignment', formData);
 }

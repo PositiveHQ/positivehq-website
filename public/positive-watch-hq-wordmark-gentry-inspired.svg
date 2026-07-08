@@ -1,0 +1,26 @@
+<svg width="980" height="220" viewBox="0 0 980 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Positive Watch HQ wordmark</title>
+  <desc id="desc">A clean original Positive Watch HQ wordmark with champagne and steel-white lettering.</desc>
+  <defs>
+    <linearGradient id="letter" x1="78" y1="64" x2="858" y2="156" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF7E0"/>
+      <stop offset="0.32" stop-color="#F8FAFC"/>
+      <stop offset="0.62" stop-color="#D9B76B"/>
+      <stop offset="1" stop-color="#C8D2E0"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-40%" width="120%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000000" flood-opacity="0.45"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#D9B76B" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <text x="490" y="123" text-anchor="middle"
+      font-family="Avenir Next, Montserrat, Futura, Helvetica Neue, Arial, sans-serif"
+      font-size="104" font-weight="700" letter-spacing="11" fill="url(#letter)">POSITIVE</text>
+    <text x="490" y="184" text-anchor="middle"
+      font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif"
+      font-size="34" font-weight="650" letter-spacing="18" fill="#F8FAFC" fill-opacity="0.94">WATCH HQ</text>
+  </g>
+
+</svg>

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { Container } from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
 import { RichText } from '@/components/rich-text';
+import { submitNewsletterAction } from '@/app/newsletter/actions';
 import { getPostBySlug, getPosts } from '@/lib/repositories/blog';
 import { getSiteUrl } from '@/lib/site';
 import { formatDate } from '@/lib/utils';
@@ -55,9 +56,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <aside className="space-y-8">
         <section className="surface-card p-6">
           <h2 className="text-lg font-semibold text-white">Stay informed</h2>
-          <p className="mt-2 text-sm text-slate-300">Get new arrivals and concise market updates.</p>
+          <p className="mt-2 text-sm text-slate-300">Get private sourcing notes and concise market context.</p>
           <div className="mt-4">
-            <NewsletterForm />
+            <NewsletterForm action={submitNewsletterAction} sourcePage={`/blog/${post.slug}`} />
           </div>
         </section>
         <section className="surface-card p-6">

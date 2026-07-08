@@ -1,0 +1,85 @@
+import { Metadata } from 'next';
+import { Container } from '@/components/container';
+import { WatchesCatalog } from '@/components/watches-catalog';
+import { catalogBrands, getBrandBySlug } from '@/lib/brands';
+import { getWatchesInventory } from '@/lib/repositories/watches';
+
+export const metadata: Metadata = {
+  title: 'Brands & Requests | Positive Watch HQ',
+  description: 'Explore brands Positive Watch HQ commonly sources and reviews through a private concierge process. Real availability, pricing, and condition are confirmed directly.',
+  alternates: { canonical: '/catalog' }
+};
+
+type CatalogPageProps = {
+  searchParams?: { brand?: string | string[] };
+};
+
+export default async function CatalogPage({ searchParams }: CatalogPageProps) {
+  const { watches, isSampleInventory } = await getWatchesInventory();
+  const selectedBrand = getBrandBySlug(searchParams?.brand);
+
+  return (
+    <Container className="space-y-12 py-16 lg:py-20">
+      <header className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-amber-100/[0.07] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.48)] md:p-12">
+        <div className="absolute right-0 top-0 h-72 w-72 translate-x-20 -translate-y-24 rounded-full bg-amber-100/12 blur-3xl" />
+        <div className="relative max-w-4xl space-y-5">
+          <p className="eyebrow">Brands & Requests</p>
+          <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">
+            Explore trusted brands. Request the right reference.
+          </h1>
+          <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+            {selectedBrand
+              ? `Review ${selectedBrand.name} examples or request a specific reference. Positive Watch HQ is currently showing request examples only.`
+              : 'Positive Watch HQ is currently showing request examples only. Brand and watch examples show how private requests are reviewed before any availability is confirmed.'}
+          </p>
+          <div className="rounded-2xl border border-amber-100/20 bg-amber-100/10 p-4 text-sm leading-6 text-amber-50">
+            Example Request Layout — Demo Only. Not real availability, confirmed pricing, or a transaction-ready watch. Demo only.
+          </div>
+        </div>
+      </header>
+
+      <section className="space-y-6">
+        <div>
+          <p className="eyebrow">Brand navigation</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Brands & Categories</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">Use a brand category to start a sourcing request. Demo examples remain clearly labeled and are not presented as live stock.</p>
+        </div>
+        <div className="grid grid-cols-2 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] sm:grid-cols-3 lg:grid-cols-4">
+          {catalogBrands.map((brand) => (
+            <a
+              key={brand.slug}
+              href={`/catalog?brand=${brand.slug}`}
+              className={`group border-b border-r border-white/10 p-5 transition hover:bg-white/[0.07] sm:p-7 ${selectedBrand?.slug === brand.slug ? 'bg-amber-100/10' : ''}`}
+            >
+              <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-white transition group-hover:text-amber-100">{brand.name}</span>
+              <span className="mt-3 block text-xs leading-5 text-slate-400">Request / review →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <WatchesCatalog watches={watches} isSampleInventory={isSampleInventory} initialBrand={selectedBrand?.name} />
+
+      <section className="grid gap-4 lg:grid-cols-2">
+        <article className="surface-card p-6 lg:p-8">
+          <p className="eyebrow">Demo mode</p>
+          <h2 className="mt-3 text-2xl font-semibold text-white">Example requests stay clearly labeled.</h2>
+          <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-300">
+            <li>• Keep “Example Request Layout — Demo Only.”</li>
+            <li>• Keep “Not real availability, confirmed pricing, or a transaction-ready watch.”</li>
+            <li>• Keep demo-only availability and example pricing clearly labeled.</li>
+          </ul>
+        </article>
+        <article className="surface-card p-6 lg:p-8">
+          <p className="eyebrow">Verified watch mode</p>
+          <h2 className="mt-3 text-2xl font-semibold text-white">Verified watches remove every demo marker.</h2>
+          <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-300">
+            <li>• Add real photos, condition notes, included accessories, and availability.</li>
+            <li>• Add a real inquiry path for that watch.</li>
+            <li>• Product structured data only appears for verified watch pages.</li>
+          </ul>
+        </article>
+      </section>
+    </Container>
+  );
+}

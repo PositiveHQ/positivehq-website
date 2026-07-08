@@ -1,0 +1,48 @@
+<svg width="1180" height="280" viewBox="0 0 1180 280" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Positive Watch HQ PW dial logo</title>
+  <desc id="desc">A refined Positive Watch HQ logo with a circular PW watch-dial emblem, full Positive Watch HQ wordmark, and Luxury Watch Concierge tagline.</desc>
+  <defs>
+    <linearGradient id="gold" x1="520" y1="16" x2="660" y2="136" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF1B5"/>
+      <stop offset="0.34" stop-color="#D9B76B"/>
+      <stop offset="0.66" stop-color="#8B6824"/>
+      <stop offset="1" stop-color="#F7E2A6"/>
+    </linearGradient>
+    <linearGradient id="wordWhite" x1="156" y1="126" x2="1024" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#E6EDF5"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-30%" width="120%" height="160%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#000000" flood-opacity="0.50"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#D9B76B" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(590 58)">
+      <circle r="45" fill="#020814" stroke="url(#gold)" stroke-width="3"/>
+      <circle r="38" fill="none" stroke="#123A6F" stroke-width="4.5" opacity="0.9"/>
+      <circle r="31" fill="none" stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="1"/>
+      <g stroke="url(#gold)" stroke-linecap="round">
+        <line x1="0" y1="-28" x2="0" y2="-22" stroke-width="2"/>
+        <line x1="28" y1="0" x2="22" y2="0" stroke-width="2"/>
+        <line x1="0" y1="28" x2="0" y2="22" stroke-width="2"/>
+        <line x1="-28" y1="0" x2="-22" y2="0" stroke-width="2"/>
+        <line x1="14" y1="-24.2" x2="11" y2="-19.1" stroke-width="1" opacity="0.62"/>
+        <line x1="24.2" y1="-14" x2="19.1" y2="-11" stroke-width="1" opacity="0.62"/>
+        <line x1="24.2" y1="14" x2="19.1" y2="11" stroke-width="1" opacity="0.62"/>
+        <line x1="14" y1="24.2" x2="11" y2="19.1" stroke-width="1" opacity="0.62"/>
+        <line x1="-14" y1="24.2" x2="-11" y2="19.1" stroke-width="1" opacity="0.62"/>
+        <line x1="-24.2" y1="14" x2="-19.1" y2="11" stroke-width="1" opacity="0.62"/>
+        <line x1="-24.2" y1="-14" x2="-19.1" y2="-11" stroke-width="1" opacity="0.62"/>
+        <line x1="-14" y1="-24.2" x2="-11" y2="-19.1" stroke-width="1" opacity="0.62"/>
+      </g>
+      <text x="0" y="14" text-anchor="middle" font-family="Didot, Bodoni 72, Bodoni MT, Cinzel, Cormorant Garamond, Times New Roman, serif" font-size="32" font-weight="500" letter-spacing="-2" fill="url(#wordWhite)">PW</text>
+      <circle r="2" fill="url(#gold)"/>
+    </g>
+
+    <text x="590" y="158" text-anchor="middle" font-family="Didot, Bodoni 72, Bodoni MT, Cinzel, Cormorant Garamond, Times New Roman, serif" font-size="58" font-weight="500" letter-spacing="9" fill="url(#wordWhite)">POSITIVE WATCH HQ</text>
+    <text x="590" y="215" text-anchor="middle" font-family="Avenir Next, Montserrat, Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="8" fill="#EEF3F8">LUXURY WATCH CONCIERGE</text>
+  </g>
+</svg>

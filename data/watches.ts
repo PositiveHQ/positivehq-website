@@ -24,7 +24,7 @@ export const watches: Watch[] = [
       {
         id: '1-1',
         watchId: '1',
-        url: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=1200&q=80',
+        url: '/media/positive-watch-hero-reference-clear-poster.webp',
         alt: 'Rolex Submariner front view',
         sortOrder: 0,
         isPrimary: true
@@ -32,19 +32,19 @@ export const watches: Watch[] = [
       {
         id: '1-2',
         watchId: '1',
-        url: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1200&q=80',
+        url: '/media/positive-watch-hero-poster.webp',
         alt: 'Rolex Submariner bracelet detail',
         sortOrder: 1
       },
       {
         id: '1-3',
         watchId: '1',
-        url: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80',
+        url: '/media/positive-watch-hero-reference-clear-poster.webp',
         alt: 'Rolex Submariner side profile',
         sortOrder: 2
       }
     ],
-    description: 'A clean, sharp Submariner with strong case lines and full set accessories. Fully inspected and pressure tested before listing.',
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.',
     featured: true
   },
   {
@@ -70,20 +70,20 @@ export const watches: Watch[] = [
       {
         id: '2-1',
         watchId: '2',
-        url: 'https://images.unsplash.com/photo-1548171915-e79a1e624a9f?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Omega Speedmaster Moonwatch',
+        url: '/media/positive-watch-hero-poster.webp',
+        alt: 'Luxury chronograph watch detail',
         sortOrder: 0,
         isPrimary: true
       },
       {
         id: '2-2',
         watchId: '2',
-        url: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1200&q=80',
+        url: '/media/positive-watch-hero-drive-best-poster.webp',
         alt: 'Omega Speedmaster side angle',
         sortOrder: 1
       }
     ],
-    description: 'The latest Hesalite Moonwatch with honest wear and a strong movement performance report.',
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.',
     featured: true
   },
   {
@@ -109,13 +109,13 @@ export const watches: Watch[] = [
       {
         id: '3-1',
         watchId: '3',
-        url: 'https://images.unsplash.com/photo-1619134778706-7015533a6150?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Tudor Black Bay 58',
+        url: '/media/positive-watch-hero-drive-v2-best-poster.webp',
+        alt: 'Luxury dress watch on a dark background',
         sortOrder: 0,
         isPrimary: true
       }
     ],
-    description: 'Classic proportions, strong lume, and full set paperwork. A balanced daily-wear dive watch.',
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.',
     featured: true
   },
   {
@@ -141,13 +141,13 @@ export const watches: Watch[] = [
       {
         id: '4-1',
         watchId: '4',
-        url: 'https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=1200&q=80',
+        url: '/media/positive-watch-hero-reference-clear-poster.webp',
         alt: 'Cartier Santos Medium',
         sortOrder: 0,
         isPrimary: true
       }
     ],
-    description: 'Unworn current-production Santos Medium with stickers removed only for authentication imaging.'
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.'
   },
   {
     id: '5',
@@ -172,13 +172,13 @@ export const watches: Watch[] = [
       {
         id: '5-1',
         watchId: '5',
-        url: 'https://images.unsplash.com/photo-1600003014755-ba31aa59c4b6?auto=format&fit=crop&w=1200&q=80',
+        url: '/media/positive-watch-hero-drive-best-poster.webp',
         alt: 'Grand Seiko Snowflake dial',
         sortOrder: 0,
         isPrimary: true
       }
     ],
-    description: 'Distinctive textured dial with light case wear. Movement regulated and tested in-house.'
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.'
   },
   {
     id: '6',
@@ -203,13 +203,13 @@ export const watches: Watch[] = [
       {
         id: '6-1',
         watchId: '6',
-        url: 'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&w=1200&q=80',
+        url: '/media/positive-watch-hero-drive-v2-best-poster.webp',
         alt: 'Rolex Datejust 41 blue dial',
         sortOrder: 0,
         isPrimary: true
       }
     ],
-    description: 'Fluted bezel and blue sunburst dial configuration with complete factory package.'
+    description: 'This demo page shows how real listings will present condition notes, accessories, media, payment/shipping guidance, and inquiry options once live inventory is added.'
   }
 ];
 

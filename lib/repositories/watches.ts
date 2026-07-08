@@ -91,10 +91,18 @@ function assertSupabaseConfigured() {
   }
 }
 
-export async function getAllWatches(): Promise<Watch[]> {
+export async function getWatchesInventory(): Promise<{ watches: Watch[]; isSampleInventory: boolean }> {
   const liveData = await fetchSupabaseWatches();
-  if (liveData && liveData.length > 0) return liveData;
-  return mockWatches;
+  if (liveData && liveData.length > 0) {
+    return { watches: liveData, isSampleInventory: false };
+  }
+
+  return { watches: mockWatches, isSampleInventory: true };
+}
+
+export async function getAllWatches(): Promise<Watch[]> {
+  const inventory = await getWatchesInventory();
+  return inventory.watches;
 }
 
 export async function getFeaturedWatches(): Promise<Watch[]> {
@@ -105,6 +113,14 @@ export async function getFeaturedWatches(): Promise<Watch[]> {
 export async function getWatchBySlug(slug: string): Promise<Watch | null> {
   const allWatches = await getAllWatches();
   return allWatches.find((watch) => watch.slug === slug) ?? null;
+}
+
+export async function getWatchDetail(slug: string): Promise<{ watch: Watch | null; isSampleInventory: boolean }> {
+  const inventory = await getWatchesInventory();
+  return {
+    watch: inventory.watches.find((watch) => watch.slug === slug) ?? null,
+    isSampleInventory: inventory.isSampleInventory
+  };
 }
 
 export async function getAdminWatches(): Promise<Watch[]> {
