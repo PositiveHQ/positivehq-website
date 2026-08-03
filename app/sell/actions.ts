@@ -1,7 +1,9 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { createSellSubmission } from '@/lib/repositories/submissions';
 import { getLeadFallbackMessage, leadSuccessMessage, sendLeadNotification, splitName } from '@/lib/lead-notifications';
+import { buildSmsConsentEvidence } from '@/lib/sms-consent';
 import { SubmissionType } from '@/types/submissions';
 import { WatchCondition } from '@/types/watch';
 
@@ -41,6 +43,7 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
     const cashDifference = String(formData.get('cashDifference') ?? '').trim();
     const desiredOutcome = submissionType;
     const sourcePage = submissionType === 'sell' ? '/sell#sell-form' : submissionType === 'trade' ? '/trade-in#trade-form' : '/consignment#consignment-review';
+    const smsConsentEvidence = buildSmsConsentEvidence(formData, sourcePage, undefined, headers().get('referer'));
     const formName = formNameForSubmission(submissionType);
     const extendedNotes = [
       notes,
@@ -99,6 +102,7 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
       sourcePage,
       formName,
       leadPayload: {
+        ...smsConsentEvidence,
         submissionType,
         desiredOutcome,
         boxPapers,
@@ -123,6 +127,10 @@ async function submitLead(submissionType: SubmissionType, formData: FormData): P
         fullName: customerName,
         email,
         phone,
+        smsConsent: smsConsentEvidence.smsConsent,
+        smsConsentAt: smsConsentEvidence.smsConsentAt,
+        submissionPageUrl: smsConsentEvidence.submissionPageUrl,
+        submittedAt: smsConsentEvidence.submittedAt,
         desiredOutcome,
         watchBrand: brand,
         modelReference: [model, referenceNumber].filter(Boolean).join(' / '),

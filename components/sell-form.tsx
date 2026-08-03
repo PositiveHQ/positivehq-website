@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import { useFormState } from 'react-dom';
 import { FormSubmitButton } from './form-submit-button';
+import { SmsConsentField } from './sms-consent-field';
 import { siteConfig } from '@/lib/site';
 
 type SubmissionState = {
@@ -93,6 +94,7 @@ export function SellForm({ action, submissionLabel, variant = 'sell' }: SellForm
         </div>
 
         <textarea name="notes" rows={5} placeholder="Notes" className="field-input w-full" />
+        <SmsConsentField />
         <FormSubmitButton label={submissionLabel} pendingLabel="Submitting..." />
         {state.message && (
           <p

@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useFormState } from 'react-dom';
 import { FormSubmitButton } from '@/components/form-submit-button';
+import { SmsConsentField } from '@/components/sms-consent-field';
 import { siteConfig } from '@/lib/site';
 
 type ContactState = {
@@ -135,6 +136,7 @@ export function ContactForm({ action }: ContactFormProps) {
         />
       </Field>
 
+      <SmsConsentField />
       <FormSubmitButton label="Send Contact Request" pendingLabel="Sending..." />
 
       {state.message && (
