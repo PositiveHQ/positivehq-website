@@ -1,7 +1,9 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { createWatchInquiry } from '@/lib/repositories/submissions';
 import { getLeadFallbackMessage, leadSuccessMessage, sendLeadNotification, splitName } from '@/lib/lead-notifications';
+import { buildSmsConsentEvidence } from '@/lib/sms-consent';
 
 type ContactState = {
   status: 'idle' | 'success' | 'error';
@@ -64,6 +66,7 @@ export async function submitContactAction(
     }
 
     const { firstName, lastName } = splitName(customerName);
+    const smsConsentEvidence = buildSmsConsentEvidence(formData, '/contact', undefined, headers().get('referer'));
     const formName = inquiryIntentValue === 'buy' ? 'Request a Watch' : `Contact — ${inquiryLabels[inquiryIntentValue]}`;
     const compiledMessage = [
       `Inquiry type: ${inquiryLabels[inquiryIntentValue]}`,
@@ -92,6 +95,7 @@ export async function submitContactAction(
       sourcePage: `/contact:${inquiryIntentValue}`,
       formName,
       leadPayload: {
+        ...smsConsentEvidence,
         inquiryIntent: inquiryIntentValue,
         inquiryLabel: inquiryLabels[inquiryIntentValue],
         appointmentRequest,
@@ -114,6 +118,10 @@ export async function submitContactAction(
         fullName: customerName,
         email,
         phone,
+        smsConsent: smsConsentEvidence.smsConsent,
+        smsConsentAt: smsConsentEvidence.smsConsentAt,
+        submissionPageUrl: smsConsentEvidence.submissionPageUrl,
+        submittedAt: smsConsentEvidence.submittedAt,
         inquiryType: inquiryLabels[inquiryIntentValue],
         desiredBrandModelReference: watchContext,
         budgetOrExpectedValue,

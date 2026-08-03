@@ -1,7 +1,9 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { createWatchInquiry } from '@/lib/repositories/submissions';
 import { getLeadFallbackMessage, leadSuccessMessage, sendLeadNotification, splitName } from '@/lib/lead-notifications';
+import { buildSmsConsentEvidence } from '@/lib/sms-consent';
 
 type InquiryState = {
   status: 'idle' | 'success' | 'error';
@@ -32,6 +34,7 @@ export async function submitWatchInquiryAction(
     }
 
     const { firstName, lastName } = splitName(customerName);
+    const smsConsentEvidence = buildSmsConsentEvidence(formData, `/watches/${watch.slug}`, undefined, headers().get('referer'));
     const storedLead = await createWatchInquiry({
       watchId: watch.id,
       watchSlug: watch.slug,
@@ -46,6 +49,7 @@ export async function submitWatchInquiryAction(
       sourcePage: `/watches/${watch.slug}`,
       formName: 'Request This Watch',
       leadPayload: {
+        ...smsConsentEvidence,
         watchSlug: watch.slug,
         watchReference: watch.reference,
         message
@@ -63,6 +67,10 @@ export async function submitWatchInquiryAction(
         fullName: customerName,
         email,
         phone,
+        smsConsent: smsConsentEvidence.smsConsent,
+        smsConsentAt: smsConsentEvidence.smsConsentAt,
+        submissionPageUrl: smsConsentEvidence.submissionPageUrl,
+        submittedAt: smsConsentEvidence.submittedAt,
         desiredModelReference: watch.reference,
         sourcePage: `/watches/${watch.slug}`,
         message

@@ -2,6 +2,7 @@
 
 import { useFormState } from 'react-dom';
 import { FormSubmitButton } from './form-submit-button';
+import { SmsConsentField } from './sms-consent-field';
 
 type InquiryState = {
   status: 'idle' | 'success' | 'error';
@@ -26,6 +27,7 @@ export function WatchInquiryForm({
       </div>
       <input name="phone" placeholder="Phone (optional)" className="field-input w-full" />
       <textarea name="message" required minLength={10} rows={4} placeholder="Message" className="field-input w-full" />
+      <SmsConsentField />
       <FormSubmitButton label="Send Inquiry" pendingLabel="Sending..." />
       {state.message && (
         <p className={`text-sm ${state.status === 'success' ? 'text-emerald-300' : state.status === 'error' ? 'text-red-300' : 'text-slate-300'}`}>
